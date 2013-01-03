@@ -1,0 +1,23 @@
+default_host: <%= ENV['DEFAULT_HOST'] %>
+
+ssl:
+  ca_path: '/etc/ssl/certs'
+  ca_file:
+
+# Omniauth authentication settings.Third party application's key and secret.
+omniauth:
+  facebook:
+    key: <%= ENV['FACEBOOK_KEY'] %>
+    secret: <%= ENV['FACEBOOK_SECRET'] %>
+
+# Mail settings.
+mail:
+  address: <%= ENV['MAIL_ADDRESS'] %>
+  port: <%= ENV['MAIL_PORT'] %>
+  domain: <%= ENV['MAIL_DOMAIN'] %>
+  user_name: <%= ENV['MAIL_USER_NAME'] %>
+  password: <%= ENV['MAIL_PASSWORD'] %>
+  from: 'no-reply@mentor-mentee.com'
+
+
+

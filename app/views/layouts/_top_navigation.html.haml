@@ -1,0 +1,8 @@
+- if user_signed_in?
+  = link_to t('top_navigation.home'), "#"
+  = link_to t('top_navigation.profile'), profile_user_path(current_user)
+  = link_to t('top_navigation.dashboard'), "#"
+  = link_to t('top_navigation.requests'), "#"
+  = link_to t('top_navigation.search'), "#"
+  = link_to t('devise.logout'), signout_path
+

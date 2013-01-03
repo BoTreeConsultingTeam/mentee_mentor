@@ -1,0 +1,23 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  top_navigation:
+    home: "Home"
+    profile: "Profile"
+    dashboard: "Mboard"
+    requests: "Mquests"
+    search: "Search"
+
+  user:
+    email: "Email"
+
+    profile:
+      edit: "Edit Profile"
+      update: "Update Profile"
+      first_name: "First Name"
+      last_name: "Last Name"
+      birthday: "Birthday"
+      hometown: "HomeTown"
+      current_location: "Current Location"
+

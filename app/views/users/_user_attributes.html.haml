@@ -1,0 +1,39 @@
+- disabled = local_assigns[:disable_fields].nil? ? false : disable_fields
+
+- profile = @user.profile
+- first_name = nil
+- last_name = nil
+- birthday = nil
+- hometown = nil
+- current_location = nil
+- unless profile.nil?
+  - first_name = profile.first_name
+  - last_name = profile.last_name
+  - birthday = profile.birthday
+  - hometown = profile.hometown
+  - current_location = profile.current_location
+
+%table
+  %tr
+    %td= label_tag t("user.email")
+    %td= email_field_tag 'user[email]', @user.email, disabled: true
+
+  %tr
+    %td= label_tag t("user.profile.first_name")
+    %td= text_field_tag 'user[profile_attributes][first_name]', first_name, disabled: disabled
+
+  %tr
+    %td= label_tag t("user.profile.last_name")
+    %td= text_field_tag 'user[profile_attributes][last_name]', last_name, disabled: disabled
+
+  %tr
+    %td= label_tag t("user.profile.birthday")
+    %td= text_field_tag 'user[profile_attributes][birthday]', birthday, disabled: disabled
+
+  %tr
+    %td= label_tag t("user.profile.hometown")
+    %td= text_field_tag 'user[profile_attributes][hometown]', hometown, disabled: disabled
+
+  %tr
+    %td= label_tag t("user.profile.current_location")
+    %td= text_field_tag 'user[profile_attributes][current_location]', current_location, disabled: disabled
