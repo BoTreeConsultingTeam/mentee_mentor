@@ -11,8 +11,7 @@ MentorMentee::Application.routes.draw do
   end
 
   match "/home" => "users#index", as: :user_home
-  match "/users/:mentor_id/mquest/:mentee_id/:role" => "mquests#create", via: :post, as: :mquest_as_mentor
-  match "/users/:mentee_id/mquest/:mentor_id/:role" => "mquests#create", via: :post, as: :mquest_as_mentee
+  match "/users/:from/mquest/:to/:role" => "mquests#create", via: :post, as: :mquest
 
   resources :users do
     member do

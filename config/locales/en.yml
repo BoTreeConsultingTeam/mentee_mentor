@@ -27,9 +27,17 @@ en:
 
     mquests:
       errors:
-        could_not_mquest: "Could not mquest.Either or all of the required details [role, mentee, mentor] found missing."
+        could_not_mquest: "Could not mquest.Either or all of the required details [role, from, to] found missing."
+        could_not_save_mquest: "Due to some technical problem could not send mquest.Please inform administrator about this."
+      messages:
+        success: "Successfully sent Mquest to %{user_name} for becoming his/her %{role}"
+        failure: "Mquest sending failed to %{user_name} for becoming his/her %{role}"
+
       no_users_available: "No users available in the system, except you!."
       mquest_link_title: "Mquest"
       as_mentor: "As Mentor"
       as_mentee: "As Mentee"
+      already_mquested: "Mquested"
+      remquest: "Re-Mquest"
+
 
