@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %p
+      Hello #{@requested.name},
+        #{@requestor.name} has requested you to become your #{@as_role}.
+
+    %p
+      Please use the following link to accept the request
+      http://#{Settings.default_host}/ %>
+
+    %p Thanks

@@ -11,12 +11,16 @@ MentorMentee::Application.routes.draw do
   end
 
   match "/home" => "users#index", as: :user_home
+  match "/users/:mentor_id/mquest/:mentee_id/:role" => "mquests#create", via: :post, as: :mquest_as_mentor
+  match "/users/:mentee_id/mquest/:mentor_id/:role" => "mquests#create", via: :post, as: :mquest_as_mentee
+
   resources :users do
     member do
       get "profile" => "users#show"
       get "profile/edit" => "users#edit"
     end
 
+    resources :mquests
   end
 
   # The priority is based upon order of creation:

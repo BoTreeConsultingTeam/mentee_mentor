@@ -21,3 +21,15 @@ en:
       hometown: "HomeTown"
       current_location: "Current Location"
 
+    mails:
+      mquest:
+        subject: "Request for being a %{role} from Mentor-Mentee networking platform"
+
+    mquests:
+      errors:
+        could_not_mquest: "Could not mquest.Either or all of the required details [role, mentee, mentor] found missing."
+      no_users_available: "No users available in the system, except you!."
+      mquest_link_title: "Mquest"
+      as_mentor: "As Mentor"
+      as_mentee: "As Mentee"
+

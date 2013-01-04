@@ -15,6 +15,13 @@ class User < ActiveRecord::Base
   # enabled.
   attr_accessible :profile_attributes
 
+
+  has_many :mentor_connections, class_name: 'MentorMenteeConnection', foreign_key: 'mentor_id', dependent: :destroy
+  has_many :mentors, through: :mentor_connections, source: :mentor
+
+  has_many :mentee_connections, class_name: 'MentorMenteeConnection', foreign_key: 'mentee_id', dependent: :destroy
+  has_many :mentees, through: :mentee_connections, source: :mentee
+
   def name
     return self.email if profile.nil?
 

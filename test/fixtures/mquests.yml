@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  mentor_id: 1
+  mentee_id: 1
+  email: MyString
+  uid: MyString
+
+two:
+  mentor_id: 1
+  mentee_id: 1
+  email: MyString
+  uid: MyString
