@@ -16,13 +16,17 @@ class User < ActiveRecord::Base
   attr_accessible :profile_attributes
 
   has_many :mentor_connections, class_name: 'MentorMenteeConnection', foreign_key: 'mentor_id', dependent: :destroy
-  has_many :mentors, through: :mentor_connections
-
   has_many :mentee_connections, class_name: 'MentorMenteeConnection', foreign_key: 'mentee_id', dependent: :destroy
-  has_many :mentees, through: :mentee_connections
+
+  has_many :mentors, through: :mentee_connections
+  has_many :mentees, through: :mentor_connections
 
   has_many :mquests_received, class_name: 'Mquest', foreign_key: 'to_user', dependent: :destroy, source: :receiver
   has_many :mquests_sent, class_name: 'Mquest', foreign_key: 'from_user', dependent: :destroy, source: :sender
+
+  # Non-persistent attribute.Used when Mquest accept requests are received
+  # and user is asked to sign-in, if not signed-in
+  attr_accessor :mquest_token
 
   def name
     return self.email if profile.nil?

@@ -28,16 +28,48 @@ en:
     mquests:
       errors:
         could_not_mquest: "Could not mquest.Either or all of the required details [role, from, to] found missing."
+        invalid_role: "Could not mquest.Role %{role} specified in request URL  is invalid."
         could_not_save_mquest: "Due to some technical problem could not send mquest.Please inform administrator about this."
+        mquest_token_not_received: "Could not process Mquest accept request.No token received."
+        mquest_token_invalid: "The Mquest is found as invalid and cannot be accepted."
+        unauthorized_mquest_accept_request: "You are unauthorized to accept the Mquest."
       messages:
         success: "Successfully sent Mquest to %{user_name} for becoming his/her %{role}"
         failure: "Mquest sending failed to %{user_name} for becoming his/her %{role}"
+        sign_in_to_accept: "Please sign-in %{receiver_name} to accept the Mquest sent by %{sender_name}"
 
       no_users_available: "No users available in the system, except you!."
       mquest_link_title: "Mquest"
       as_mentor: "As Mentor"
       as_mentee: "As Mentee"
-      already_mquested: "Mquested"
       remquest: "Re-Mquest"
+      users: "Users"
+
+      legends:
+        title: "Mquest Legends"
+        sent_mquest: "=>"
+        sent_mquest_title: "User has already sent you an Mquest"
+        received_mquest: "<="
+        received_mquest_title: "User has been already sent an Mquest from you"
+        be_mentor_title: "For becoming a mentor"
+        be_mentor: "Mntr"
+        be_mentee_title: "For becoming a mentee"
+        be_mentee: "Mntee"
+        remquest_title: "Re-Mquest"
+        remquest: "=>=>"
+
+    mentor_mentee_connection:
+      messages:
+        success: "You are now a %{role} to %{user_name}"
+        failure: "Could not make you %{role} to %{user_name}"
+      delink:
+        title: "Delink"
+        errors:
+          could_not_process_delink: "Could not process delink request.Either or all required data[id, role, from] found missing."
+          no_user_found: "Could not process delink request.Either or both of the users specified by id %{user_id}, %{from_user_id} not found in the system"
+          invalid_role: "Could not process delink request.Role %{role} specified in request URL is invalid."
+        messages:
+          success: "Successfully delinked %{user_name} from %{from_user_name} as %{role}"
+          not_linked: "%{user_name} found not linked with %{from_user_name} as %{role}"
 
 

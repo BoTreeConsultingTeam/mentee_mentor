@@ -3,53 +3,8 @@
 - else
   %br/
   %br/
-  %table
-    - @users.each do |user|
-      - user_id = user.id
+  = render partial: "legends"
 
-      - already_sent_mquest_as_mentor = current_user.mquest_sent?(Mquest::MENTOR, user)
-      - already_sent_mquest_as_mentee = current_user.mquest_sent?(Mquest::MENTEE, user)
-
-      - mquest_as_mentor_path = mquest_path(from: current_user.id, to: user_id, role: Mquest::MENTOR)
-      - mquest_as_mentee_path = mquest_path(from: current_user.id, to: user_id, role: Mquest::MENTEE)
-
-      - mquest_as_mentor_link_title = "#{t('user.mquests.mquest_link_title')} #{t('user.mquests.as_mentor')}"
-      - mquest_as_mentor_link = link_to(mquest_as_mentor_link_title, mquest_as_mentor_path, method: :post)
-
-      - mquest_as_mentee_link_title = "#{t('user.mquests.mquest_link_title')} #{t('user.mquests.as_mentee')}"
-      - mquest_as_mentee_link = link_to(mquest_as_mentee_link_title, mquest_as_mentee_path, method: :post)
-
-      %tr
-        %td= user.name
-        %td &nbsp;
-
-        %td<
-          - if already_sent_mquest_as_mentor
-            = "#{t('user.mquests.already_mquested')} #{t('user.mquests.as_mentor')}"
-          - else
-            = mquest_as_mentor_link.html_safe
-
-        %td &nbsp;
-        %td<
-          - if already_sent_mquest_as_mentee
-            = "#{t('user.mquests.already_mquested')} #{t('user.mquests.as_mentee')}"
-          - else
-            = mquest_as_mentee_link.html_safe
-
-      - if (already_sent_mquest_as_mentor or already_sent_mquest_as_mentee)
-        %tr
-          %td &nbsp;
-          %td &nbsp;
-          %td<
-            - if already_sent_mquest_as_mentor
-              - title = "(#{t('user.mquests.remquest')} #{t('user.mquests.as_mentor')})"
-              = link_to(title, mquest_as_mentor_path, method: :post)
-            - else
-              &nbsp
-          %td<
-            - if already_sent_mquest_as_mentee
-              - title = "(#{t('user.mquests.remquest')} #{t('user.mquests.as_mentee')})"
-              = link_to(title, mquest_as_mentee_path, method: :post)
-            - else
-              &nbsp
+  %br
+  = render partial: "users"
 

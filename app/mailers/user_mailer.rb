@@ -5,6 +5,7 @@ class UserMailer < ActionMailer::Base
     @as_role = mquest.as_role
     @from = mquest.sender
     @to = mquest.receiver
+    @mquest_token = mquest.token
 
     mail(to: @to.email, subject: t('user.mails.mquest.subject', { role: @as_role }))
   end

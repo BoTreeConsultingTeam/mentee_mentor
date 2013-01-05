@@ -12,11 +12,13 @@ MentorMentee::Application.routes.draw do
 
   match "/home" => "users#index", as: :user_home
   match "/users/:from/mquest/:to/:role" => "mquests#create", via: :post, as: :mquest
+  match "/mquests/:token/accept" => "mquests#accept", via: :get, as: :accept_mquest
 
   resources :users do
     member do
       get "profile" => "users#show"
       get "profile/edit" => "users#edit"
+      post "delink_as/:role/:from" => "users#delink", as: :delink
     end
 
     resources :mquests

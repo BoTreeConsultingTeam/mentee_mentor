@@ -11,7 +11,7 @@
     %p
       &nbsp;&nbsp;Please use the following link to accept the request
       %br/
-      &nbsp;&nbsp;http://#{Settings.default_host}/
+      &nbsp;&nbsp;http://#{Settings.default_host}#{accept_mquest_path(token: @mquest_token)}
 
     %p Thanks,
     Mentor-Mentee Team
