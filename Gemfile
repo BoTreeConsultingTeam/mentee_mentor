@@ -10,10 +10,12 @@ gem 'rails_config'
 gem "haml", ">= 3.1.5"
 gem "haml-rails", ">= 0.3.4"
 
-gem 'sqlite3'
-
 gem 'devise'
 gem 'mysql2', '~> 0.3.11'
+
+group :development do
+  gem 'sqlite3'
+end
 
 group :production do
   gem 'pg'
