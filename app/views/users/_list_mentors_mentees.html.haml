@@ -1,0 +1,13 @@
+#my_mentors
+  %h3= t('user.mboard.my_mentors')
+  - if @my_mentors.empty?
+    %p= t('user.mboard.messages.no_mentors')
+  - else
+    = render partial: "users/list_users", locals: { users_collection: @my_mentors }
+
+#my_mentees
+  %h3= t('user.mboard.my_mentees')
+  - if @my_mentees.empty?
+    %p= t('user.mboard.messages.no_mentees')
+  - else
+    = render partial: "users/list_users", locals: { users_collection: @my_mentees }

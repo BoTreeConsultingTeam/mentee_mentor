@@ -1,0 +1,12 @@
+- unless local_assigns[:user].nil?
+  -# Note: @user is the current logged in user
+  - message_threads_exchanged = @user.message_threads_exchanged_with(user)
+  - unless message_threads_exchanged.empty?
+    = select_tag "dialogues", options_from_collection_for_select(message_threads_exchanged, 'id', 'title'), prompt: "Select a dialogue"
+    |
+  = link_to(t('user.message_threads.start_dialogue'), "#", id: "newDialogue")
+
+  - unless message_threads_exchanged.empty?
+    |
+    = link_to t('user.message_threads.view_all'), dialogues_with_user_path(id: @user.id, with: user.id)
+

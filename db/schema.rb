@@ -11,13 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130104210832) do
+ActiveRecord::Schema.define(:version => 20130106064604) do
 
   create_table "mentor_mentee_connections", :force => true do |t|
     t.integer  "mentor_id",  :null => false
     t.integer  "mentee_id",  :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "message_threads", :force => true do |t|
+    t.string   "title"
+    t.integer  "starter_id", :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "messages", :force => true do |t|
+    t.string   "content",           :null => false
+    t.date     "date",              :null => false
+    t.integer  "sender_id",         :null => false
+    t.integer  "receiver_id",       :null => false
+    t.integer  "message_thread_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "mquests", :force => true do |t|

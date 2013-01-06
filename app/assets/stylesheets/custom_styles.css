@@ -8,3 +8,15 @@
   margin-top: 10px;
 }
 
+ul li .messageBox {
+  display: none;
+  margin-left: 220px;
+}
+
+ul li .messageStatusBox {
+  margin-left: 220px;
+}
+
+.dialogueMessages {
+   margin-left: 55px;
+}

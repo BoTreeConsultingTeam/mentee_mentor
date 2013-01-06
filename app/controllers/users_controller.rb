@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_filter :require_user, except: [:welcome]
 
-  before_filter :fetch_user, only: [:show, :edit, :update]
+  before_filter :fetch_user, only: [:show, :edit, :update, :mboard, :all_dialogues]
   # before_filter :build_profile, only: [:show, :edit, :update]
 
   def welcome
@@ -76,6 +76,29 @@ class UsersController < ApplicationController
       redirect_to user_mquests_path(current_user), flash: { notice: message}
     end
 
+  end
+
+  #GET /users/:id/mboard
+  def mboard
+    @my_mentors = @user.mentors
+    @my_mentees = @user.mentees
+  end
+
+  #GET /users/:id/all_dialogues/:with
+  def all_dialogues
+    with_user_id = params[:with]
+
+    if with_user_id.present?
+      @sender_id = @user.id
+      @receiver_id = with_user_id
+      @message_threads_exchanged = @user.message_threads_exchanged_with(with_user_id)
+      render file: "users/user_dialogues"
+      return
+    else
+      message = t('user.mboard.errors.could_not_fetch_dialogues')
+      Rails.logger.error message
+    end
+    redirect_to mboard_user_path(@user), flash: { error: message }
   end
 
   private

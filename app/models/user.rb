@@ -21,12 +21,28 @@ class User < ActiveRecord::Base
   has_many :mentors, through: :mentee_connections
   has_many :mentees, through: :mentor_connections
 
-  has_many :mquests_received, class_name: 'Mquest', foreign_key: 'to_user', dependent: :destroy, source: :receiver
-  has_many :mquests_sent, class_name: 'Mquest', foreign_key: 'from_user', dependent: :destroy, source: :sender
+  has_many :mquests_received, class_name: 'Mquest', foreign_key: 'to_user', dependent: :destroy
+  has_many :mquests_sent, class_name: 'Mquest', foreign_key: 'from_user', dependent: :destroy
+
+  has_many :message_threads, foreign_key: 'starter_id'
+  has_many :messages_received, class_name: 'Message', foreign_key: 'receiver_id'
+  has_many :messages_sent, class_name: 'Message', foreign_key: 'sender_id'
+
 
   # Non-persistent attribute.Used when Mquest accept requests are received
   # and user is asked to sign-in, if not signed-in
   attr_accessor :mquest_token
+
+  def message_threads_exchanged_with(user_id)
+    return [] if user_id.nil?
+
+    messages_from_user = messages_received.where(sender_id: user_id)
+    messages_to_user = messages_sent.where(receiver_id: user_id)
+    message_thread_ids = (messages_from_user + messages_to_user).collect do |message|
+                            message.message_thread.id
+                         end
+    MessageThread.where(id: message_thread_ids).to_a
+  end
 
   def name
     return self.email if profile.nil?

@@ -52,27 +52,27 @@
                   = link_to(t('user.mentor_mentee_connection.delink.title'), delink_path, method: :post)
             - else
               %span<
-                - if already_sent_mquest_as_mentor
-                  = "#{t('user.mquests.legends.received_mquest')} #{t('user.mquests.legends.be_mentor')}"
-                - elsif already_received_mquest_as_mentor
-                  = "#{t('user.mquests.legends.sent_mquest')} #{t('user.mquests.legends.be_mentor')}"
-                - else
+                - if (!already_received_mquest_as_mentee and !already_sent_mquest_as_mentor)
                   = mquest_as_mentor_link.html_safe
-              %span<
-                - if already_sent_mquest_as_mentor or already_received_mquest_as_mentor
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 - else
-                  &nbsp;
+                  - if already_received_mquest_as_mentee
+                    = "#{t('user.mquests.legends.sent_mquest')} #{t('user.mquests.legends.be_mentee')}"
+                  - elsif already_sent_mquest_as_mentor
+                    = "#{t('user.mquests.legends.received_mquest')} #{t('user.mquests.legends.be_mentor')}"
+
+              %span &nbsp;
+
               %span<
-                - if already_sent_mquest_as_mentee
-                  = "#{t('user.mquests.legends.received_mquest')} #{t('user.mquests.legends.be_mentee')}"
-                - elsif already_received_mquest_as_mentee
-                  = "#{t('user.mquests.legends.sent_mquest')} #{t('user.mquests.legends.be_mentee')}"
-                - else
+                - if (!already_received_mquest_as_mentor and !already_sent_mquest_as_mentee)
                   = mquest_as_mentee_link.html_safe
+                - else
+                  - if already_received_mquest_as_mentor
+                    = "#{t('user.mquests.legends.sent_mquest')} #{t('user.mquests.legends.be_mentor')}"
+                  - elsif already_sent_mquest_as_mentee
+                    = "#{t('user.mquests.legends.received_mquest')} #{t('user.mquests.legends.be_mentee')}"
+
 
       - show_remquest_links = !(already_a_mentor or already_a_mentee)
-      -# if (already_sent_mquest_as_mentor or already_sent_mquest_as_mentee or already_received_mquest_as_mentor or already_received_mquest_as_mentee)
       - if show_remquest_links
         %tr
           %td &nbsp;
@@ -80,15 +80,18 @@
           %td
             %div
               %span<
-                - if (already_sent_mquest_as_mentor or already_received_mquest_as_mentor)
+                - if (already_received_mquest_as_mentee or already_sent_mquest_as_mentor)
                   - title = "#{t('user.mquests.legends.remquest')} #{t('user.mquests.legends.be_mentor')}"
                   = link_to(title, mquest_as_mentor_path, method: :post)
-              %span<
-                - if already_sent_mquest_as_mentor or already_received_mquest_as_mentor
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+              %span
+                - if (!already_received_mquest_as_mentee and !already_sent_mquest_as_mentor)
+                  - 16.times do
+                    &nbsp;
                 - else
                   &nbsp;
+
               %span<
-              - if (already_sent_mquest_as_mentee or already_received_mquest_as_mentee)
-                - title = "#{t('user.mquests.legends.remquest')} #{t('user.mquests.legends.be_mentee')}"
-                = link_to(title, mquest_as_mentee_path, method: :post)
+                - if (already_received_mquest_as_mentor or already_sent_mquest_as_mentee)
+                  - title = "#{t('user.mquests.legends.remquest')} #{t('user.mquests.legends.be_mentee')}"
+                  = link_to(title, mquest_as_mentee_path, method: :post)

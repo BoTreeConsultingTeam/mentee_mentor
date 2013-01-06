@@ -1,0 +1,39 @@
+%br/
+%br/
+
+- received_from_name = User.find_by_id(@receiver_id).name
+%h3= t('user.message_threads.all_dialogues_title', { other_user_name: received_from_name })
+- @message_threads_exchanged.each do |message_thread|
+  - title = message_thread.title
+  - messages = message_thread.messages.order('created_at ASC')
+  %br/
+  #dialogue
+    %i
+      %span= title
+      %span= "initiated on: #{message_thread.created_at.strftime('%b %d, %Y')}"
+    %br/
+    - your_messages = messages.where(sender_id: @sender_id)
+    - unless your_messages.empty?
+      %br/
+      #yourMessages.dialogueMessages
+        %span= "You said:"
+        %br
+        %ul
+          - your_messages.each do |message|
+            %li
+              %span<
+                &nbsp;&nbsp;&nbsp;
+                = message.content
+
+    - received_messages = messages.where(sender_id: @receiver_id)
+    - unless received_messages.empty?
+      %br/
+      #receivedMessages.dialogueMessages
+        %span= "#{received_from_name} said:"
+        %br
+        %ul
+          - received_messages.each do |message|
+            %li
+              %span<
+                &nbsp;&nbsp;&nbsp;
+                = message.content

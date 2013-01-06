@@ -1,0 +1,27 @@
+- errors = @message_errors.join('<br/>') unless @message_errors.empty?
+- receiver = @message.receiver
+- receiver_id = receiver.id
+
+:plain
+  var errors = "#{errors}";
+  var messageStatusBoxSelector = "#messageStatusBox_" + "#{receiver_id}";
+  var dialoguesListingSpanSelector = "#dialoguesListing_" + "#{receiver_id}";
+  if( (errors == '') || (errors == null) || (errors == undefined) ) {
+    var messageBoxSelector = "#messageBox_" + "#{receiver_id}";
+    var messageAreaSelector = messageBoxSelector + " " + "#message_content";
+    var titleFieldSelector = messageBoxSelector + " " + "#message_thread_title";
+    $(messageAreaSelector).val('');
+    $(titleFieldSelector).val('');
+    $(messageBoxSelector).hide();
+    $(messageStatusBoxSelector).html("Successfully posted the message");
+    var html = "#{escape_javascript(render(partial:'users/list_dialogues_name', locals: { user: receiver } ))}";
+    $(dialoguesListingSpanSelector).html(html);
+    // In Select Dropdowns due to caching sometimes the older value remain selected
+    // though the drop-down was re-rendered.To avoid this programatically selecting
+    // here the Dialogues dropdown's first option.
+    resetSelectDialoguesDropdown(dialoguesListingSpanSelector);
+  } else {
+    $(messageStatusBoxSelector).html(errors);
+  }
+
+

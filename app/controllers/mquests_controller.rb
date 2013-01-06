@@ -86,6 +86,13 @@ class MquestsController < ApplicationController
             message = t('user.mentor_mentee_connection.messages.failure', { role: role_for_message, user_name: mquest_sender.name })
           else
             mquest.delete # Delete the Mquest
+            # Once the Mentor-Mentee connection is linked, all Mquest requests
+            # involving the connected users pair should be removed.At a time
+            # only one connection is supported.Cyclic links are unsupported.
+            mentor_id = mentor_mentee_connection.mentor_id
+            mentee_id = mentor_mentee_connection.mentee_id
+            arr = [mentor_id, mentee_id]
+            Mquest.where(from_user: arr, to_user: arr).delete_all
             message = t('user.mentor_mentee_connection.messages.success', { role: role_for_message, user_name: mquest_sender.name })
           end
           redirect_to user_mquests_path(current_user), flash: { notice: message }

@@ -1,0 +1,13 @@
+- unless local_assigns[:users_collection].nil?
+  %ul
+    - users_collection.each do |user|
+      %li
+        %span= user.name
+        %span &nbsp&nbsp
+        %span{ id: "dialoguesListing_#{user.id}" }
+          = hidden_field_tag "user_id", user.id
+          = render partial: "users/list_dialogues_name", locals: { user: user }
+        #messageStatusBox.messageStatusBox
+          %span{id: "messageStatusBox_#{user.id}"}
+        = render partial: "messages/message_form", locals: { receiver: user, sender: @user }
+

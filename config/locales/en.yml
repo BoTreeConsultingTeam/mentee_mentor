@@ -72,4 +72,23 @@ en:
           success: "Successfully delinked %{user_name} from %{from_user_name} as %{role}"
           not_linked: "%{user_name} found not linked with %{from_user_name} as %{role}"
 
+    mboard:
+      my_mentors: "My Mentors"
+      my_mentees: "My Mentees"
+      messages:
+        no_mentors: "You have not linked with any mentors yet."
+        no_mentees: "You have not linked with any mentees yet."
+      errors:
+        could_not_fetch_dialogues: "Could not fetch dialogues.Either or all required data[id, with] found missing."
+
+    message_threads:
+      start_dialogue: "Start A Dialogue"
+      post_to_dialogue: "Post to Dialogue"
+      view_all: "View All Dialogues"
+      all_dialogues_title: "Dialogues exchanged between you and %{other_user_name}"
+
+      dialogue:
+        message_placeholder: "Type in your message here"
+        title_placeholder: "Dialogue Title"
+        send_message_caption: "Send Message"
 

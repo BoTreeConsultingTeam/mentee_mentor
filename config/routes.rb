@@ -18,12 +18,15 @@ MentorMentee::Application.routes.draw do
     member do
       get "profile" => "users#show"
       get "profile/edit" => "users#edit"
+      get "mboard"
+      get 'all_dialogues/:with' => "users#all_dialogues", as: :dialogues_with
       post "delink_as/:role/:from" => "users#delink", as: :delink
     end
 
     resources :mquests
   end
 
+  resources :messages
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
