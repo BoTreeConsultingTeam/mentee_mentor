@@ -26,6 +26,7 @@ class MquestsController < ApplicationController
           # mentor-mentee connection
           mail_settings_available = Settings.try(:mail_settings_available)
           if (!mail_settings_available.nil? and !mail_settings_available)
+            Rails.logger.info "MAIL SETTINGS ARE UNAVAILABLE.DIRECTLY CONNECTING THE USERS INVOLVED IN MQUEST."
             create_mentor_mentee_connection(mquest)
 
             # Ignore the message returned by create_mentor_mentee_connection(mquest) method
@@ -36,6 +37,9 @@ class MquestsController < ApplicationController
 
             redirect_to user_mquests_path(current_user), flash: { notice: message }
             return
+          else
+            Rails.logger.info "mail_settings_available variable under /config/settings.yml unavailable or set to true."
+            Rails.logger.info "mail_settings_available --> #{mail_settings_available}"
           end
 
           if mquest.send_notification
