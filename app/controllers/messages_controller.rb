@@ -20,6 +20,8 @@ class MessagesController < ApplicationController
        # when rendering this file through this action's JS response, @user is
        # not set.Thus explicitly setting it here.
        @user = @message.sender
+     else
+       Rails.logger.debug "Message errors found: #{@message_errors}"
      end
 
      respond_to do |format|

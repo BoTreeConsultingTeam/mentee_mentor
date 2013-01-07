@@ -1,6 +1,7 @@
 - errors = @message_errors.join('<br/>') unless @message_errors.empty?
 - receiver = @message.receiver
 - receiver_id = receiver.id
+- html = errors ?  '' : escape_javascript(render(partial:'users/list_dialogues_name', locals: { user: receiver } ))
 
 :plain
   var errors = "#{errors}";
@@ -14,8 +15,10 @@
     $(titleFieldSelector).val('');
     $(messageBoxSelector).hide();
     $(messageStatusBoxSelector).html("Successfully posted the message");
-    var html = "#{escape_javascript(render(partial:'users/list_dialogues_name', locals: { user: receiver } ))}";
-    $(dialoguesListingSpanSelector).html(html);
+    // The ruby code was getting parsed even the if clause evaluated to false
+    // thus moved the ruby code outside :plain filter and stored the HTML, in
+    // case no errors found, to ruby variable html above
+    $(dialoguesListingSpanSelector).html("#{html}");
     // In Select Dropdowns due to caching sometimes the older value remain selected
     // though the drop-down was re-rendered.To avoid this programatically selecting
     // here the Dialogues dropdown's first option.
@@ -23,5 +26,4 @@
   } else {
     $(messageStatusBoxSelector).html(errors);
   }
-
 
