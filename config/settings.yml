@@ -19,5 +19,11 @@ mail:
   password: <%= ENV['MAIL_PASSWORD'] %>
   from: 'no-reply@mentor-mentee.com'
 
-
+# This is for use only when Gmail SMTP config is unsupported on platforms
+# this application is deployed to.
+# On Heroku, esp. only SendGrid Email settings are supported which is licensed.
+# So for features relying on Mail config, an alternate approach should be devised
+# and implemented and based on the value of this variable the appropriate
+# implementation should be invoked.
+mail_settings_available: ENV['MAIL_SETTINGS_AVAILABLE']
 
