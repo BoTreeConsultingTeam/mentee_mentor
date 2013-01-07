@@ -25,5 +25,5 @@ mail:
 # So for features relying on Mail config, an alternate approach should be devised
 # and implemented and based on the value of this variable the appropriate
 # implementation should be invoked.
-mail_settings_available: ENV['MAIL_SETTINGS_AVAILABLE']
+mail_settings_available: <%= ENV['MAIL_SETTINGS_AVAILABLE'] %>
 
