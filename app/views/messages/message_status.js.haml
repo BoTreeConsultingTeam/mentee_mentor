@@ -2,6 +2,13 @@
 - receiver = @message.receiver
 - receiver_id = receiver.id
 - html = errors ?  '' : escape_javascript(render(partial:'users/list_dialogues_name', locals: { user: receiver } ))
+- status = ''
+- if errors
+  - status = errors
+- else
+  - status = "Successfully posted the message."
+  - if @message_thread_existed
+    - status << "Dialogue <b>#{@message.message_thread.title}</b> already existed.Posted the message to that Dialogue."
 
 :plain
   var errors = "#{errors}";
@@ -14,7 +21,7 @@
     $(messageAreaSelector).val('');
     $(titleFieldSelector).val('');
     $(messageBoxSelector).hide();
-    $(messageStatusBoxSelector).html("Successfully posted the message");
+    $(messageStatusBoxSelector).html("#{status}");
     // The ruby code was getting parsed even the if clause evaluated to false
     // thus moved the ruby code outside :plain filter and stored the HTML, in
     // case no errors found, to ruby variable html above

@@ -8,9 +8,18 @@ class MessagesController < ApplicationController
      @message_errors += collect_validation_errors(@message)
 
      if @message.message_thread.nil?
-        @message_thread = @message.build_message_thread(params[:message_thread])
-        @message_thread.starter = @message.sender
-        @message_errors += collect_validation_errors(@message_thread)
+
+        # Find MessageThread by Title
+        mthread = MessageThread.find_by_title(params[:message_thread][:title].strip)
+
+        if mthread.nil?
+          @message_thread = @message.build_message_thread(params[:message_thread])
+          @message_thread.starter = @message.sender
+          @message_errors += collect_validation_errors(@message_thread)
+        else
+          @message.message_thread = mthread
+          @message_thread_existed = true
+        end
      end
 
      if @message_errors.empty?
