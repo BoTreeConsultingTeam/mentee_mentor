@@ -25,6 +25,19 @@ en:
       mquest:
         subject: "Request for being a %{role} from Mentor-Mentee networking platform"
 
+    follow:
+      title: "Follow"
+      following: "Following"
+      errors:
+        could_not_process_follow: "Could not process follow request.Either or all required data[id, follow_user_id] found missing."
+        no_user_found: "Could not process follow request.Either or both of the users specified by id %{user_id}, %{follow_user_id} not found in the system"
+
+      messages:
+        success: "You are now following %{follow_user_name}"
+        failure: "Could not make you follow %{follow_user_name}"
+        already_following: 'You are already following %{follow_user_name}'
+
+
     mquests:
       errors:
         could_not_mquest: "Could not mquest.Either or all of the required details [role, from, to] found missing."

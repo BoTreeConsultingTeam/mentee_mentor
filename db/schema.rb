@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106064604) do
+ActiveRecord::Schema.define(:version => 20130112114852) do
+
+  create_table "followed_followings", :force => true do |t|
+    t.integer  "followed_id"
+    t.integer  "following_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "mentor_mentee_connections", :force => true do |t|
     t.integer  "mentor_id",  :null => false

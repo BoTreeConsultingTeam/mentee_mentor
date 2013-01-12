@@ -21,6 +21,7 @@ MentorMentee::Application.routes.draw do
       get "mboard"
       get 'all_dialogues/:with' => "users#all_dialogues", as: :dialogues_with
       post "delink_as/:role/:from" => "users#delink", as: :delink
+      post "follow/:follow_user_id" => "users#follow", as: :follow
     end
 
     resources :mquests

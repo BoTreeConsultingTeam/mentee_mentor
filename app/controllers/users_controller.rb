@@ -15,6 +15,9 @@ class UsersController < ApplicationController
   end
 
   def index
+    # Fetch all users, except current logged in user.This is to allow a user to
+    # follow another user in the system
+    @users = User.where("id != ?", current_user.id)
   end
 
   def show
@@ -33,6 +36,38 @@ class UsersController < ApplicationController
         format.html { render action: "edit" }
       end
     end
+  end
+
+  #POST /users/:id/follow/:follow_user_id/
+  def follow
+    user_id = params[:id]
+    follow_user_id = params[:follow_user_id]
+
+    if (user_id.present? and follow_user_id.present?)
+       user = User.find_by_id(user_id)
+       follow_user = User.find_by_id(follow_user_id)
+
+       if (!user.nil? and !follow_user.nil?)
+         if user.follows.exists?(follow_user)
+           message = t('user.follow.messages.already_following', {follow_user_name: follow_user.name})
+         else
+           followed_following_obj = FollowedFollowing.create(following_id: user_id, followed_id: follow_user_id)
+           if followed_following_obj.nil?
+             message = t('user.follow.messages.failure', { follow_user_name: follow_user.name })
+           else
+             message = t('user.follow.messages.success', { follow_user_name: follow_user.name })
+           end
+         end
+       else
+        message = t('user.follow.errors.no_user_found', { user_id: user_id, follow_user_id: follow_user_id })
+       end
+    else
+      message = t('user.follow.errors.could_not_process_follow')
+    end
+
+    Rails.logger.debug message
+    redirect_to user_home_path, flash: { notice: message}
+
   end
 
   #POST /users/:id/delink_as/:role/:from
@@ -71,10 +106,8 @@ class UsersController < ApplicationController
       message = t('user.mentor_mentee_connection.delink.errors.could_not_process_delink')
     end
 
-    if message
-      Rails.logger.error message
-      redirect_to user_mquests_path(current_user), flash: { notice: message}
-    end
+    Rails.logger.debug message
+    redirect_to user_mquests_path(current_user), flash: { notice: message}
 
   end
 
