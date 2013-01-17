@@ -1,0 +1,13 @@
+- unless @users.empty?
+  %h3= t('user.follow.title')
+  #follow_section
+    %table
+      - @users.each do |user|
+        %tr
+          %td= user.name
+          %td<
+            - if user.followed_by.exists?(current_user)
+              = t('user.follow.following')
+            - else
+              = link_to(t('user.follow.title'), follow_user_path(id: current_user.id, follow_user_id: user.id), method: :post)
+

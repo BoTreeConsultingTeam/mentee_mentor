@@ -13,6 +13,12 @@
 
 ActiveRecord::Schema.define(:version => 20130117180638) do
 
+  create_table "followed_followings", :force => true do |t|
+    t.integer  "followed_id"
+    t.integer  "following_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "message_threads", :force => true do |t|
     t.string   "title"

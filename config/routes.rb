@@ -18,6 +18,7 @@ MentorMentee::Application.routes.draw do
       get "profile/edit" => "users#edit"
       get "mboard"
       get 'all_dialogues/:with' => "users#all_dialogues", as: :dialogues_with
+      post "follow/:follow_user_id" => "users#follow", as: :follow
     end
 
     resources :mquests
