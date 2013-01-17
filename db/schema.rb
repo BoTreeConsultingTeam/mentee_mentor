@@ -11,14 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106064604) do
+ActiveRecord::Schema.define(:version => 20130117180638) do
 
-  create_table "mentor_mentee_connections", :force => true do |t|
-    t.integer  "mentor_id",  :null => false
-    t.integer  "mentee_id",  :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "message_threads", :force => true do |t|
     t.string   "title"
@@ -36,17 +30,6 @@ ActiveRecord::Schema.define(:version => 20130106064604) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
-
-  create_table "mquests", :force => true do |t|
-    t.string   "token",      :null => false
-    t.string   "as_role",    :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "from_user",  :null => false
-    t.integer  "to_user",    :null => false
-  end
-
-  add_index "mquests", ["token"], :name => "index_mquests_on_token", :unique => true
 
   create_table "profiles", :force => true do |t|
     t.string   "first_name"

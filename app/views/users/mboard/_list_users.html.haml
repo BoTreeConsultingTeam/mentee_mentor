@@ -5,7 +5,7 @@
         %span= user.name
         %span &nbsp&nbsp
         %span{ id: "dialoguesListing_#{user.id}" }
-          = render partial: "users/list_dialogues_name", locals: { user: user }
+          = render partial: "users/dialogues/list_dialogues_name", locals: { user: user }
         #messageStatusBox.messageStatusBox
           %span{id: "messageStatusBox_#{user.id}"}
         = render partial: "messages/message_form", locals: { receiver: user, sender: @user }

@@ -11,8 +11,6 @@ MentorMentee::Application.routes.draw do
   end
 
   match "/home" => "users#index", as: :user_home
-  match "/users/:from/mquest/:to/:role" => "mquests#create", via: :post, as: :mquest
-  match "/mquests/:token/accept" => "mquests#accept", via: :get, as: :accept_mquest
 
   resources :users do
     member do
@@ -20,7 +18,6 @@ MentorMentee::Application.routes.draw do
       get "profile/edit" => "users#edit"
       get "mboard"
       get 'all_dialogues/:with' => "users#all_dialogues", as: :dialogues_with
-      post "delink_as/:role/:from" => "users#delink", as: :delink
     end
 
     resources :mquests

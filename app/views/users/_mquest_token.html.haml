@@ -1,6 +1,0 @@
--# @mquest_token is set by UsersController#set_mquest_details
--# resource.mquest_token is set when Sign in form is submitted.An additional
--# non-persistent attribute mquest_token has been added Devise resource (User class, in present case)
-- mquest_token = (@mquest_token or resource.mquest_token)
-- if mquest_token
-  = hidden_field_tag "user[mquest_token]", mquest_token

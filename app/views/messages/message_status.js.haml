@@ -1,7 +1,7 @@
 - errors = @message_errors.join('<br/>') unless @message_errors.empty?
 - receiver = @message.receiver
 - receiver_id = receiver.id
-- html = errors ?  '' : escape_javascript(render(partial:'users/list_dialogues_name', locals: { user: receiver } ))
+- html = errors ?  '' : escape_javascript(render(partial:'users/dialogues/list_dialogues_name', locals: { user: receiver } ))
 - status = ''
 - if errors
   - status = errors
