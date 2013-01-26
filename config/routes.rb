@@ -2,12 +2,13 @@ MentorMentee::Application.routes.draw do
 
   root to: 'users#welcome'
 
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   devise_scope :user do
     get "/signup" => "devise/registrations#new"
     get "/signin" => "devise/sessions#new"
     get "/signout" => "devise/sessions#destroy"
+    get '/users/auth/:provider/disconnect' => "users/omniauth_callbacks#disconnect", as: :auth_disconnect
   end
 
   match "/home" => "users#index", as: :user_home

@@ -10,6 +10,10 @@ omniauth:
     key: <%= ENV['FACEBOOK_KEY'] %>
     secret: <%= ENV['FACEBOOK_SECRET'] %>
 
+  linkedin:
+    key: <%= ENV['LINKEDIN_KEY'] %>
+    secret: <%= ENV['LINKEDIN_SECRET'] %>
+
 # Mail settings.
 mail:
   address: <%= ENV['MAIL_ADDRESS'] %>

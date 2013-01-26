@@ -214,7 +214,8 @@ Devise.setup do |config|
   end
 
   #config.omniauth :facebook, Settings.omniauth.facebook.key, Settings.omniauth.facebook.secret, omniauth_options
-
+  config.omniauth :linkedin, Settings.omniauth.linkedin.key, Settings.omniauth.linkedin.secret, omniauth_options
+  
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

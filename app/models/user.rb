@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   has_many :follows_users, class_name: 'FollowedFollowing', foreign_key: 'following_id', dependent: :destroy
   has_many :follows, through: :follows_users, source: :followed
 
+  has_many :authentications, dependent: :delete_all
 
   def message_threads_exchanged_with(user_id)
     return [] if user_id.nil?
@@ -57,6 +58,27 @@ class User < ActiveRecord::Base
     else
       self.email
     end
+  end
+
+  def apply_omniauth(omniauth)
+    user_info_hash = omniauth[:user_info]
+
+    unless user_info_hash.empty?
+      self.email = user_info_hash[:email]
+
+      #self.first_name = user_info_hash[:first_name]
+      #self.last_name = user_info_hash[:last_name]
+
+      case omniauth[:provider]
+        when 'facebook'
+          #self.facebook = user_info_hash[:url]
+          #self.photo = URI.parse(user_info_hash[:image]) if user_info_hash[:image]
+      end
+    end
+  end
+
+  def connected_to_linkedin?
+    !authentications.find_by_provider("linkedin").nil?
   end
 
 end
