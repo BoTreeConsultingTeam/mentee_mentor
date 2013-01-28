@@ -13,6 +13,9 @@ gem "haml-rails", ">= 0.3.4"
 gem 'devise'
 gem 'mysql2', '~> 0.3.11'
 
+gem 'omniauth'
+gem 'omniauth-linkedin'
+
 group :development do
   gem 'sqlite3'
 end
