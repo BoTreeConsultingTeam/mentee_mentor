@@ -5,8 +5,10 @@ class Profile < ActiveRecord::Base
   
   has_one :education, dependent: :destroy
   accepts_nested_attributes_for :education
+  attr_accessible :education_attributes
   
   has_one :experience, dependent: :destroy
-    accepts_nested_attributes_for :experience
-    
+  accepts_nested_attributes_for :experience
+  attr_accessible :experience_attributes
+  
 end
