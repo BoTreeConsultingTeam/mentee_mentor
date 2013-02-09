@@ -1,0 +1,35 @@
+- experience_company = experience.nil? ? nil : experience.company
+- experience_title = experience.nil? ? nil : experience.title
+- experience_location = experience.nil? ? nil : experience.location
+- experience_from_date = experience.nil? ? nil : experience.from_date
+- experience_to_date = experience.nil? ? nil : experience.to_date
+- experience_description = experience.nil? ? nil : experience.description
+
+%table
+  %tr
+    %td= label_tag t("user.profile.experience.heading")
+    %td= label_tag
+
+  %tr
+    %td= label_tag t("user.profile.experience.company")
+    %td= text_field_tag 'user[profile_attributes][experience_attributes][company]', experience_company, disabled: disabled
+
+  %tr
+    %td= label_tag t("user.profile.experience.title")
+    %td= text_field_tag 'user[profile_attributes][experience_attributes][title]', experience_title, disabled: disabled
+
+  %tr
+    %td= label_tag t("user.profile.experience.location")
+    %td= text_field_tag 'user[profile_attributes][experience_attributes][location]', experience_location, disabled: disabled
+
+  %tr
+    %td= label_tag t("user.profile.experience.from_date")
+    %td= text_field_tag 'user[profile_attributes][experience_attributes][from_date]', experience_from_date, disabled: disabled
+
+  %tr
+    %td= label_tag t("user.profile.experience.to_date")
+    %td= text_field_tag 'user[profile_attributes][experience_attributes][to_date]', experience_to_date, disabled: disabled
+
+  %tr
+    %td= label_tag t("user.profile.experience.description")
+    %td= text_field_tag 'user[profile_attributes][experience_attributes][description]', experience_description, disabled: disabled

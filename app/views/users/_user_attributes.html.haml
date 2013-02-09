@@ -1,17 +1,14 @@
 - disabled = local_assigns[:disable_fields].nil? ? false : disable_fields
 
 - profile = @user.profile
-- first_name = nil
-- last_name = nil
-- birthday = nil
-- hometown = nil
-- current_location = nil
-- unless profile.nil?
-  - first_name = profile.first_name
-  - last_name = profile.last_name
-  - birthday = profile.birthday
-  - hometown = profile.hometown
-  - current_location = profile.current_location
+- first_name = profile.nil? ? nil : profile.first_name
+- last_name = profile.nil? ? nil : profile.last_name
+- birthday = profile.nil? ? nil : profile.birthday
+- hometown = profile.nil? ? nil : profile.hometown
+- current_location = profile.nil? ? nil : profile.current_location
+
+- education = profile.nil? ? nil : profile.education
+- experience = profile.nil? ? nil : profile.experience
 
 %table
   %tr
@@ -37,3 +34,8 @@
   %tr
     %td= label_tag t("user.profile.current_location")
     %td= text_field_tag 'user[profile_attributes][current_location]', current_location, disabled: disabled
+
+%br
+=render partial: "education_attributes", locals: { education: education, disabled: disabled }
+%br
+=render partial: "experience_attributes", locals: { experience: experience, disabled: disabled }

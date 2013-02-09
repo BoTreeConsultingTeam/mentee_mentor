@@ -21,7 +21,23 @@ en:
       hometown: "HomeTown"
       current_location: "Current Location"
 
+      education:
+        heading: "Education :"
+        school: "School/College"
+        study_field: "Stduy Field"
+        degree: "Degree"
+        from_date: "From Date"
+        to_date: "To date"
 
+      experience:
+        heading: "Experience :" 
+        company: "Company"
+        title: "Title"
+        location: "Location"
+        from_date: "From Date"
+        to_date: "To Date"
+        description: "Description"
+        
     follow:
       title: "Follow"
       following: "Following"
