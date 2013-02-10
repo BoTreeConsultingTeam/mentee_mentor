@@ -53,7 +53,10 @@ en:
         message_placeholder: "Type in your message here"
         title_placeholder: "Dialogue Title"
         send_message_caption: "Send Message"
-
+    resource:
+        resource_content_placeholder: "Paste Link/Video/Article Link"
+        save_resource_caption: "Save Resource"
+        
   external_login:
     notices:
     disconnect: "Successfully disconnected %{user_name} from %{provider}"

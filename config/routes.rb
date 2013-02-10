@@ -1,5 +1,7 @@
 MentorMentee::Application.routes.draw do
 
+  get "resources/create"
+
   root to: 'users#welcome'
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
@@ -23,6 +25,7 @@ MentorMentee::Application.routes.draw do
     end
 
     resources :mquests
+    resources :resources
   end
 
   resources :messages
