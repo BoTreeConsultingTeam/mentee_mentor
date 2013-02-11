@@ -1,6 +1,6 @@
-= form_tag(resource_path) do
-  = hidden_field_tag "resource[resource_type]", "link", id: 'resourceType'
-  %br/
-  = text_field_tag "resource[content]", nil, placeholder: t('user.resource.resource_content_placeholder')
-  %br/
-  = submit_tag t('user.resource.save_resource_caption')
+= form_for(resource_path) do |f|
+	= f.hidden_field "resource[resource_type]", "link", id: 'resourceType'
+	  %br/
+	  = f.text_field "resource[content]", nil, placeholder: t('user.resource.resource_content_placeholder')
+	  %br/
+	  = f.submit_tag t('user.resource.save_resource_caption')	
