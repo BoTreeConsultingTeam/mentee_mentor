@@ -1,8 +1,15 @@
-- education_school = education.nil? ? nil : education.school
-- education_study_field = education.nil? ? nil : education.study_field
-- education_degree = education.nil? ? nil : education.degree
-- education_from_date = education.nil? ? nil : education.from_date
-- education_to_date = education.nil? ? nil : education.to_date
+- school = nil
+- study_field = nil
+- degree = nil
+- from_date = nil
+- to_date = nil
+
+- unless education.nil? 
+  - school = education.school
+  - study_field = education.study_field
+  - degree = education.degree
+  - from_date = education.from_date
+  - to_date = education.to_date
 
 
 %table
@@ -12,21 +19,20 @@
 
   %tr
     %td= label_tag t("user.profile.education.school")
-    %td= text_field_tag 'user[profile_attributes][education_attributes][school]', education_school, disabled: disabled
+    %td= text_field_tag 'user[profile_attributes][education_attributes][school]', school, disabled: disabled
 
   %tr
     %td= label_tag t("user.profile.education.study_field")
-    %td= text_field_tag 'user[profile_attributes][education_attributes][study_field]', education_study_field, disabled: disabled
+    %td= text_field_tag 'user[profile_attributes][education_attributes][study_field]', study_field, disabled: disabled
 
   %tr
     %td= label_tag t("user.profile.education.degree")
-    %td= text_field_tag 'user[profile_attributes][education_attributes][degree]', education_degree, disabled: disabled
+    %td= text_field_tag 'user[profile_attributes][education_attributes][degree]', degree, disabled: disabled
 
   %tr
     %td= label_tag t("user.profile.education.from_date")
-    %td= text_field_tag 'user[profile_attributes][education_attributes][from_date]', education_from_date, disabled: disabled
+    %td= text_field_tag 'user[profile_attributes][education_attributes][from_date]', from_date, disabled: disabled
 
   %tr
     %td= label_tag t("user.profile.education.to_date")
-    %td= text_field_tag 'user[profile_attributes][education_attributes][to_date]', education_to_date, disabled: disabled
-    
+    %td= text_field_tag 'user[profile_attributes][education_attributes][to_date]', to_date, disabled: disabled
