@@ -1,5 +1,5 @@
 class Resource < ActiveRecord::Base
-  attr_accessible :content, :resource_type, :user_id
+  attr_accessible :content, :resource_type
 
   has_many :user_resources
   has_many :users, :through => :user_resources
