@@ -1,0 +1,4 @@
+= form_for(:resource) do |f|
+  = f.hidden_field :resource_type, value: "link"
+  = f.text_field :content, placeholder: t('user.resource.resource_content_placeholder')
+  = f.submit t('user.resource.save_resource_caption')
