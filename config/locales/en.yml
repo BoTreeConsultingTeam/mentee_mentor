@@ -24,7 +24,7 @@ en:
       education:
         heading: "Education :"
         school: "School/College"
-        study_field: "Stduy Field"
+        study_field: "Study Field"
         degree: "Degree"
         from_date: "From Date"
         to_date: "To date"
