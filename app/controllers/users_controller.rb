@@ -31,6 +31,7 @@ class UsersController < ApplicationController
       if @user.update_attributes(params[:user])
         format.html { redirect_to profile_user_path(@user), notice: 'Profile was successfully updated.' }
       else
+        flash_errors(@user)
         format.html { render action: "edit" }
       end
     end
@@ -96,5 +97,11 @@ class UsersController < ApplicationController
   def fetch_user
     @user = User.find(params[:id])
   end
-
+  
+  def flash_errors(object)
+    object.errors.full_messages.each do |msg|
+      Rails.logger.error msg
+      flash[:error] = msg 
+    end
+  end
 end

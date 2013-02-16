@@ -13,6 +13,8 @@ gem "haml-rails", ">= 0.3.4"
 gem 'devise'
 gem 'mysql2', '~> 0.3.11'
 
+gem 'validates_timeliness', '~> 3.0'
+
 gem 'omniauth'
 gem 'omniauth-linkedin'
 

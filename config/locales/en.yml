@@ -20,6 +20,7 @@ en:
       birthday: "Birthday"
       hometown: "HomeTown"
       current_location: "Current Location"
+      date_placeholder: "dd-MM-yyyy"
 
       education:
         heading: "Education :"
@@ -78,3 +79,24 @@ en:
       user_friendly_message: "Sorry, could not sign-in you to the system due to some technical problem."
       account_associated_with_another_user: "Sorry could not connect you because the %{provider} account is already associated with other user."
       already_connected: "You have already connected to %{provider} account. If you would like to change account, you'll need to disconnect earlier %{provider} account first."
+
+  activerecord:
+    errors:
+      models:
+        education:
+          attributes:
+            to_date:
+              invalid_date: "is Invalid"
+              on_or_before: "can not be greater than current date"
+            from_date:
+              invalid_date: "is Invalid"
+              before: "can not be greater than To Date"
+
+        experience:
+          attributes:
+            to_date:
+              invalid_date: "is Invalid"
+              on_or_before: "can not be greater than current date"
+            from_date:
+              invalid_date: "is Invalid"
+              before: "can not be greater than To Date"

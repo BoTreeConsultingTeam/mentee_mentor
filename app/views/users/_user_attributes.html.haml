@@ -33,7 +33,7 @@
 
   %tr
     %td= label_tag t("user.profile.birthday")
-    %td= text_field_tag 'user[profile_attributes][birthday]', birthday, disabled: disabled
+    %td= text_field_tag 'user[profile_attributes][birthday]', birthday, disabled: disabled, placeholder: t('user.profile.date_placeholder')
 
   %tr
     %td= label_tag t("user.profile.hometown")
