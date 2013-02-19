@@ -54,13 +54,16 @@ en:
         title_placeholder: "Dialogue Title"
         send_message_caption: "Send Message"
     resource:
-        resource_content_placeholder: "Paste Link/Video/Article Link"
-        save_resource_caption: "Save Resource"
-        
+      resource_content_placeholder: "Paste Link/Video/Article URL"
+      save_resource_caption: "Save Resource"
+
+      errors:
+        failure: "Could not Add Resource Content."
+        success: "Resource Content Added Successfully."
   external_login:
     notices:
     disconnect: "Successfully disconnected %{user_name} from %{provider}"
-    
+
     errors:
       user_friendly_message: "Sorry, could not sign-in you to the system due to some technical problem."
       account_associated_with_another_user: "Sorry could not connect you because the %{provider} account is already associated with other user."
