@@ -32,7 +32,13 @@ jQuery(function() {
 
       $(messageBoxSelector).show(true);
     }
-
+  });
+  
+  $(function() {
+    $( "#user_profile_attributes_education_attributes_from_date" ).datepicker();
+    $( "#user_profile_attributes_education_attributes_to_date" ).datepicker();
+    $( "#user_profile_attributes_experience_attributes_from_date" ).datepicker();
+    $( "#user_profile_attributes_experience_attributes_to_date" ).datepicker();
   });
 });
 

@@ -3,6 +3,4 @@ class Education < ActiveRecord::Base
   
   belongs_to :profile
 
-  validates :to_date, :timeliness => {:on_or_before => lambda { Date.current }, :type => :date, :allow_nil => true, :allow_blank => true}
-  validates :from_date, :timeliness => {:before => :to_date, :type => :date, :allow_nil => true, :allow_blank => true}
 end

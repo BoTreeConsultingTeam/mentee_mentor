@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui.js
 //= require application
 //= require custom
 //= require_tree .
