@@ -32,11 +32,11 @@
 
   %tr
     %td= label_tag t("user.profile.experience.from_date")
-    %td= text_field_tag 'user[profile_attributes][experience_attributes][from_date]', from_date, disabled: disabled, placeholder: t('user.profile.date_placeholder')
+    %td= text_field_tag 'user[profile_attributes][experience_attributes][from_date]', from_date, disabled: disabled, placeholder: t('user.profile.date_placeholder'), id: 'experience_from_date'
 
   %tr
     %td= label_tag t("user.profile.experience.to_date")
-    %td= text_field_tag 'user[profile_attributes][experience_attributes][to_date]', to_date, disabled: disabled, placeholder: t('user.profile.date_placeholder')
+    %td= text_field_tag 'user[profile_attributes][experience_attributes][to_date]', to_date, disabled: disabled, placeholder: t('user.profile.date_placeholder'), id: 'experience_to_date'
 
   %tr
     %td= label_tag t("user.profile.experience.description")

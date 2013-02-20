@@ -34,11 +34,14 @@ jQuery(function() {
     }
   });
   
+
+  
   $(function() {
-    $( "#user_profile_attributes_education_attributes_from_date" ).datepicker();
-    $( "#user_profile_attributes_education_attributes_to_date" ).datepicker();
-    $( "#user_profile_attributes_experience_attributes_from_date" ).datepicker();
-    $( "#user_profile_attributes_experience_attributes_to_date" ).datepicker();
+    $( "#profile_birth_date" ).datepicker({ dateFormat: $.datepicker.W3C });
+    $( "#education_from_date" ).datepicker({ dateFormat: $.datepicker.W3C });
+    $( "#education_to_date" ).datepicker({ dateFormat: $.datepicker.W3C });
+    $( "#experience_from_date" ).datepicker({ dateFormat: $.datepicker.W3C });
+    $( "#experience_to_date" ).datepicker({ dateFormat: $.datepicker.W3C });
   });
 });
 

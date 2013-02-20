@@ -31,8 +31,8 @@
 
   %tr
     %td= label_tag t("user.profile.education.from_date")
-    %td= text_field_tag 'user[profile_attributes][education_attributes][from_date]', from_date, disabled: disabled, placeholder: t('user.profile.date_placeholder')
+    %td= text_field_tag 'user[profile_attributes][education_attributes][from_date]', from_date, disabled: disabled, placeholder: t('user.profile.date_placeholder'), id: 'education_from_date'
 
   %tr
     %td= label_tag t("user.profile.education.to_date")
-    %td= text_field_tag 'user[profile_attributes][education_attributes][to_date]', to_date, disabled: disabled, placeholder: t('user.profile.date_placeholder')
+    %td= text_field_tag 'user[profile_attributes][education_attributes][to_date]', to_date, disabled: disabled, placeholder: t('user.profile.date_placeholder'), id: 'education_to_date'
