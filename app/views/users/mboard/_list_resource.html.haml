@@ -1,7 +1,0 @@
-- user_resources = current_user.resources
-- if !user_resources.empty?
-  %h5 Resource List
-  - user_resources.each do |resource|
-    %li
-      %span=resource.resource_type
-      %span=link_to(resource.content)

@@ -6,4 +6,6 @@ class Resource < ActiveRecord::Base
 
   validates_presence_of :content
 
+  scope :links, conditions: { resource_type: "link" }
+
 end

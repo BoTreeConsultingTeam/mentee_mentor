@@ -25,6 +25,11 @@ en:
     follow:
       title: "Follow"
       following: "Following"
+      connected: "Connected"
+      followed_by: "Following You"
+      disconnect: "Disconnect"
+      unfollow: "Unfollow"
+
       errors:
         could_not_process_follow: "Could not process follow request.Either or all required data[id, follow_user_id] found missing."
         no_user_found: "Could not process follow request.Either or both of the users specified by id %{user_id}, %{follow_user_id} not found in the system"
@@ -40,6 +45,7 @@ en:
       users: "Users"
 
     mboard:
+      links: "Your Saved Links"
       errors:
         could_not_fetch_dialogues: "Could not fetch dialogues.Either or all required data[id, with] found missing."
 
@@ -53,6 +59,7 @@ en:
         message_placeholder: "Type in your message here"
         title_placeholder: "Dialogue Title"
         send_message_caption: "Send Message"
+
     resource:
       resource_content_placeholder: "Paste Link/Video/Article URL"
       save_resource_caption: "Save Resource"
@@ -61,6 +68,7 @@ en:
         success: "%{content_type} Added Successfully."
       errors:
         user_friendly_message: "Please paste a link to save it"
+
   external_login:
     notices:
     disconnect: "Successfully disconnected %{user_name} from %{provider}"
