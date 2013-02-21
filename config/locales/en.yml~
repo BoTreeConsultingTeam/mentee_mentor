@@ -58,9 +58,7 @@ en:
       save_resource_caption: "Save Resource"
 
       notices:
-        success: "%{content_type} Added Successfully."
-      errors:
-        user_frienly_message: "Please paste a link to save it"
+        success: "%{content_type} Added Successfully." 
   external_login:
     notices:
     disconnect: "Successfully disconnected %{user_name} from %{provider}"
