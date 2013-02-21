@@ -34,6 +34,10 @@ jQuery(function() {
     }
 
   });
+  /* slider */
+  jQuery('#mycarousel').jcarousel({
+    wrap: 'circular'
+  });
 });
 
 function getUserMessageBoxSelector(obj) {
