@@ -94,5 +94,4 @@ class UsersController < ApplicationController
   def fetch_user
     @user = User.find(params[:id])
   end
-
 end

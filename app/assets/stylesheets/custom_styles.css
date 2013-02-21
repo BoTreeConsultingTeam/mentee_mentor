@@ -20,3 +20,6 @@ ul li .messageStatusBox {
 .dialogueMessages {
    margin-left: 55px;
 }
+.error{
+  color: red;
+}

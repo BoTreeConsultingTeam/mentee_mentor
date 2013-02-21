@@ -23,6 +23,29 @@ ActiveRecord::Schema.define(:version => 20130211201438) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "educations", :force => true do |t|
+    t.string   "school"
+    t.date     "from_date"
+    t.date     "to_date"
+    t.string   "degree"
+    t.string   "study_field"
+    t.integer  "profile_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "experiences", :force => true do |t|
+    t.string   "company"
+    t.date     "from_date"
+    t.date     "to_date"
+    t.string   "title"
+    t.string   "location"
+    t.string   "description"
+    t.integer  "profile_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "followed_followings", :force => true do |t|
     t.integer  "followed_id"
     t.integer  "following_id"

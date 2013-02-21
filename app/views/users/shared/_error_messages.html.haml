@@ -1,0 +1,4 @@
+- unless modelObject.errors.nil?
+  %div
+    - modelObject.errors.full_messages.each do |msg|
+      .error= msg

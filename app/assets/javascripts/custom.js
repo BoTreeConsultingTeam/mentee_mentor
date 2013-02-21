@@ -32,7 +32,16 @@ jQuery(function() {
 
       $(messageBoxSelector).show(true);
     }
+  });
+  
 
+  
+  $(function() {
+    $( "#profile_birth_date" ).datepicker({ dateFormat: $.datepicker.W3C });
+    $( "#education_from_date" ).datepicker({ dateFormat: $.datepicker.W3C });
+    $( "#education_to_date" ).datepicker({ dateFormat: $.datepicker.W3C });
+    $( "#experience_from_date" ).datepicker({ dateFormat: $.datepicker.W3C });
+    $( "#experience_to_date" ).datepicker({ dateFormat: $.datepicker.W3C });
   });
 });
 
