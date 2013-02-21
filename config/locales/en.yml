@@ -60,7 +60,7 @@ en:
       notices:
         success: "%{content_type} Added Successfully."
       errors:
-        user_frienly_message: "Please paste a link to save it"
+        user_friendly_message: "Please paste a link to save it"
   external_login:
     notices:
     disconnect: "Successfully disconnected %{user_name} from %{provider}"

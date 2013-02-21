@@ -12,7 +12,7 @@ class ResourcesController < ApplicationController
         current_user.resources << resource
         flash[:notice] = t('user.resource.notices.success', content_type: resource.resource_type.capitalize)
       else
-		flash[:notice] = t('user.resource.errors.user_frienly_message')
+		flash[:notice] = t('user.resource.errors.user_friendly_message')
       end
       redirect_to mboard_user_path(current_user.id)
     end

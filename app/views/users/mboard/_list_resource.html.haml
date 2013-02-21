@@ -1,7 +1,7 @@
-- resource = current_user.resources.all
-- if !resource.empty?
+- user_resources = current_user.resources
+- if !user_resources.empty?
   %h5 Resource List
-  - resource.each do |resource|
+  - user_resources.each do |resource|
     %li
       %span=resource.resource_type
       %span=link_to(resource.content)
