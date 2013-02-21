@@ -31,7 +31,6 @@ class UsersController < ApplicationController
       if @user.update_attributes(params[:user])
         format.html { redirect_to profile_user_path(@user), notice: 'Profile was successfully updated.' }
       else
-        Rails.logger.error @user.errors.full_messages
         format.html { render action: "edit" }
       end
     end
