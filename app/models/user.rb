@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
 
   has_many :authentications, dependent: :delete_all
 
+  
+  has_many :user_resources
+  has_many :resources, :through => :user_resources
+  
   def message_threads_exchanged_with(user_id)
     return [] if user_id.nil?
 

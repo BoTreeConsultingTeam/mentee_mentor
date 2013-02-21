@@ -23,6 +23,7 @@ MentorMentee::Application.routes.draw do
     end
 
     resources :mquests
+    resources :resources
   end
 
   resources :messages
