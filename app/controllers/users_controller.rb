@@ -14,9 +14,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    # Fetch all users, except current logged in user.This is to allow a user to
-    # follow another user in the system
-    @users = User.where("id != ?", current_user.id)
+
   end
 
   def show
@@ -97,5 +95,4 @@ class UsersController < ApplicationController
   def fetch_user
     @user = User.find(params[:id])
   end
-
 end

@@ -117,11 +117,33 @@ en:
       birthday: "Birthday"
       hometown: "HomeTown"
       current_location: "Current Location"
+      date_placeholder: "yyyy-MM-dd"
 
+      education:
+        heading: "Education :"
+        school: "School/College"
+        study_field: "Study Field"
+        degree: "Degree"
+        from_date: "From Date"
+        to_date: "To date"
 
+      experience:
+        heading: "Experience :" 
+        company: "Company"
+        title: "Title"
+        location: "Location"
+        from_date: "From Date"
+        to_date: "To Date"
+        description: "Description"
+        
     follow:
       title: "Follow"
       following: "Following"
+      connected: "Connected"
+      followed_by: "Following You"
+      disconnect: "Disconnect"
+      unfollow: "Unfollow"
+
       errors:
         could_not_process_follow: "Could not process follow request.Either or all required data[id, follow_user_id] found missing."
         no_user_found: "Could not process follow request.Either or both of the users specified by id %{user_id}, %{follow_user_id} not found in the system"
@@ -137,6 +159,7 @@ en:
       users: "Users"
 
     mboard:
+      links: "Your Saved Links"
       errors:
         could_not_fetch_dialogues: "Could not fetch dialogues.Either or all required data[id, with] found missing."
 
@@ -150,6 +173,15 @@ en:
         message_placeholder: "Type in your message here"
         title_placeholder: "Dialogue Title"
         send_message_caption: "Send Message"
+
+    resource:
+      resource_content_placeholder: "Paste Link/Video/Article URL"
+      save_resource_caption: "Save Resource"
+
+      notices:
+        success: "%{content_type} Added Successfully."
+      errors:
+        user_friendly_message: "Please paste a link to save it"
 
   external_login:
     notices:

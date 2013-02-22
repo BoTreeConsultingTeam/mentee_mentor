@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  company: MyString
+  from_date: 2013-01-31
+  to_date: 2013-01-31
+  title: MyString
+  location: MyString
+  description: MyString
+  profile_id: 1
+
+two:
+  company: MyString
+  from_date: 2013-01-31
+  to_date: 2013-01-31
+  title: MyString
+  location: MyString
+  description: MyString
+  profile_id: 1

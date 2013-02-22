@@ -6,12 +6,17 @@
 - birthday = nil
 - hometown = nil
 - current_location = nil
+- education = nil
+- experience = nil
+
 - unless profile.nil?
   - first_name = profile.first_name
   - last_name = profile.last_name
   - birthday = profile.birthday
   - hometown = profile.hometown
   - current_location = profile.current_location
+  - education = profile.education
+  - experience = profile.experience
 
 %table
   %tr
@@ -28,7 +33,7 @@
 
   %tr
     %td= label_tag t("user.profile.birthday")
-    %td= text_field_tag 'user[profile_attributes][birthday]', birthday, disabled: disabled
+    %td= text_field_tag 'user[profile_attributes][birthday]', birthday, disabled: disabled, placeholder: t('user.profile.date_placeholder'), id: 'profile_birth_date'
 
   %tr
     %td= label_tag t("user.profile.hometown")
@@ -37,3 +42,8 @@
   %tr
     %td= label_tag t("user.profile.current_location")
     %td= text_field_tag 'user[profile_attributes][current_location]', current_location, disabled: disabled
+
+%br
+=render partial: "education_attributes", locals: { education: education, disabled: disabled }
+%br
+=render partial: "experience_attributes", locals: { experience: experience, disabled: disabled }

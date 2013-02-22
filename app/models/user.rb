@@ -34,6 +34,40 @@ class User < ActiveRecord::Base
 
   has_many :authentications, dependent: :delete_all
 
+  has_many :user_resources
+  has_many :resources, :through => :user_resources
+
+  # References for overriden eqll? and hash:
+  # 1) http://shortrecipes.blogspot.in/2006/10/ruby-intersection-of-two-arrays-of.html
+  # 2) http://www.ruby-forum.com/topic/181819
+  def eql?(other)
+    (other.kind_of?(self.class) && !self.id.nil? && self.id == other.id)
+  end
+
+  def hash
+    self.id
+  end
+
+  def other_users
+    User.where("id != ?", self.id)
+  end
+
+  def connected_with
+    (self.followed_by & self.follows)
+  end
+
+  def is_followed_by
+    (self.followed_by - self.connected_with)
+  end
+
+  def is_following
+    (self.follows - self.connected_with)
+  end
+
+  def can_follow
+    ((other_users - self.connected_with) - self.is_following)
+  end
+
   def message_threads_exchanged_with(user_id)
     return [] if user_id.nil?
 

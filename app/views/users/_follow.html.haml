@@ -1,13 +1,42 @@
-- unless @users.empty?
+- follow_users = current_user.can_follow
+- following_users = current_user.is_following
+- followed_by_users = current_user.is_followed_by
+- connected_with_users = current_user.connected_with
+
+- unless follow_users.empty?
   %h3= t('user.follow.title')
   #follow_section
     %table
-      - @users.each do |user|
+      - follow_users.each do |user|
         %tr
           %td= user.name
           %td<
-            - if user.followed_by.exists?(current_user)
-              = t('user.follow.following')
-            - else
-              = link_to(t('user.follow.title'), follow_user_path(id: current_user.id, follow_user_id: user.id), method: :post)
+            = link_to(t('user.follow.title'), follow_user_path(id: current_user.id, follow_user_id: user.id), method: :post)
 
+- unless following_users.empty?
+  %h3= t('user.follow.following')
+  #following_section
+    %table
+      - following_users.each do |user|
+        %tr
+          %td= user.name
+          %td<
+            = link_to(t('user.follow.unfollow'), '#')
+
+- unless followed_by_users.empty?
+  %h3= t('user.follow.followed_by')
+  #followed_by_section
+    %table
+      - followed_by_users.each do |user|
+        %tr
+          %td= user.name
+
+- unless connected_with_users.empty?
+  %h3= t('user.follow.connected')
+  #connected_section
+    %table
+      - connected_with_users.each do |user|
+        %tr
+          %td= user.name
+          %td<
+            = link_to(t('user.follow.disconnect'), "#")

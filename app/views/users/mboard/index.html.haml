@@ -1,3 +1,6 @@
 %br/
-
-= render partial: "users/mboard/list_users", locals: { users_collection: @users }
+%br/
+= render partial: "users/resources/form"
+= render partial: "users/mboard/list_user_links"
+%br/
+-#= render partial: "users/mboard/list_users", locals: { users_collection: @users }

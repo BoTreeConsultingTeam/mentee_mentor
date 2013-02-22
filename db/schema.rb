@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130126222824) do
+ActiveRecord::Schema.define(:version => 20130211201438) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -21,6 +21,29 @@ ActiveRecord::Schema.define(:version => 20130126222824) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "educations", :force => true do |t|
+    t.string   "school"
+    t.date     "from_date"
+    t.date     "to_date"
+    t.string   "degree"
+    t.string   "study_field"
+    t.integer  "profile_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "experiences", :force => true do |t|
+    t.string   "company"
+    t.date     "from_date"
+    t.date     "to_date"
+    t.string   "title"
+    t.string   "location"
+    t.string   "description"
+    t.integer  "profile_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "followed_followings", :force => true do |t|
@@ -56,6 +79,20 @@ ActiveRecord::Schema.define(:version => 20130126222824) do
     t.integer  "user_id",          :null => false
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "resources", :force => true do |t|
+    t.string   "content"
+    t.string   "resource_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "user_resources", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "resource_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|
