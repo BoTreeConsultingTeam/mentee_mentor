@@ -2,4 +2,8 @@
   .header
     .sub_wrapper
       = render "layouts/logo"
-      = yield :header_content
+
+      - if user_signed_in?
+        = render partial: "main_navigation"
+      - else
+        = render file: "users/sessions/new_themed"

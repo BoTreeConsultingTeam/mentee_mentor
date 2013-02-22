@@ -63,11 +63,10 @@ function bindAnimationToUserSettingsDropdown() {
   if (dashboardPageSettingsDropdownObj.length > 0) {
     var dashboardPageSettingsListingObj = $(dashboardPageHeaderContainerSelector).find('.setting_listing');
 
-    $(dashboardPageSettingsDropdownObj).hover(function () {
-        $(dashboardPageSettingsListingObj).filter(':not(:animated)').show(400);
-      }, function() {
-        $(dashboardPageSettingsListingObj).filter(':not(:animated)').hide(400);
+    dashboardPageSettingsDropdownObj.click(function() {
+      dashboardPageSettingsListingObj.slideToggle();
     });
+
   }
 }
 
