@@ -1,0 +1,43 @@
+- profile = @user.profile
+- first_name = nil
+- last_name = nil
+- birthday = nil
+- hometown = nil
+- current_location = nil
+- biography = nil
+- gender = nil
+- interests = nil
+- recent_activities = nil
+
+- unless profile.nil?
+  - first_name = profile.first_name
+  - last_name = profile.last_name
+  - birthday = profile.birthday
+  - hometown = profile.hometown
+  - current_location = profile.current_location
+  - biography = profile.biography
+  - gender = profile.gender
+  - interests = profile.interests
+  - recent_activities = profile.recent_activities
+
+.section_content_bg(id="editProfile")
+  .sub_wrapper
+    .section_profile_text_lft
+      .section_profile_img
+        = image_tag("profile_img.jpg", width: '89px', height: '89px', alt: current_user.name)
+
+      %ul#sidenav
+        %li= link_to(t('profile.personal.title'), "#", class: 'profileMenuItem', rel: 'personalProfileLink')
+        %li= link_to(t('profile.professional.title'), "#", class: 'profileMenuItem', rel: 'professionalProfileLink')
+        -# Affiliations page is yet unavailable, thus not displaying the link: Jignesh Gohel, Feb 23, 2013
+        -#%li= link_to(t('profile.affiliations.title'), "#", class: 'profileMenuItem', rel: 'affiliationsProfileLink')
+
+    .section_profile_text_rgt
+      = render partial: "users/profile/personal_details"
+      = render partial: "users/profile/professional_details"
+
+      %div
+        %button.profile_save_button.blue(type = "submit")= t('profile.save_btn')
+
+      %div
+        %button.button.blue.rlt(type = "submit")= t('profile.next_btn')

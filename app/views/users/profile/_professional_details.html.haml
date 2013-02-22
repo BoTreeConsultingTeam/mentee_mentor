@@ -1,0 +1,17 @@
+.section_professional_detail_form(id="professionalProfileSection")
+  %ul
+    %li
+      .section_professional_detail_area
+        = label_tag t('profile.professional.work_experience')
+
+        = render partial: "users/profile/work_experience"
+        .education_row
+          = render partial: "users/profile/work_experience"
+
+    %li
+      .section_professional_detail_area
+        = label_tag t('profile.professional.education')
+
+        = render partial: "users/profile/education"
+        .education_row
+          = render partial: "users/profile/education"

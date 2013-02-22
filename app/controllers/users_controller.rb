@@ -19,7 +19,10 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    # TODO: This is a temporary change and added just for testing
+    # When Profile page is full-fledged developed, this should be removed
+    # Jignesh Gohel, Feb 23, 2013
+    render file: "users/profile/edit"
   end
 
   def edit

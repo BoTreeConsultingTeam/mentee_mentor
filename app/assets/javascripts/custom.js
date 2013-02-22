@@ -53,7 +53,94 @@ jQuery(function() {
 
   bindAnimationToUserSettingsDropdown();
 
+  var editProfileView = $('#editProfile').length > 0;
+
+  if(editProfileView) {
+    makePersonalProfileActiveByDefault();
+    bindClickToProfileSectionAndActivateSelectedProfileSection();
+  }
+
 });
+
+function makePersonalProfileActiveByDefault() {
+  var profileMenuItemSelector = '#sidenav .profileMenuItem';
+  var anyProfileMenuItemActive = $(profileMenuItemSelector).hasClass('active');
+
+  if(!anyProfileMenuItemActive) {
+    // By default keep active the Personal Profile section
+    $(profileMenuItemSelector).first().addClass('active');
+    // Hide the Professional Section when Personal Profile
+    toggleProfessionalProfile(false);
+  }
+}
+
+function bindClickToProfileSectionAndActivateSelectedProfileSection() {
+  $('#sidenav .profileMenuItem').live('click', function() {
+    $(this).addClass('active');
+    $(this).parent().siblings().find('.profileMenuItem').removeClass('active');
+    var activeProfileSection = $(this).attr('rel');
+
+    switch(activeProfileSection) {
+      case 'personalProfileLink':
+        togglePersonalProfile(true);
+        toggleProfessionalProfile(false);
+        toggleAffiliationsProfile(false);
+        break;
+
+      case 'professionalProfileLink':
+        togglePersonalProfile(false);
+        toggleProfessionalProfile(true);
+        toggleAffiliationsProfile(false);
+        break;
+
+      case 'affiliationsProfileLink':
+        togglePersonalProfile(false);
+        toggleProfessionalProfile(false);
+        toggleAffiliationsProfile(true);
+        break;
+    }
+  });
+}
+
+function toggleProfileSection(section, flag) {
+  var sectionSelector = '';
+  switch(section) {
+    case 'personal':
+      sectionSelector = '#personalProfileSection';
+      break;
+
+    case 'professional':
+      sectionSelector = '#professionalProfileSection';
+      break;
+
+    case 'affiliations':
+      sectionSelector = '#affiliationsProfileSection';
+      break;
+  }
+
+  if(sectionSelector != '') {
+    var sectionObj =  $(sectionSelector);
+    if(sectionObj.length > 0) {
+      if(flag) {
+        sectionObj.show();
+      } else {
+        sectionObj.hide();
+      }
+    }
+  }
+}
+
+function togglePersonalProfile(flag) {
+  toggleProfileSection('personal', flag);
+}
+
+function toggleProfessionalProfile(flag) {
+  toggleProfileSection('professional', flag);
+}
+
+function toggleAffiliationsProfile(flag) {
+  toggleProfileSection('affiliations', flag);
+}
 
 function bindAnimationToUserSettingsDropdown() {
   var dashboardPageHeaderContainerSelector = ".content_bg_dashboard_rgt";

@@ -2,6 +2,15 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  date:
+    # References:
+    #   https://github.com/rails/rails/blob/master/activesupport/lib/active_support/locale/en.yml#L15
+    #   http://en.wikipedia.org/wiki/YAML#Features
+    #   http://api.rubyonrails.org/classes/ActionView/Helpers/DateHelper.html#method-i-date_select
+    order:
+      - :day
+      - :month
+      - :year
 
   navigation_links:
     home: "Dashboard"
@@ -21,6 +30,59 @@ en:
       refresh_link: "Refresh"
       reply_link: "Reply"
       mark_as_read_link: "Mark As Read"
+
+  profile:
+    save_btn: "Save"
+    next_btn: "Next"
+
+    personal:
+      title: "Personal"
+      biography: "Bio"
+      first_name: "First Name"
+      last_name: "Last name"
+      gender: "Gender"
+      birth_date: "Birth Date"
+      location: "Location"
+      home_town: "Home Town"
+      interests: "Interests"
+      recent_activities: "Recent<br/>Activities"
+
+      placeholder:
+        biography: "Enter a brief biography of yourself"
+        first_name: "Enter Your First Name"
+        last_name: "Enter Your Last Name"
+        birthday:
+          date: "DD"
+          month: "MM"
+          year: "YYYY"
+
+        current_location: "Enter Current Location"
+        home_town: "Enter Your Home Town"
+        interests: "Enter Your Interests"
+        recent_activities: "Enter Your Recent Activities"
+
+    professional:
+      title: "Professional"
+      work_experience: "Work Experience"
+      education: "Education"
+      current: "Current"
+
+      placeholder:
+        work_experience:
+          company: "Company"
+          description: "Title, Skills, etc"
+          from_date: "Start"
+          to_date: "End"
+
+        education:
+          school: "School"
+          major_study_field: "Major or Field of Study"
+          from_date: "Start"
+          to_date: "End"
+
+    affiliations:
+      title: "Affiliations"
+
 
   welcome_page:
     sign_up_form:
@@ -121,33 +183,6 @@ en:
   user:
     welcome_text: "Welcome, %{user_name}!"
     email: "Email"
-
-    profile:
-      edit: "Edit Profile"
-      update: "Update Profile"
-      first_name: "First Name"
-      last_name: "Last Name"
-      birthday: "Birthday"
-      hometown: "HomeTown"
-      current_location: "Current Location"
-      date_placeholder: "yyyy-MM-dd"
-
-      education:
-        heading: "Education :"
-        school: "School/College"
-        study_field: "Study Field"
-        degree: "Degree"
-        from_date: "From Date"
-        to_date: "To date"
-
-      experience:
-        heading: "Experience :"
-        company: "Company"
-        title: "Title"
-        location: "Location"
-        from_date: "From Date"
-        to_date: "To Date"
-        description: "Description"
 
     follow:
       title: "Follow"
