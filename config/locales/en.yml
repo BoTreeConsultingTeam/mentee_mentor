@@ -9,6 +9,103 @@ en:
     mquests: "Mquests"
     search: "Search"
 
+
+  welcome_page:
+    sign_up_form:
+      title: "Sign Up"
+      submit_btn: "Sign Up"
+
+    sign_in_form:
+      submit_btn: "Login"
+
+    sign_in_with_linkedin_btn: "Sign In with LinkedIn"
+
+    # References:
+    # 1. http://stackoverflow.com/questions/5415052/multiline-i18n-in-rails-3
+    # 2. http://en.wikipedia.org/wiki/YAML
+    # 3. http://yaml-online-parser.appspot.com/
+    welcome_text: |
+      <ul id="mycarousel" class="jcarousel-skin-tango">
+        <li>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages.
+          </p>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.
+          </p>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+            to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
+          <p>
+        </li>
+        <li>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages.
+          </p>
+        </li>
+        <li>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages.
+          </p>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages.
+          </p>
+        </li>
+        <li>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages.
+          </p>
+        </li>
+        <li>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages.
+          </p>
+          <p>
+             Lorem Ipsum is simply dummy text
+          </p>
+        </li>
+      </ul>
+
+  footer:
+    copyright_text: "Mentee Mentor Corporation © 2013 | Copyright"
+    links:
+      privacy_policy: "Privacy Policy"
+      about: "About"
+      contact_us: "Contact Us"
+
   user:
     email: "Email"
 
@@ -57,7 +154,7 @@ en:
   external_login:
     notices:
     disconnect: "Successfully disconnected %{user_name} from %{provider}"
-    
+
     errors:
       user_friendly_message: "Sorry, could not sign-in you to the system due to some technical problem."
       account_associated_with_another_user: "Sorry could not connect you because the %{provider} account is already associated with other user."

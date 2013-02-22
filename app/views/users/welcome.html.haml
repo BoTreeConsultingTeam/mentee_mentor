@@ -1,82 +1,10 @@
-Welcome to Mentor-Mentee!
+- content_for :header_content do
+  = render file: "users/sessions/new_themed"
 
-- if @message
-  %p= @message
+%article
+  .content_text
+    %h5 Welcome  to our site
+    .content_left_slider
+      = t('welcome_page.welcome_text').html_safe
 
-= render file: "users/sessions/new"
-
-= render file: "users/registrations/new"
-#wrapper
-  %header
-    / header start
-    %Div.header
-      .sub_wrapper
-        .logo
-          Mentee
-          %span Mentor
-        .login_form
-          %form.form-inline
-            .login_form_sub
-              %label Email
-              %input{:type => "text"}
-            .login_form_sub
-              %label Password
-              %input{:type => "password"}
-            %button.button_sign.blue{:type => "submit"} Login
-    / header end
-  / *home_content_bg start*
-  .content_bg
-    .sub_wrapper
-      %article
-        .content_text
-          %h5 Welcome  to our site
-          .content_left_slider
-            %ul#mycarousel.jcarousel-skin-tango
-              %li
-                %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
-                %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.
-                %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
-              %li
-                %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
-              %li
-                %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
-                %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
-              %li
-                %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
-              %li
-                %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
-                %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
-      %aside
-        .test
-          .test_sub
-            .test_sub_header
-              %h4 Sign Up
-            .signup
-              %form
-                .control_group
-                  %label Email
-                  %input{:type => "text"}/
-                .control_group
-                  %label Password
-                  %input/
-                .control_group
-                  %label Confirm Password
-                  %input/
-                .control_group
-                  %button.button.blue{:type => "submit"} Sign Up
-            .sub_header OR
-            %a.signin-button.linkedin{:href => "#"}
-              %i
-              %span Sign In with LinkedIn
-  %footer
-    / footer start
-    %Div.footer
-      .sub_wrapper
-        %p
-          Mentee Mentor Corporation © 2013 | Copyright   |
-          %a{:href => "#"} Privacy Policy
-          %em
-            %a{:href => "#"} About
-            |
-            %a{:href => "#"} Contact Us
-    / footer end
+= render file: "users/registrations/new_themed"

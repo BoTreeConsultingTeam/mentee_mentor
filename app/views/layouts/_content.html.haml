@@ -1,0 +1,7 @@
+.content_bg
+  .sub_wrapper
+    - flash.each do |name, message|
+      %p.error= message if name == :error
+      %p.alert= message if ((:alert == name) or (:notice == name))
+
+    = yield

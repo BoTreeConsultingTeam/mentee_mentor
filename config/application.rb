@@ -63,6 +63,11 @@ module MentorMentee
     config.assets.enabled = true
     config.assets.initialize_on_precompile = false
 
+    # Reference: http://stackoverflow.com/questions/9646408/font-face-not-working-with-rails-3-1
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    # Precompile additional assets
+    config.assets.precompile += %w( .svg .eot .woff .ttf )
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
   end
