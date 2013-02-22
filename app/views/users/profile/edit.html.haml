@@ -33,11 +33,12 @@
         -#%li= link_to(t('profile.affiliations.title'), "#", class: 'profileMenuItem', rel: 'affiliationsProfileLink')
 
     .section_profile_text_rgt
-      = render partial: "users/profile/personal_details"
-      = render partial: "users/profile/professional_details"
+      = form_for(@user, html: { id: 'editUserProfileForm' }) do |f|
+        = render partial: "users/profile/personal_details"
+        = render partial: "users/profile/professional_details"
 
-      %div
-        %button.profile_save_button.blue(type = "submit")= t('profile.save_btn')
+        %div
+          %button.profile_save_button.blue(type = "submit")= t('profile.save_btn')
 
-      %div
-        %button.button.blue.rlt(type = "submit")= t('profile.next_btn')
+        %div
+          %button.button.blue.rlt(id='profileNextBtn')= t('profile.next_btn')

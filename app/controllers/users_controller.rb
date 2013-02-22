@@ -10,6 +10,10 @@ class UsersController < ApplicationController
     # data prepared by Devise is not available.Required Devise helpers are
     # manually added to /app/helpers/application_helper.rb so that "users/registrations/new"
     # gets correctly included on Welcome Page itself.
+    if user_signed_in?
+      redirect_to user_home_path and return
+    end
+
     @welcome_page_active = true # Used in /app/views/layouts/_logo.html.haml
     render layout: "welcome_page_layout"
   end
@@ -31,6 +35,11 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
+      # Update birthday by joining the date components rendered by select_date
+      # helper and selected by user in front-end and submitted.If this is
+      # not done the birthday will not get saved correctly.
+      params[:user][:profile_attributes][:birthday] = join_date_components_received_from_select_date_helper(params[:user][:profile_attributes][:birthday])
+
       if @user.update_attributes(params[:user])
         format.html { redirect_to profile_user_path(@user), notice: 'Profile was successfully updated.' }
       else

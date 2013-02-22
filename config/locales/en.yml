@@ -53,7 +53,7 @@ en:
         last_name: "Enter Your Last Name"
         birthday:
           date: "DD"
-          month: "MM"
+          month: "MMM"
           year: "YYYY"
 
         current_location: "Enter Current Location"

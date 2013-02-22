@@ -18,6 +18,22 @@ class ApplicationController < ActionController::Base
     %w(mentee mentor).include?(role)
   end
 
+  # Applicable only when front-end renders a select box using
+  # select_date helper
+  def join_date_components_received_from_select_date_helper(date_hash)
+    date_str = ''
+    if date_hash.present?
+      date = date_hash[:day]
+      month = date_hash[:month]
+      year = date_hash[:year]
+
+      if (date.present? and month.present? and year.present?)
+        date_str = "#{date}-#{month}-#{year}"
+      end
+    end
+    date_str
+  end
+
   private
 
   def require_user
