@@ -1,0 +1,20 @@
+%ul
+  %li
+    = link_to('#', class: "#{ @dashboard_active ? 'active' : '' }") do
+      %figure.dashboard_icon
+      =t('navigation_links.home')
+
+  %li
+    = link_to('#', class: "#{ @mboard_active ? 'active' : '' }") do
+      %figure.mboard_icon
+      =t('navigation_links.mboard')
+
+  %li
+    = link_to('#', class: "#{ @mquest_active ? 'active' : '' }") do
+      %figure.mquest_icon
+      =t('navigation_links.mquest')
+
+  %li
+    = link_to('#', class: "#{ @search_active ? 'active' : '' }") do
+      %figure.search_icon
+      =t('navigation_links.search')

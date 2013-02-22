@@ -1,10 +1,13 @@
 - content_for :header_content do
   = render file: "users/sessions/new_themed"
 
-%article
-  .content_text
-    %h5 Welcome  to our site
-    .content_left_slider
-      = t('welcome_page.welcome_text').html_safe
+- content_for :main_content do
+  .content_bg
+    .sub_wrapper
+      %article
+        .content_text
+          %h5 Welcome  to our site
+          .content_left_slider
+            = t('welcome_page.welcome_text').html_safe
 
-= render file: "users/registrations/new_themed"
+      = render file: "users/registrations/new_themed"

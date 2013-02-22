@@ -1,0 +1,12 @@
+.head_line
+  %h2= t('dashboard.update_status.title')
+.update_status_wrap
+  .img_box
+    -# This should be user's image or a default image in case user has
+    -# not uploaded his/her image yet. TODO
+    = image_tag("update-img.jpg", height: 86, width: 86)
+    %p= current_user.name
+
+  .update_right
+    = text_area_tag('status_area')
+    = link_to(t('dashboard.update_status.update_btn'), '#', class: 'line_btn')

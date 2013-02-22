@@ -33,9 +33,10 @@ jQuery(function() {
       $(messageBoxSelector).show(true);
     }
   });
-  
 
-  
+  // Temporarily Commented out
+  // Jignesh Gohel - Feb 22, 2013
+  /*
   $(function() {
     $( "#profile_birth_date" ).datepicker({ dateFormat: $.datepicker.W3C });
     $( "#education_from_date" ).datepicker({ dateFormat: $.datepicker.W3C });
@@ -43,11 +44,32 @@ jQuery(function() {
     $( "#experience_from_date" ).datepicker({ dateFormat: $.datepicker.W3C });
     $( "#experience_to_date" ).datepicker({ dateFormat: $.datepicker.W3C });
   });
-  /* slider */
-  jQuery('#mycarousel').jcarousel({
+  */
+
+  /* Carousel */
+  $('#mycarousel').jcarousel({
     wrap: 'circular'
   });
+
+  bindAnimationToUserSettingsDropdown();
+
 });
+
+function bindAnimationToUserSettingsDropdown() {
+  var dashboardPageHeaderContainerSelector = ".content_bg_dashboard_rgt";
+
+  var dashboardPageSettingsContainerSelector = ".setting_drop";
+  var dashboardPageSettingsDropdownObj = $(dashboardPageHeaderContainerSelector).find(dashboardPageSettingsContainerSelector);
+  if (dashboardPageSettingsDropdownObj.length > 0) {
+    var dashboardPageSettingsListingObj = $(dashboardPageHeaderContainerSelector).find('.setting_listing');
+
+    $(dashboardPageSettingsDropdownObj).hover(function () {
+        $(dashboardPageSettingsListingObj).filter(':not(:animated)').show(400);
+      }, function() {
+        $(dashboardPageSettingsListingObj).filter(':not(:animated)').hide(400);
+    });
+  }
+}
 
 function getUserMessageBoxSelector(obj) {
   var userId = obj.siblings("#user_id").val();

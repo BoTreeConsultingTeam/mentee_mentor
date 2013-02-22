@@ -2,13 +2,25 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  top_navigation:
-    home: "Home"
-    profile: "Profile"
-    dashboard: "Mboard"
-    mquests: "Mquests"
-    search: "Search"
 
+  navigation_links:
+    home: "Dashboard"
+    mboard: "Mboard"
+    mquest: "Mquests"
+    search: "Search"
+    profile: "Profile"
+
+
+  dashboard:
+    update_status:
+      title: "Update Status"
+      update_btn: "Update"
+
+    timeline:
+      title: "Timeline"
+      refresh_link: "Refresh"
+      reply_link: "Reply"
+      mark_as_read_link: "Mark As Read"
 
   welcome_page:
     sign_up_form:
@@ -107,6 +119,7 @@ en:
       contact_us: "Contact Us"
 
   user:
+    welcome_text: "Welcome, %{user_name}!"
     email: "Email"
 
     profile:
@@ -128,14 +141,14 @@ en:
         to_date: "To date"
 
       experience:
-        heading: "Experience :" 
+        heading: "Experience :"
         company: "Company"
         title: "Title"
         location: "Location"
         from_date: "From Date"
         to_date: "To Date"
         description: "Description"
-        
+
     follow:
       title: "Follow"
       following: "Following"

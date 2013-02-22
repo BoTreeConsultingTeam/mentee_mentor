@@ -10,11 +10,12 @@ class UsersController < ApplicationController
     # data prepared by Devise is not available.Required Devise helpers are
     # manually added to /app/helpers/application_helper.rb so that "users/registrations/new"
     # gets correctly included on Welcome Page itself.
+    @welcome_page_active = true # Used in /app/views/layouts/_logo.html.haml
     render layout: "welcome_page_layout"
   end
 
   def index
-
+    @dashboard_active = true
   end
 
   def show

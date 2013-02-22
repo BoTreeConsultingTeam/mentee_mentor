@@ -1,0 +1,13 @@
+.content_bg_dashboard_rgt
+  %h5
+    = t('user.welcome_text', user_name: current_user.name)
+    .setting_drop(style = "margin-left: 10px;")
+      = image_tag("setting-gear.gif", alt: "Settings")
+      .setting_listing(style = "display: none;")
+        %ul
+          %li= link_to('Test Setting 1', '#')
+          %li= link_to('Test Setting 2', '#')
+          %li= link_to('Test Setting 3', '#')
+
+  %nav.header_nav
+    = render partial: "navigation_links"

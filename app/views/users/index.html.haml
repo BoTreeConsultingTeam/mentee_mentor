@@ -1,6 +1,5 @@
-%br/
-%br/
-%br/
-Welcome you are now in!
+- content_for :header_content do
+  = render partial: "main_navigation"
 
-= render partial: "follow"
+- content_for :main_content do
+  = render file: "users/dashboard/index"
