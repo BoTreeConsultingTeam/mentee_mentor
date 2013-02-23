@@ -33,9 +33,10 @@ jQuery(function() {
       $(messageBoxSelector).show(true);
     }
   });
-  
 
-  
+  // Temporarily Commented out
+  // Jignesh Gohel - Feb 22, 2013
+  /*
   $(function() {
     $( "#profile_birth_date" ).datepicker({ dateFormat: $.datepicker.W3C });
     $( "#education_from_date" ).datepicker({ dateFormat: $.datepicker.W3C });
@@ -43,7 +44,142 @@ jQuery(function() {
     $( "#experience_from_date" ).datepicker({ dateFormat: $.datepicker.W3C });
     $( "#experience_to_date" ).datepicker({ dateFormat: $.datepicker.W3C });
   });
+  */
+
+  /* Carousel */
+  $('#mycarousel').jcarousel({
+    wrap: 'circular'
+  });
+
+  bindAnimationToUserSettingsDropdown();
+
+  var editProfileView = $('#editProfile').length > 0;
+
+  if(editProfileView) {
+    makePersonalProfileActiveByDefault();
+    bindClickToProfileSectionAndActivateSelectedProfileSection();
+    bindClickToNextBtnOnProfileWizard();
+  }
+
 });
+
+function bindClickToNextBtnOnProfileWizard() {
+  var nextBtn = $('#editUserProfileForm #profileNextBtn');
+
+  if(nextBtn.length > 0) {
+    nextBtn.live('click', function() {
+      var activeProfileSection = $('#editProfile #sidenav .profileMenuItem').filter(function() {
+                                    return $(this).hasClass('active');
+                                  }).first().attr('rel');
+
+      var activateLink = '';
+      if (activeProfileSection == 'personalProfileLink') {
+         activateLink = 'professionalProfileLink';
+      } else if (activeProfileSection == 'professionalProfileLink') {
+         activateLink = 'personalProfileLink';
+      }
+
+      var linkSelector = 'a[rel="' + activateLink + '"]'
+      $(linkSelector).trigger('click');
+      return false;
+    })
+  }
+}
+
+function makePersonalProfileActiveByDefault() {
+  var profileMenuItemSelector = '#sidenav .profileMenuItem';
+  var anyProfileMenuItemActive = $(profileMenuItemSelector).hasClass('active');
+
+  if(!anyProfileMenuItemActive) {
+    // By default keep active the Personal Profile section
+    $(profileMenuItemSelector).first().addClass('active');
+    // Hide the Professional Section when Personal Profile
+    toggleProfessionalProfile(false);
+  }
+}
+
+function bindClickToProfileSectionAndActivateSelectedProfileSection() {
+  $('#sidenav .profileMenuItem').live('click', function() {
+    $(this).addClass('active');
+    $(this).parent().siblings().find('.profileMenuItem').removeClass('active');
+    var activeProfileSection = $(this).attr('rel');
+
+    switch(activeProfileSection) {
+      case 'personalProfileLink':
+        togglePersonalProfile(true);
+        toggleProfessionalProfile(false);
+        toggleAffiliationsProfile(false);
+        break;
+
+      case 'professionalProfileLink':
+        togglePersonalProfile(false);
+        toggleProfessionalProfile(true);
+        toggleAffiliationsProfile(false);
+        break;
+
+      case 'affiliationsProfileLink':
+        togglePersonalProfile(false);
+        toggleProfessionalProfile(false);
+        toggleAffiliationsProfile(true);
+        break;
+    }
+  });
+}
+
+function toggleProfileSection(section, flag) {
+  var sectionSelector = '';
+  switch(section) {
+    case 'personal':
+      sectionSelector = '#personalProfileSection';
+      break;
+
+    case 'professional':
+      sectionSelector = '#professionalProfileSection';
+      break;
+
+    case 'affiliations':
+      sectionSelector = '#affiliationsProfileSection';
+      break;
+  }
+
+  if(sectionSelector != '') {
+    var sectionObj =  $(sectionSelector);
+    if(sectionObj.length > 0) {
+      if(flag) {
+        sectionObj.show();
+      } else {
+        sectionObj.hide();
+      }
+    }
+  }
+}
+
+function togglePersonalProfile(flag) {
+  toggleProfileSection('personal', flag);
+}
+
+function toggleProfessionalProfile(flag) {
+  toggleProfileSection('professional', flag);
+}
+
+function toggleAffiliationsProfile(flag) {
+  toggleProfileSection('affiliations', flag);
+}
+
+function bindAnimationToUserSettingsDropdown() {
+  var dashboardPageHeaderContainerSelector = ".content_bg_dashboard_rgt";
+
+  var dashboardPageSettingsContainerSelector = ".setting_drop";
+  var dashboardPageSettingsDropdownObj = $(dashboardPageHeaderContainerSelector).find(dashboardPageSettingsContainerSelector);
+  if (dashboardPageSettingsDropdownObj.length > 0) {
+    var dashboardPageSettingsListingObj = $(dashboardPageHeaderContainerSelector).find('.setting_listing');
+
+    dashboardPageSettingsDropdownObj.click(function() {
+      dashboardPageSettingsListingObj.slideToggle();
+    });
+
+  }
+}
 
 function getUserMessageBoxSelector(obj) {
   var userId = obj.siblings("#user_id").val();

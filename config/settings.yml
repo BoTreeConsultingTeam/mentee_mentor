@@ -1,3 +1,5 @@
+app_name: "Mentee Mentor"
+
 default_host: <%= ENV['DEFAULT_HOST'] %>
 
 ssl:

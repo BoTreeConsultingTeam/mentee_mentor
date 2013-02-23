@@ -1,15 +1,12 @@
 !!!
 %html
   %head
-    %title Mentor-Mentee
+    %title= Settings.app_name
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    = render partial: "layouts/top_navigation"
-
-    - flash.each do |name, message|
-      %p.error= message if name == :error
-      %p.alert= message if ((:alert == name) or (:notice == name))
-
-    = yield
+    #wrapper
+      = render "layouts/header"
+      = render "layouts/content"
+      = render "layouts/footer"

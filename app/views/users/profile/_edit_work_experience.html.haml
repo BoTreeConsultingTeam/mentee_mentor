@@ -1,0 +1,8 @@
+= text_field_tag('company', nil, class: "section_profile_detail_edu", placeholder: t('profile.professional.placeholder.work_experience.company'))
+= text_field_tag('description', nil, class: "section_profile_detail_edu", placeholder: t('profile.professional.placeholder.work_experience.description'))
+= text_field_tag('from_date', nil, class: "section_profile_detail_edu_year", placeholder: t('profile.professional.placeholder.work_experience.from_date'))
+= text_field_tag('to_date', nil, class: "section_profile_detail_edu_year", placeholder: t('profile.professional.placeholder.work_experience.to_date'))
+
+= check_box_tag("current", "true", false, class: "top_pad")
+= label_tag('current', t('profile.professional.current'), class: "top_pad pro_space")
+= link_to('', '#', class: 'delete')

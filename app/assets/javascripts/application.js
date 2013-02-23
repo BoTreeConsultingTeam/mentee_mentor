@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui-custom.min.js
+//= require jquery.jcarousel.min
 //= require application
 //= require custom
 //= require_tree .

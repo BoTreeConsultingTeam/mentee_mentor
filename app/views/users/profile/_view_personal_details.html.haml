@@ -1,0 +1,34 @@
+- profile = @user.profile
+- first_name = nil
+- last_name = nil
+- birthday = nil
+- hometown = nil
+- current_location = nil
+- biography = nil
+- gender = nil
+- interests = nil
+- recent_activities = nil
+
+- unless profile.nil?
+  - first_name = profile.first_name
+  - last_name = profile.last_name
+  - birthday = profile.birthday
+  - hometown = profile.hometown
+  - current_location = profile.current_location
+  - biography = profile.biography
+  - gender = profile.gender
+  - interests = profile.interests
+  - unless interests.present?
+    - interests = 'Nothing added yet.'
+  - recent_activities = profile.recent_activities
+  - unless recent_activities.present?
+    - recent_activities = 'Nothing added yet.'
+
+%li
+  .section_view_profile_detail_area
+    = label_tag t('profile.personal.interests')
+    %span= interests
+%li
+  .section_view_profile_detail_area
+    = label_tag t('profile.personal.recent_activities')
+    %span= recent_activities

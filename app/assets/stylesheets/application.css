@@ -10,5 +10,8 @@
  *
  *= require_self
  *= require jquery-ui-custom.min.css
+ *= require main
+ *= require reset
+ *= require font
  *= require_tree .
  */
