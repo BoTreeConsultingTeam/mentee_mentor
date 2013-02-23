@@ -34,6 +34,7 @@ en:
   profile:
     save_btn: "Save"
     next_btn: "Next"
+    edit_link: "Edit Profile"
 
     personal:
       title: "Personal"
@@ -45,7 +46,8 @@ en:
       location: "Location"
       home_town: "Home Town"
       interests: "Interests"
-      recent_activities: "Recent<br/>Activities"
+      recent_activities_html: "Recent<br/>Activities"
+      recent_activities: "Recent Activities"
 
       placeholder:
         biography: "Enter a brief biography of yourself"
@@ -66,6 +68,32 @@ en:
       work_experience: "Work Experience"
       education: "Education"
       current: "Current"
+
+      format:
+        work_experience:
+          full_description: "%{description} at %{company}"
+          only_description: "%{description}"
+          only_company: "%{company}"
+          full_duration: "%{from_date} - %{to_date}"
+          date: "%b Y"
+
+        education:
+          full_description: "%{study_field} from %{school}"
+          only_school: "%{school}"
+          only_study_field: "%{study_field}"
+          full_duration: "%{from_date} - %{to_date}"
+          date: "%b Y"
+
+      message:
+        work_experience:
+          no_details: "No job description/position, company name added yet"
+          no_duration: "No dates added yet"
+          date_unavailable: "Unavailable"
+
+        education:
+          no_details: "No school name, study field/degree added yet"
+          no_duration: "No dates added yet"
+          date_unavailable: "Unavailable"
 
       placeholder:
         work_experience:
@@ -188,7 +216,7 @@ en:
       title: "Follow"
       following: "Following"
       connected: "Connected"
-      followed_by: "Following You"
+      followed_by: "Followed By"
       disconnect: "Disconnect"
       unfollow: "Unfollow"
 

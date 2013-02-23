@@ -23,14 +23,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    # TODO: This is a temporary change and added just for testing
-    # When Profile page is full-fledged developed, this should be removed
-    # Jignesh Gohel, Feb 23, 2013
-    render file: "users/profile/edit"
+    render file: "users/profile/show"
   end
 
   def edit
-
+    render file: "users/profile/edit"
   end
 
   def update
@@ -76,8 +73,7 @@ class UsersController < ApplicationController
     end
 
     Rails.logger.debug message
-    redirect_to user_home_path, flash: { notice: message}
-
+    redirect_to :back, flash: { notice: message}
   end
 
   #GET /users/:id/mboard

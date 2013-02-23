@@ -1,0 +1,42 @@
+- profile = @user.profile
+- hometown = nil
+- current_location = nil
+
+- unless profile.nil?
+  - hometown = profile.hometown
+  - current_location = profile.current_location
+
+.section_content_bg
+  .sub_wrapper
+    .section_profile_text_lft
+      = render partial: "users/profile/picture"
+
+      .view_profile_name
+        %span= current_location
+        %span= hometown
+
+      .view_profe= link_to(t('profile.edit_link'), profile_edit_user_path(@user))
+
+      -#.view_profe= t('profile.professional.title')
+      -# Affiliations page is yet unavailable, thus not displaying the link: Jignesh Gohel, Feb 23, 2013
+      -# TODO enable it when affiliations page available
+      -#.view_profe= t('profile.affiliations.title')
+
+    .section_view_profile_text_rgt
+      .section_view_profile_detail_form
+        %ul
+          = render partial: "users/profile/view_personal_details"
+
+          = render partial: "users/profile/view_professional_details"
+
+          %li
+            = render partial: "users/profile/view_follow"
+
+          %li
+            = render partial: "users/profile/view_following"
+
+          %li
+            = render partial: "users/profile/view_followed_by"
+
+          %li
+            = render partial: "users/profile/view_connected"

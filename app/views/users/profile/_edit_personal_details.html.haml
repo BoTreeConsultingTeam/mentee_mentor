@@ -64,5 +64,5 @@
 
     %li
       .section_profile_detail_area
-        = label_tag('recent_activities', t('profile.personal.recent_activities').html_safe)
+        = label_tag('recent_activities', t('profile.personal.recent_activities_html').html_safe)
         = text_area_tag('user[profile_attributes][recent_activities]', recent_activities, class: "section_profile_detail_form_big_box", placeholder: t('profile.personal.placeholder.recent_activities'))

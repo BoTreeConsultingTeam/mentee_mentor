@@ -23,19 +23,19 @@
 .section_content_bg(id="editProfile")
   .sub_wrapper
     .section_profile_text_lft
-      .section_profile_img
-        = image_tag("profile_img.jpg", width: '89px', height: '89px', alt: current_user.name)
+      = render partial: "users/profile/picture"
 
       %ul#sidenav
         %li= link_to(t('profile.personal.title'), "#", class: 'profileMenuItem', rel: 'personalProfileLink')
         %li= link_to(t('profile.professional.title'), "#", class: 'profileMenuItem', rel: 'professionalProfileLink')
         -# Affiliations page is yet unavailable, thus not displaying the link: Jignesh Gohel, Feb 23, 2013
+        -# TODO enable it when affiliations page available
         -#%li= link_to(t('profile.affiliations.title'), "#", class: 'profileMenuItem', rel: 'affiliationsProfileLink')
 
     .section_profile_text_rgt
       = form_for(@user, html: { id: 'editUserProfileForm' }) do |f|
-        = render partial: "users/profile/personal_details"
-        = render partial: "users/profile/professional_details"
+        = render partial: "users/profile/edit_personal_details"
+        = render partial: "users/profile/edit_professional_details"
 
         %div
           %button.profile_save_button.blue(type = "submit")= t('profile.save_btn')

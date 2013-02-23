@@ -1,6 +1,6 @@
 %ul
   %li
-    = link_to('#', class: "#{ @dashboard_active ? 'active' : '' }") do
+    = link_to(user_home_path, class: "#{ @dashboard_active ? 'active' : '' }") do
       %figure.dashboard_icon
       =t('navigation_links.home')
 

@@ -1,0 +1,12 @@
+- following_users = current_user.is_following
+
+- unless following_users.empty?
+  .section_view_profile_detail_area
+    = label_tag t('user.follow.following')
+  %br/
+  %br/
+  %table
+    - following_users.each do |user|
+      %tr
+        %td= user.name
+        %td= link_to(t('user.follow.unfollow'), '#')
