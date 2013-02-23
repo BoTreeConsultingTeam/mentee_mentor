@@ -5,11 +5,11 @@ class Profile < ActiveRecord::Base
   belongs_to :user
 
   has_many :educations, dependent: :destroy
-  accepts_nested_attributes_for :educations
+  accepts_nested_attributes_for :educations, allow_destroy: true
   attr_accessible :educations_attributes
 
   has_many :experiences, dependent: :destroy
-  accepts_nested_attributes_for :experiences
+  accepts_nested_attributes_for :experiences, allow_destroy: true
   attr_accessible :experiences_attributes
 
 end

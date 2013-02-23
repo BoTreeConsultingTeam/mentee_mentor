@@ -1,25 +1,3 @@
-- profile = @user.profile
-- first_name = nil
-- last_name = nil
-- birthday = nil
-- hometown = nil
-- current_location = nil
-- biography = nil
-- gender = nil
-- interests = nil
-- recent_activities = nil
-
-- unless profile.nil?
-  - first_name = profile.first_name
-  - last_name = profile.last_name
-  - birthday = profile.birthday
-  - hometown = profile.hometown
-  - current_location = profile.current_location
-  - biography = profile.biography
-  - gender = profile.gender
-  - interests = profile.interests
-  - recent_activities = profile.recent_activities
-
 .section_content_bg(id="editProfile")
   .sub_wrapper
     .section_profile_text_lft
@@ -38,7 +16,12 @@
         = render partial: "users/profile/edit_professional_details"
 
         %div
-          %button.profile_save_button.blue(type = "submit")= t('profile.save_btn')
+          %button.profile_save_button.blue(type="submit" id="saveProfileBtn")= t('profile.save_btn')
 
         %div
           %button.button.blue.rlt(id='profileNextBtn')= t('profile.next_btn')
+
+      = render partial: "users/profile/work_experience_template"
+      = render partial: "users/profile/education_template"
+      = render partial: "users/profile/remove_experience_template"
+      = render partial: "users/profile/remove_education_template"

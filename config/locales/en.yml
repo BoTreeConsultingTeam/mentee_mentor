@@ -69,20 +69,26 @@ en:
       education: "Education"
       current: "Current"
 
+      buttons:
+        work_experience:
+          add: "Add Experience"
+        education:
+          add: "Add Education"
+
       format:
         work_experience:
           full_description: "%{description} at %{company}"
           only_description: "%{description}"
           only_company: "%{company}"
           full_duration: "%{from_date} - %{to_date}"
-          date: "%b Y"
+          date: "%b %Y"
 
         education:
           full_description: "%{study_field} from %{school}"
           only_school: "%{school}"
           only_study_field: "%{study_field}"
           full_duration: "%{from_date} - %{to_date}"
-          date: "%b Y"
+          date: "%b %Y"
 
       message:
         work_experience:

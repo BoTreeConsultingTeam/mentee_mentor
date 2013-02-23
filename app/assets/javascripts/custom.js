@@ -213,3 +213,26 @@ function resetSelectDialoguesDropdown(containerSelector) {
     dialogueSelect.find('option:first').attr('selected', 'selected');
   }
 }
+
+function emptyString(string) {
+  if((string == undefined) || (string == null) || ($.trim(string) == '') ) {
+    return true;
+  }
+
+  return false;
+}
+
+function attachDatepicker(targetElementSelector, dateFormat) {
+  if(emptyString(dateFormat)) {
+    dateFormat = 'dd-mm-yy'
+  }
+
+  $(targetElementSelector).each(function() {
+    var targetElement = $(this);
+    targetElement.datepicker( {
+       dateFormat: dateFormat
+    });
+
+  });
+
+};
