@@ -1,4 +1,5 @@
 - profile = @user.profile
+- profile_id = nil
 - first_name = nil
 - last_name = nil
 - birthday = nil
@@ -10,6 +11,7 @@
 - recent_activities = nil
 
 - unless profile.nil?
+  - profile_id = profile.id
   - first_name = profile.first_name
   - last_name = profile.last_name
   - birthday = profile.birthday
@@ -21,6 +23,9 @@
   - recent_activities = profile.recent_activities
 
 .section_profile_detail_form(id="personalProfileSection")
+  - unless profile_id.nil?
+    = hidden_field_tag('user[profile_attributes][id]', profile_id)
+
   %ul
     %li
       .section_profile_detail_area

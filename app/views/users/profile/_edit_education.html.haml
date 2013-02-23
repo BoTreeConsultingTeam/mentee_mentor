@@ -1,6 +1,22 @@
-= text_field_tag('school', nil, class: "section_profile_detail_edu", placeholder: t('profile.professional.placeholder.education.school'))
-= text_field_tag('study_field', nil, class: "section_profile_detail_edu", placeholder: t('profile.professional.placeholder.education.major_study_field'))
-= text_field_tag('from_date', nil, class: "section_profile_detail_edu_year", placeholder: t('profile.professional.placeholder.education.from_date'))
-= text_field_tag('to_date', nil, class: "section_profile_detail_edu_year", placeholder: t('profile.professional.placeholder.education.to_date'))
+- education_id = nil
+- school = nil
+- study_field = nil
+- from_date = nil
+- to_date = nil
 
-= link_to('', '#', class: 'delete')
+- if !local_assigns[:education].nil?
+  - education_id = education.id
+  - school = education.school
+  - study_field = education.study_field
+  - from_date = education.formatted_from_date
+  - to_date = education.formatted_to_date
+
+.education_row
+  - unless education_id.nil?
+    = hidden_field_tag('user[profile_attributes][educations_attributes][][id]', education_id, class: 'educationId')
+  = text_field_tag('user[profile_attributes][educations_attributes][][school]', school, class: "section_profile_detail_edu", placeholder: t('profile.professional.placeholder.education.school'))
+  = text_field_tag('user[profile_attributes][educations_attributes][][study_field]', study_field, class: "section_profile_detail_edu", placeholder: t('profile.professional.placeholder.education.major_study_field'))
+  = text_field_tag('user[profile_attributes][educations_attributes][][from_date]', from_date, class: "section_profile_detail_edu_year datepicker", placeholder: t('profile.professional.placeholder.education.from_date'))
+  = text_field_tag('user[profile_attributes][educations_attributes][][to_date]', to_date, class: "section_profile_detail_edu_year datepicker", placeholder: t('profile.professional.placeholder.education.to_date'))
+
+  = link_to('', '#', class: 'delete')

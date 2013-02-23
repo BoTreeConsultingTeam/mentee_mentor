@@ -16,4 +16,5 @@
 //= require jquery.jcarousel.min
 //= require application
 //= require custom
+//= require professional_profile
 //= require_tree .

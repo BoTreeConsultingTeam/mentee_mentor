@@ -1413,12 +1413,12 @@ ul#sidenav li a:hover, ul#sidenav li a.active {
 }
 .section_profile_detail_edu {
   height: 16px;
-  width: 170px;
+  width: 150px;
   margin-right: 8px;
 }
 .section_profile_detail_edu_year {
   height: 16px;
-  width: 30px;
+  width: 52px;
   margin-right: 10px;
 }
 .top_pad {
