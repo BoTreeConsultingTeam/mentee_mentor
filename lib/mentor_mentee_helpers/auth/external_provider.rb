@@ -286,7 +286,7 @@ module MentorMenteeHelpers
         new_user = new_user_created?
         clear_session_data
         if new_user
-          redirect_to edit_user_profile_path(current_user), flash: { alert: t('profile.alerts.set_new_password') }
+          redirect_to profile_edit_user_path(current_user), flash: { alert: t('user.set_new_password') }
         else
           redirect_to users_path
         end

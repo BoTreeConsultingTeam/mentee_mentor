@@ -27,6 +27,8 @@
     = hidden_field_tag('user[profile_attributes][id]', profile_id)
 
   %ul
+    = render partial: "users/profile/edit_password"
+
     %li
       .section_profile_detail_area
         = label_tag t('profile.personal.biography')

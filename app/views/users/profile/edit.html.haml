@@ -12,6 +12,12 @@
 
     .section_profile_text_rgt
       = form_for(@user, html: { id: 'editUserProfileForm' }) do |f|
+        - if @user.errors.any?
+          #error_explanation
+            %h2= "#{pluralize(@user.errors.count, 'error')} prohibited this profile from being saved:"
+            - @user.errors.full_messages.each do |msg|
+              %p= msg
+
         = render partial: "users/profile/edit_personal_details"
         = render partial: "users/profile/edit_professional_details"
 

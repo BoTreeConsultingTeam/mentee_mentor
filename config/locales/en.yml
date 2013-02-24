@@ -19,7 +19,6 @@ en:
     search: "Search"
     profile: "Profile"
 
-
   dashboard:
     update_status:
       title: "Update Status"
@@ -217,6 +216,10 @@ en:
   user:
     welcome_text: "Welcome, %{user_name}!"
     email: "Email"
+    set_new_password: "Please set a new password.Avoiding this you will be unable to sign-in next time."
+    password: "Password"
+    confirm_password: "Confirm Password"
+    password_leave_blank_text: "(leave blank if you don't want to change it)"
 
     follow:
       title: "Follow"
