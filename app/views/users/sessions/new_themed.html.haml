@@ -1,5 +1,5 @@
 .login_form
-  = form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: 'form-inline' }) do |f|
+  = form_for(resource_for_signin, :as => resource_name, :url => session_path(resource_name), html: { class: 'form-inline' }) do |f|
     .login_form_sub
       = f.label :email
       = f.email_field :email

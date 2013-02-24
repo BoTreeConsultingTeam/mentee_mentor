@@ -222,17 +222,20 @@ function emptyString(string) {
   return false;
 }
 
-function attachDatepicker(targetElementSelector, dateFormat) {
+function attachDatepicker(selector, dateFormat) {
   if(emptyString(dateFormat)) {
     dateFormat = 'dd-mm-yy'
   }
 
-  $(targetElementSelector).each(function() {
-    var targetElement = $(this);
-    targetElement.datepicker( {
-       dateFormat: dateFormat
-    });
+  // Remove datepicker first - datepicker doesn't work correctly
+  // on dynamically added/removed fields if this is not done.
+  // Refer this link for the problem faced:
+  // 1) http://stackoverflow.com/questions/12093030/datepicker-on-dynamically-created-row-with-inputs
+  $(selector).removeClass('hasDatepicker');
 
+  // Attach datepicker
+  $(selector).datepicker({
+    dateFormat: dateFormat
   });
 
 };

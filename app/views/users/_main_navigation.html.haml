@@ -8,6 +8,6 @@
           %li= link_to t('navigation_links.profile'), profile_user_path(current_user), class: "setting_item"
           %li= link_to t('devise.logout'), signout_path, class: "setting_item"
 
-
-  %nav.header_nav
-    = render partial: "navigation_links"
+  - unless current_user.profile.nil?
+    %nav.header_nav
+      = render partial: "navigation_links"

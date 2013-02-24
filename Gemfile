@@ -10,7 +10,7 @@ gem 'rails_config'
 gem "haml", ">= 3.1.5"
 gem "haml-rails", ">= 0.3.4"
 
-gem 'devise'
+gem 'devise', "2.1.2"
 gem 'mysql2', '~> 0.3.11'
 
 gem 'omniauth'

@@ -14,6 +14,14 @@ module ApplicationHelper
     @user ||= User.new_with_session({}, session)
   end
 
+  # In this application SignUp and SignIn pages are both on a single page
+  # thus using a single resource method affected both the SignUp and SignIn
+  # forms when resource contained validation errors.Thus using a different
+  # object for SignIn form using this method.
+  def resource_for_signin
+    @user_for_signin ||= User.new_with_session({}, session)
+  end
+
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
