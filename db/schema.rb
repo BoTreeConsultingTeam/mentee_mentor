@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(:version => 20130222191352) do
   create_table "profiles", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.date     "birthday"
     t.string   "hometown"
     t.string   "current_location"
     t.integer  "user_id",           :null => false
@@ -83,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20130222191352) do
     t.string   "gender"
     t.string   "interests"
     t.string   "recent_activities"
+    t.date     "birthday"
   end
 
   create_table "resources", :force => true do |t|

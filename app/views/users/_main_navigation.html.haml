@@ -2,7 +2,7 @@
   %h5
     = t('user.welcome_text', user_name: current_user.name)
     .setting_drop(style = "margin-left: 10px;")
-      = image_tag("setting-gear.gif", alt: "Settings")
+      = image_tag("setting-gear.png", alt: "Settings")
       .setting_listing(style = "display: none;")
         %ul
           %li= link_to t('navigation_links.profile'), profile_user_path(current_user), class: "setting_item"
