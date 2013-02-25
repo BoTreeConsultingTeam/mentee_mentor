@@ -30,7 +30,7 @@ header, footer, aside, nav, article {
 }
 /*----*****---- << header >> ----*****----*/
 header .header {
-  min-height: 90px;
+  min-height: 83px;
   width: 100%;
   background-color: #F1F1F1;
   -moz-box-shadow: 0 0 7px #636363;
@@ -50,10 +50,9 @@ header .index_logo span {
 header .logo {
   float: left;
   width: 52%;
-  padding: 20px 0 0 0;
+  padding: 45px 0 0 0;
   font: bold 30px Arial, Helvetica, sans-serif;
   color: #006699;
-  height: 60px;
 }
 header .logo span {
   color: #444;
@@ -356,12 +355,12 @@ footer .footer p a:hover, .footer p em a:hover {
 .content_bg_dashboard_rgt {
   width: 460px;
   float: left;
-  height: 102px;
+  height: 84px;
 }
 .content_bg_dashboard_rgt h5 {
   width: 460px;
   float: left;
-  font: normal 22px Helvetica, Arial, sans-serif;
+  font: normal 15px Helvetica, Arial, sans-serif;
   color: #006699;
   text-align: right;
   padding-top: 5px;
@@ -715,7 +714,7 @@ footer .footer p a:hover, .footer p em a:hover {
 }
 .header_nav ul li {
   float: left;
-  border-left: #dddddd solid 1px;
+  /*border-left: #dddddd solid 1px;*/
 }
 .header_nav ul li:first-child {
   border: none;
@@ -758,7 +757,7 @@ footer .footer p a:hover, .footer p em a:hover {
 }
 .header_nav ul li a:hover, .header_nav ul li a.active {
   color: #006699;
-  background: #f5f5f5;
+  /*background: #f5f5f5;*/
 }
 .header_nav ul li a:hover figure, .header_nav ul li a.active figure {
   background-position: left bottom;
