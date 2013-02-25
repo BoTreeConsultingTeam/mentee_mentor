@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
+  attr_accessible :first_name, :last_name
 
   has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile
@@ -80,10 +81,13 @@ class User < ActiveRecord::Base
   end
 
   def name
-    return self.email if profile.nil?
+    unless profile.nil?
+      first_name = profile.first_name
+      last_name = profile.last_name
+    end
 
-    first_name = profile.first_name
-    last_name = profile.last_name
+    first_name = self.first_name unless first_name.present?
+    last_name = self.last_name unless last_name.present?
 
     if (first_name.present? and last_name.present?)
       [first_name, last_name].join(" ")
@@ -100,8 +104,8 @@ class User < ActiveRecord::Base
     unless user_info_hash.empty?
       self.email = user_info_hash[:email]
 
-      #self.first_name = user_info_hash[:first_name]
-      #self.last_name = user_info_hash[:last_name]
+      self.first_name = user_info_hash[:first_name]
+      self.last_name = user_info_hash[:last_name]
 
       case omniauth[:provider]
         when 'facebook'

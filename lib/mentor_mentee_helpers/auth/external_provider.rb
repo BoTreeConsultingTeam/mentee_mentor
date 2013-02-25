@@ -49,7 +49,6 @@ module MentorMenteeHelpers
            error_message = t('external_login.errors.user_friendly_message')
            redirect_to(signin_path, flash: {error: error_message})
          else
-            Rails.logger.debug "Successfully created authentication for provider #{provider.capitalize} for user #{user.email}."
             redirect_user(user, authentication)
          end
       end
@@ -138,6 +137,8 @@ module MentorMenteeHelpers
             user_info[:image] = info.image
             user_info[:url] = info['urls']["#{provider.to_s.capitalize}"]
             user_info[:provider_user_name] = info.nickname
+            user_info[:provider_first_name] = info.first_name
+            user_info[:provider_last_name] = info.last_name
 
         end
 
@@ -261,7 +262,9 @@ module MentorMenteeHelpers
         provider_email = omniauth[:user_info][:provider_email]
         provider_user_name = omniauth[:user_info][:provider_user_name]
 
-        user.authentications.create!(user_id: user.id, provider: provider, uid: uid, token: token, secret: secret)
+        authentication = user.authentications.create!(user_id: user.id, provider: provider, uid: uid, token: token, secret: secret)
+        Rails.logger.debug "Successfully created authentication for provider #{provider.capitalize} for user #{user.email}."
+        authentication
       end
 
       def redirect_user(user, authentication)
@@ -286,7 +289,7 @@ module MentorMenteeHelpers
         new_user = new_user_created?
         clear_session_data
         if new_user
-          redirect_to profile_edit_user_path(current_user), flash: { alert: t('user.set_new_password') }
+          redirect_to profile_edit_user_path(current_user)
         else
           redirect_to users_path
         end

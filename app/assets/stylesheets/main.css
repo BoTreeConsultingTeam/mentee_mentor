@@ -313,19 +313,19 @@ aside .test_sub a {
 }
 /*----*****---- << footer >> ----*****----*/
 footer .footer {
-  height: 54px;
+  background-color:#F1F1F1;
+  bottom:0;
+  height:54px;
+  width:100%;
+  position:absolute;
   width: 100%;
-  background-color: #444;
-  bottom: 0;
-  opacity: .50;
-  position: fixed;
 }
 footer .footer p {
-  float: left;
+  color:#444444;
+  float:left;
   font: normal 12px Arial, Helvetica, sans-serif;
-  color: #cccccc;
-  padding: 20px 0 0 0;
-  width: 960px;
+  padding:20px 0 0 0;
+  width:960px;
 }
 footer .footer p em {
   float: right;
@@ -334,11 +334,12 @@ footer .footer p em {
 }
 
 footer .footer p a, .footer p em a {
-  text-decoration: none;
-  color: #cccccc;
+  text-decoration:none;
+  color:#006699;
 }
 footer .footer p a:hover, .footer p em a:hover {
-  text-decoration: underline;
+  text-decoration:underline;
+  color:#444444;
 }
 
 /*Dashboard*/
