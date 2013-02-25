@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_filter :require_user, except: [:welcome]
 
-  before_filter :fetch_user, only: [:show, :edit, :update, :mboard, :all_dialogues]
+  before_filter :fetch_user, only: [:show, :change_password, :edit, :update, :mboard, :all_dialogues]
 
   def welcome
     # On the welcome page itself Sign Up page is rendered.
@@ -19,6 +19,10 @@ class UsersController < ApplicationController
   end
 
   def index
+    if (!current_user.encrypted_password.present? or current_user.profile.nil?)
+      redirect_to profile_edit_user_path(current_user) and return
+    end
+
     @dashboard_active = true
   end
 
@@ -26,13 +30,8 @@ class UsersController < ApplicationController
     render file: "users/profile/show"
   end
 
-  def edit
-    render file: "users/profile/edit"
-  end
-
-  def update
-    flash.clear
-
+  #PUT /users/:id/change_password(.:format
+  def change_password
     skip_password_check = false
     # Validate User details
     if (@user.encrypted_password.present? and params[:user][:password].blank?)
@@ -54,11 +53,6 @@ class UsersController < ApplicationController
     # Save the updated details.
     @user.save
 
-    # Delete the user[password] and confirm_password params as they are already
-    # saved above when @user.save is done.
-    params[:user].delete(:password)
-    params.delete(:confirm_password)
-
     # IMPORTANT NOTE:
     # Without invoking Devise's sign_in(:user, @user) after updating user
     # the Devise helper current_user returns nil.
@@ -78,6 +72,14 @@ class UsersController < ApplicationController
     # References: https://github.com/plataformatec/devise/issues/1528
     sign_in(@user, bypass: true)
 
+    redirect_to profile_edit_user_path(@user)
+  end
+
+  def edit
+    render file: "users/profile/edit"
+  end
+
+   def update
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to profile_user_path(@user), notice: 'Profile was successfully updated.' }

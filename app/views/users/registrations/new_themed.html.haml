@@ -13,7 +13,7 @@
             = f.label :password
             = f.password_field :password, class: "control_group_input"
           .control_group
-            = f.label :password_confirmation
+            = f.label :password_confirmation, t('user.confirm_password')
             = f.password_field :password_confirmation, class: "control_group_input"
           .control_group
             = f.submit t('welcome_page.sign_up_form.submit_btn'), class: "button blue"

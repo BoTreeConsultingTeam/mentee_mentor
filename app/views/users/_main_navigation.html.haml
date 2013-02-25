@@ -5,7 +5,8 @@
       = image_tag("setting-gear.png", alt: "Settings")
       .setting_listing(style = "display: none;")
         %ul
-          %li= link_to t('navigation_links.profile'), profile_user_path(current_user), class: "setting_item"
+          - unless current_user.profile.nil?
+            %li= link_to t('navigation_links.profile'), profile_user_path(current_user), class: "setting_item"
           %li= link_to t('devise.logout'), signout_path, class: "setting_item"
 
   - unless current_user.profile.nil?

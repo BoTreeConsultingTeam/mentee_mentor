@@ -34,18 +34,6 @@ jQuery(function() {
     }
   });
 
-  // Temporarily Commented out
-  // Jignesh Gohel - Feb 22, 2013
-  /*
-  $(function() {
-    $( "#profile_birth_date" ).datepicker({ dateFormat: $.datepicker.W3C });
-    $( "#education_from_date" ).datepicker({ dateFormat: $.datepicker.W3C });
-    $( "#education_to_date" ).datepicker({ dateFormat: $.datepicker.W3C });
-    $( "#experience_from_date" ).datepicker({ dateFormat: $.datepicker.W3C });
-    $( "#experience_to_date" ).datepicker({ dateFormat: $.datepicker.W3C });
-  });
-  */
-
   /* Carousel */
   $('#mycarousel').jcarousel({
     wrap: 'circular'
@@ -174,8 +162,22 @@ function bindAnimationToUserSettingsDropdown() {
   if (dashboardPageSettingsDropdownObj.length > 0) {
     var dashboardPageSettingsListingObj = $(dashboardPageHeaderContainerSelector).find('.setting_listing');
 
-    dashboardPageSettingsDropdownObj.click(function() {
+    // Reference: http://stackoverflow.com/questions/4629774/hide-div-on-blur
+    // On the click on the Settings image the Settings dropdown should be toggled
+    dashboardPageSettingsDropdownObj.click(function(event) {
       dashboardPageSettingsListingObj.slideToggle();
+      event.stopPropagation();
+    });
+
+    // On the body click the the Settings dropdown should be hidden
+    $(document.body).click(function() {
+       dashboardPageSettingsListingObj.hide();
+    });
+
+    // On the click on the Settings image and the items in Settings dropdown,
+    // the event should not be propagated to the body
+    dashboardPageSettingsListingObj.click(function(event) {
+       event.stopPropagation();
     });
 
   }
@@ -235,7 +237,9 @@ function attachDatepicker(selector, dateFormat) {
 
   // Attach datepicker
   $(selector).datepicker({
-    dateFormat: dateFormat
+    dateFormat: dateFormat,
+    changeMonth: true,
+    changeYear: true
   });
 
 };

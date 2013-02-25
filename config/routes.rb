@@ -17,6 +17,7 @@ MentorMentee::Application.routes.draw do
     member do
       get "profile" => "users#show"
       get "profile/edit" => "users#edit"
+      put "change_password" => "users#change_password"
       get "mboard"
       get 'all_dialogues/:with' => "users#all_dialogues", as: :dialogues_with
       post "follow/:follow_user_id" => "users#follow", as: :follow
