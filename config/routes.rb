@@ -15,6 +15,7 @@ MentorMentee::Application.routes.draw do
 
   resources :users do
     member do
+      post "upload_picture"
       get "profile" => "users#show"
       get "profile/edit" => "users#edit"
       put "change_password" => "users#change_password"

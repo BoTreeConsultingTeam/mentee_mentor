@@ -1,6 +1,26 @@
 class Profile < ActiveRecord::Base
   attr_accessible :birthday, :current_location, :first_name, :hometown, :last_name
   attr_accessible :biography, :gender, :interests, :recent_activities
+  # Reference: https://github.com/thoughtbot/paperclip#readme --> "Quick Start"
+  attr_accessible :photo
+
+  # The default place to store attachments is in the filesystem
+  # References:
+  # 1) http://rdoc.info/github/thoughtbot/paperclip/Paperclip/Storage/Filesystem
+  # 2) https://github.com/thoughtbot/paperclip#readme --> "Understanding Storage"
+  paperclip_options = {
+    styles: {
+      medium: "#{Settings.photos.profile.styles.medium}>",
+      thumb: "#{Settings.photos.profile.styles.thumb}>"
+    },
+    default_url: Settings.photos.profile.default_image_path
+  }
+
+  paperclip_options = Paperclip::Attachment.default_options.merge(paperclip_options)
+  has_attached_file :photo, paperclip_options
+
+  # Paperclip Validations
+  validates_attachment :photo, presence: true, content_type: { content_type: /image/ }, size: { in: (0..100.kilobytes) }
 
   belongs_to :user
 

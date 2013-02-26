@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225072925) do
+ActiveRecord::Schema.define(:version => 20130226072335) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -75,14 +75,18 @@ ActiveRecord::Schema.define(:version => 20130225072925) do
     t.string   "last_name"
     t.string   "hometown"
     t.string   "current_location"
-    t.integer  "user_id",           :null => false
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.integer  "user_id",            :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "biography"
     t.string   "gender"
     t.string   "interests"
     t.string   "recent_activities"
     t.date     "birthday"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "resources", :force => true do |t|

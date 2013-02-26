@@ -2,6 +2,28 @@ app_name: "Mentee Mentor"
 
 default_host: <%= ENV['DEFAULT_HOST'] %>
 
+photos:
+  profile:
+    styles:
+      medium: "64x64"
+      thumb: "89x89"
+    default_image_path: "/assets/no-user-picture.png"
+
+paperclip:
+  storage:
+    aws:
+      path: ":attachment/:id/:style/:filename"
+      url: ":attachment/:id/:style/:filename"
+      s3_credentials:
+        bucket: <%= ENV['AWS_BUCKET'] %>
+        access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+        use_ssl: false
+        secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+    filesystem:
+      path: ":rails_root/public/system/attachment/:id/:style/:filename"
+      url: "/system/attachment/:id/:style/:filename"
+
+
 ssl:
   ca_path: '/etc/ssl/certs'
   ca_file:
