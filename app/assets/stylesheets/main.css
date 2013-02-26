@@ -30,38 +30,38 @@ header, footer, aside, nav, article {
 }
 /*----*****---- << header >> ----*****----*/
 header .header {
-  min-height: 83px;
-  width: 100%;
   background-color: #F1F1F1;
-  -moz-box-shadow: 0 0 7px #636363;
   box-shadow: 0 0 7px #636363;
+  min-height: 65px;
+  width: 100%;
 }
 header .index_logo {
-  float: left;
-  width: 30%;
-  padding: 20px 0 0 0;
-  font: bold 30px Arial, Helvetica, sans-serif;
   color: #006699;
-  height: 60px;
+  float: left;
+  font: bold 30px/65px Arial, Helvetica, sans-serif;
+  height: 65px;
+  /*padding: 45px 0 0;*/
+  width: 30%;
 }
 header .index_logo span {
   color: #444;
 }
 header .logo {
-  float: left;
-  width: 52%;
-  padding: 45px 0 0 0;
-  font: bold 30px Arial, Helvetica, sans-serif;
   color: #006699;
+  float: left;
+  font: bold 30px/65px Arial, Helvetica, sans-serif;
+  height: 65px;
+  /*padding: 45px 0 0;*/
+  width: 52%;
 }
 header .logo span {
   color: #444;
 }
 
 header .login_form {
-  /*float: left;*/
-  /*width: 70%;*/
-  padding: 16px 0 0 0;
+  float: left;
+  padding: 5px 0 0;
+  width: 70%;
 }
 header .login_form_sub {
   float: left;
@@ -97,13 +97,30 @@ header .login_form input:focus {
   outline: 0;
 }
 
+.flash_messages_container p.notice {
+  color: green;
+  float: left;
+  font: normal 11px/22px pt sans caption;
+}
 
+.flash_messages_container p.error {
+  color: red;
+  float: left;
+  font: normal 11px/22px pt sans caption;
+}
+
+.flash_messages_container p.alert {
+  color: red;
+  float: left;
+  font: normal 11px/22px pt sans caption;
+}
 
 /*----*****---- << article >> ----*****----*/
 .content_bg {
   width: 100%;
-  padding: 45px 0 45px 0;
-  min-height: 465px;
+  padding: 45px 0 40px 0;
+  min-height: 650px;
+  float: left;
 }
 
 article .content_text {
@@ -312,19 +329,19 @@ aside .test_sub a {
 }
 /*----*****---- << footer >> ----*****----*/
 footer .footer {
-  background-color:#F1F1F1;
-  bottom:0;
-  height:54px;
-  width:100%;
-  position:absolute;
+  background-color: #F1F1F1;
+  bottom: 0;
+  height: 40px;
+  /*position: absolute;*/
+  float: left;
   width: 100%;
 }
 footer .footer p {
-  color:#444444;
-  float:left;
-  font: normal 12px Arial, Helvetica, sans-serif;
-  padding:20px 0 0 0;
-  width:960px;
+  color: #444444;
+  float: left;
+  font: 12px/40px Arial, Helvetica, sans-serif;
+  /*padding: 20px 0 0;*/
+  width: 960px;
 }
 footer .footer p em {
   float: right;
@@ -333,12 +350,12 @@ footer .footer p em {
 }
 
 footer .footer p a, .footer p em a {
-  text-decoration:none;
-  color:#006699;
+  text-decoration: none;
+  color: #006699;
 }
 footer .footer p a:hover, .footer p em a:hover {
-  text-decoration:underline;
-  color:#444444;
+  text-decoration: underline;
+  color: #444444;
 }
 
 /*Dashboard*/
@@ -353,9 +370,9 @@ footer .footer p a:hover, .footer p em a:hover {
 }
 
 .content_bg_dashboard_rgt {
-  width: 460px;
   float: left;
-  height: 84px;
+  height: 70px;
+  width: 460px;
 }
 .content_bg_dashboard_rgt h5 {
   width: 460px;
@@ -462,7 +479,8 @@ footer .footer p a:hover, .footer p em a:hover {
   width: 100%;
   float: left;
   background-color: #FFF;
-  padding: 20px 0;
+  padding: 20px 0 40px 0;
+  min-height: 650px;
 }
 .section_content_text {
   float: left;
@@ -699,13 +717,9 @@ footer .footer p a:hover, .footer p em a:hover {
 /*dashboard*/
 .header_nav {
   float: right;
-  height: 45px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
+  height: 38px;
   overflow: hidden;
   font-family: Helvetica, Arial, sans-serif;
-  margin-top: 12px;
 }
 .header_nav ul {
   list-style: none;
@@ -720,9 +734,8 @@ footer .footer p a:hover, .footer p em a:hover {
   border: none;
 }
 .header_nav ul li a {
-  line-height: 45px;
-  height: 45px;
-  background: #fff;
+  line-height: 38px;
+  height: 38px;
   padding: 0 10px 0 15px;
   float: left;
   font-size: 14px;
@@ -1246,7 +1259,7 @@ footer .footer p a:hover, .footer p em a:hover {
 .section_profile_text_rgt {
   float: left;
   width: 740px;
-  height: 470px;
+  min-height: 470px;
   padding: 20px 45px 45px;
   border: 1px solid #dedede;
 }
