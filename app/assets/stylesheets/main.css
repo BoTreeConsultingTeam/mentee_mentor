@@ -103,7 +103,7 @@ header .login_form input:focus {
   font: normal 11px/22px pt sans caption;
 }
 
-.flash_messages_container p.error {
+.flash_messages_container h2 p.error {
   color: red;
   float: left;
   font: normal 11px/22px pt sans caption;
@@ -701,7 +701,8 @@ footer .footer p a:hover, .footer p em a:hover {
   background: none repeat scroll 0 0 #0088cc;
   border: 1px solid #0088cc;
 }
-.quest_repl input {
+
+.quest_repl input:not(.submit) {
   font-size: 11px;
   font-family: PT Sans Caption;
   float: left;

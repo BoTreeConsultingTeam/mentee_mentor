@@ -1,0 +1,16 @@
+- you_wrote_caption = "You Wrote:"
+%ul
+  - unless @messages_exchanged.empty?
+    - @messages_exchanged.each do |message|
+      %li
+        - message_sender = message.sender
+        - from = ((message_sender.id == current_user.id) ? you_wrote_caption : message_sender.name)
+        = from
+        %br/
+        %br/
+        %p= message.content
+        %br/
+        %span=formatted_message_datetime(message.datetime)
+
+= render partial: "send_mquest_form", locals: { receiver: @receiver }
+

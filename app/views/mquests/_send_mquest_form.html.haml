@@ -1,0 +1,10 @@
+.quest_repl
+  = form_tag(user_mquests_path(user_id: current_user.id), remote: true) do
+    = hidden_field_tag "message[sender_id]", current_user.id
+    = hidden_field_tag "message[receiver_id]", receiver.id
+    = text_field_tag "message[content]", nil, placeholder: t('mquest.placeholder.message_box')
+    = submit_tag t('mquest.send_message_btn'), class: "quest_button quest_blue submit"
+
+    %br/
+    = render partial: "shared/error_messages", locals: { target: @message }
+

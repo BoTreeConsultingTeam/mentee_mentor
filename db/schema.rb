@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130226072335) do
+ActiveRecord::Schema.define(:version => 20130226213510) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -61,13 +61,14 @@ ActiveRecord::Schema.define(:version => 20130226072335) do
   end
 
   create_table "messages", :force => true do |t|
-    t.string   "content",           :null => false
-    t.date     "date",              :null => false
-    t.integer  "sender_id",         :null => false
-    t.integer  "receiver_id",       :null => false
+    t.string   "content",                              :null => false
+    t.integer  "sender_id",                            :null => false
+    t.integer  "receiver_id",                          :null => false
     t.integer  "message_thread_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.boolean  "acknowledged",      :default => false
+    t.datetime "datetime",                             :null => false
   end
 
   create_table "profiles", :force => true do |t|

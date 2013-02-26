@@ -4,6 +4,6 @@
       = render "layouts/logo"
 
       - if user_signed_in?
-        = render partial: "main_navigation"
+        = render partial: "layouts/main_navigation"
       - else
         = render file: "users/sessions/new_themed"

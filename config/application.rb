@@ -22,6 +22,7 @@ module MentorMentee
     # 2) http://stackoverflow.com/questions/4074830/adding-lib-to-config-autoload-paths-in-rails-3-does-not-autoload-my-module
     # 3) http://www.williambharding.com/blog/technology/rails-3-autoload-modules-and-classes-in-production/
     # Custom directories with classes and modules you want to be autoloadable.
+    config.autoload_paths << "#{config.root}/app/concerns"
     config.autoload_paths << "#{config.root}/lib/**"
 
     # Only load the plugins named here, in the order given (default is alphabetical).
