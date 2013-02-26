@@ -49,7 +49,26 @@ jQuery(function() {
     bindClickToNextBtnOnProfileWizard();
   }
 
+  bindFileUploadToUserPicture();
+
 });
+
+function bindFileUploadToUserPicture() {
+  var userPicture = $('#userPicture');
+  if(userPicture.length > 0) {
+    // Reference: http://code.google.com/p/ocupload/
+    userPicture.upload({
+      name: 'photo',
+      action: $('#upload_picture_action_url').val() + '.json',
+      params: {
+        "authenticity_token": $('meta[name="csrf-token"]').attr('content')
+      },
+      onComplete: function(response) {
+        userPicture.attr('src', response);
+      }
+    });
+  }
+}
 
 function bindClickToNextBtnOnProfileWizard() {
   var nextBtn = $('#editUserProfileForm #profileNextBtn');

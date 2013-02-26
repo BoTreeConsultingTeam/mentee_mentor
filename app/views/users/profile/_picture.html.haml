@@ -1,2 +1,3 @@
 .section_profile_img
-  = image_tag("profile_img.jpg", width: '89px', height: '89px', alt: current_user.name)
+  = hidden_field_tag("upload_picture_action_url", upload_picture_user_path(current_user))
+  = image_tag(current_user_profile_picture_path, width: '89px', height: '89px', alt: current_user.name, id: 'userPicture')

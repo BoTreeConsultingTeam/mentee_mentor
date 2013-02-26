@@ -65,12 +65,21 @@ MentorMentee::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-
   # When the application is deployed to Heroku rails_config's Settings object
   # is somehow not loaded thus this workaround is used to successfull deploy
   # application to Heroku
   # Reference: https://github.com/railsjedi/rails_config/issues/44
   config.after_initialize do
+    # References:
+    # 1) https://devcenter.heroku.com/articles/paperclip-s3
+    # 2) http://stackoverflow.com/questions/2562249/how-can-i-set-paperclips-storage-mechanism-based-on-the-current-rails-environme
+    config.paperclip_defaults = {
+      storage: :s3,
+      s3_credentials: Settings.paperclip.storage.aws.s3_credentials.to_hash,
+      path: Settings.paperclip.storage.aws.path,
+      url: Settings.paperclip.storage.aws.url
+    }
+
     # Settings is available as part of 'rails_config' gem
     config.action_mailer.default_url_options = { host: Settings.default_host }
 

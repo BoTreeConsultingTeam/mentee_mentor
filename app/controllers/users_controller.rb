@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_filter :require_user, except: [:welcome]
 
-  before_filter :fetch_user, only: [:show, :change_password, :edit, :update, :mboard, :all_dialogues]
+  before_filter :fetch_user, only: [:show, :change_password, :edit, :upload_picture, :update, :mboard, :all_dialogues]
 
   def welcome
     # On the welcome page itself Sign Up page is rendered.
@@ -79,7 +79,20 @@ class UsersController < ApplicationController
     render file: "users/profile/edit"
   end
 
-   def update
+  #POST /users/:id/upload_picture
+  def upload_picture
+    profile = @user.profile
+
+    if profile.nil?
+      profile = profile.create(photo: params[:photo])
+    else
+      profile.update_attribute(:photo, params[:photo])
+    end
+
+    render json: profile.photo.url(:thumb)
+  end
+
+  def update
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to profile_user_path(@user), notice: 'Profile was successfully updated.' }
