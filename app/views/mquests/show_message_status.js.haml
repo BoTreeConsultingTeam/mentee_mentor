@@ -1,0 +1,33 @@
+- receiver_id = @receiver.id
+- receiver_name = @receiver.name
+- status_message = ''
+- if @message_sent
+  - status_message = (@message_sent ? true : false)
+- else
+  - status_message = @message.errors.full_messages.join('<br/>')
+:plain
+  var receiverMquestSendContainerSelector = "##{receiver_id}_mquest_send_container";
+  var receivedMessageContainerSelector = "##{receiver_id}_received_message_container";
+
+  var containerSelector = '';
+  if ($(receivedMessageContainerSelector).length > 0) {
+    containerSelector = receivedMessageContainerSelector;
+  } else if ($(receiverMquestSendContainerSelector).length > 0) {
+    containerSelector = receiverMquestSendContainerSelector;
+  }
+
+  var mquestSendFormContainer = $(containerSelector).find('.mquest_reply');
+  var messageStatusContainer = $(containerSelector).find('#message_status');
+  var message_sent = "#{@message_sent ? 'true' : 'false'}";
+  if (message_sent == 'true') {
+    var messageSentHtml = "<p style='color: green'>Message successfully sent to #{receiver_name}.</p>";
+    messageStatusContainer.html(messageSentHtml);
+    mquestSendFormContainer.hide();
+  } else {
+    var sendMquestFormHtml = "#{escape_javascript(render( partial: 'mquests/send_mquest_form', locals: { receiver: @receiver, message: @message } )) }"
+    mquestSendFormContainer.html(sendMquestFormHtml);
+    var messageErrorsHtml = "<p style='color: red'>#{status_message}</p>";
+    messageStatusContainer.html(messageErrorsHtml);
+  }
+
+  messageStatusContainer.show();

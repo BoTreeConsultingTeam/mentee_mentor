@@ -555,8 +555,8 @@ footer .footer p a:hover, .footer p em a:hover {
 /*mquest*/
 .quest_section_content_text {
   float: left;
-  width: 600px;
-  height: 455px;
+  width: 100%;
+  height: 560px;
   border-top: 1px solid #dedede;
   border-right: 1px solid #dedede;
   border-bottom: 1px solid #dedede;
@@ -566,14 +566,13 @@ footer .footer p a:hover, .footer p em a:hover {
 
 .quest_section_content_text  ul {
   float: left;
-  width: 570px;
-  height: 425px;
+  height: 530px;
   padding: 15px;
   overflow-x: hidden;
 }
 .quest_section_content_text  ul li {
   float: left;
-  width: 530px;
+  width: 97%;
   height: auto;
   margin-bottom: 15px;
   border: 1px solid #dedede;
@@ -609,16 +608,17 @@ footer .footer p a:hover, .footer p em a:hover {
 }
 .quest_poster-thumbs-content {
   float: left;
-  width: 250px;
+  width: 600px;
   padding: 0 10px 0 0;
   font: normal 11px PT Sans Caption;
   color: #4b4b4b;
   text-decoration: none;
 }
 .quest_poster-thumbs-content-hours {
-  float: left;
+  float: right;
   width: 80px;
   padding: 0 10px 0 0;
+  margin-top: -15px;
 }
 .quest_poster-thumbs-content-hours p {
   float: left;
@@ -691,12 +691,14 @@ footer .footer p a:hover, .footer p em a:hover {
   cursor: pointer;
   float: left;
 }
+
 .quest_blue {
   background-color: #73D0F1;
   background-image: linear-gradient(#5db5e9, #50a8db);
   border: 1px solid #50a8db;
   color: #fff;
 }
+
 .quest_blue:hover {
   background: none repeat scroll 0 0 #0088cc;
   border: 1px solid #0088cc;
@@ -713,6 +715,18 @@ footer .footer p a:hover, .footer p em a:hover {
   background-color: #ffffff;
   border: 0;
   color: #444;
+}
+
+#message_status {
+  margin-left: 180px;
+}
+
+.mquest_reply {
+  margin-left: 180px;
+}
+
+.mquest_reply textarea {
+  width: 560px;
 }
 
 /*dashboard*/
@@ -1612,4 +1626,43 @@ ul#sidenav li a:hover, ul#sidenav li a.active {
   cursor: pointer;
   float: left;
   margin-left: 130px;
+}
+
+/*Gallery Slider view profile following*/
+.section_view_profile_slider {
+  float: left;
+  width: 742px;
+  height: 70px;
+  padding: 17px 0;
+}
+.section_view_profile_slider_lft {
+  float: left;
+  width: 21px;
+  height: 70px;
+  background: url(../images/view_lft.png) no-repeat top left;
+  padding-right: 5px;
+}
+.section_view_profile_slider_rgt {
+  float: left;
+  width: 21px;
+  height: 70px;
+  background: url(../images/view_rgt.png) no-repeat top left;
+  padding-left: 5px;
+}
+
+.section_view_profile_slider ul {
+  float: left;
+  width: auto;
+}
+.section_view_profile_slider li {
+  display: block;
+  float: left;
+  height: 70px;
+  width: 70px;
+  padding: 0 7px;
+}
+.section_view_profile_following {
+  float: left;
+  width: 26px;
+  height: 70px;
 }

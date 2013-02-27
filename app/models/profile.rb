@@ -20,7 +20,7 @@ class Profile < ActiveRecord::Base
   has_attached_file :photo, paperclip_options
 
   # Paperclip Validations
-  validates_attachment :photo, content_type: { content_type: /image/ }, size: { in: (0..100.kilobytes) }
+  validates_attachment :photo, content_type: { content_type: /image/ }, size: { in: (0..1000.kilobytes) }
 
   belongs_to :user
 

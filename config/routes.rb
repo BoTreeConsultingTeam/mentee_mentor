@@ -24,7 +24,7 @@ MentorMentee::Application.routes.draw do
       post "follow/:follow_user_id" => "users#follow", as: :follow
     end
 
-    resources :mquests, only: [:index, :show, :create]
+    resources :mquests, only: [:index, :create]
 
     resources :resources
   end

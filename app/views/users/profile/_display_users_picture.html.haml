@@ -1,0 +1,19 @@
+- unless(users.nil? or users.empty?)
+  .section_view_profile_detail_area
+    = label_tag label_text
+
+  .section_view_profile_slider
+    - show_slider = (users.size > 8)
+    - if show_slider
+      .section_view_profile_slider_lft
+      %ul
+        - users.each do |user|
+          %li<
+            = image_tag(user_profile_picture_path(user), width: "70", height: "70", alt: user.name)
+      .section_view_profile_slider_rgt
+    - else
+      .section_view_profile_following
+      %ul
+        - users.each do |user|
+          %li<
+            = image_tag(user_profile_picture_path(user), width: "70", height: "70", alt: user.name)

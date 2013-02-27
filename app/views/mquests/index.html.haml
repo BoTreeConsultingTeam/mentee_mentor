@@ -1,14 +1,19 @@
-- other_users_available = !@other_users.empty?
 .section_content_bg
   .sub_wrapper
     .quest_section_content_text
-      %ul.quest_thread-list
-        - if other_users_available
-          - @other_users.each do |other_user|
-            %li
-              = render partial: "user_recent_message", locals: { another_user: other_user }
-        - else
-          %li
-            %span= t('mquest.no_users_available')
-    #senderReceiverMessagesContainer.quest_section_content_text_rgt(style='display:none')
+      - if !@messages_received.empty?
+        %ul
+          - if !@messages_received.empty?
+            - @messages_received.each do |message_received|
+              %li{ id: "#{message_received.sender.id}_received_message_container" }
+                = render partial: "received_message", locals: { message: message_received }
+      - else
+        %p(align='center' style="font-size: 31px;")
+          %br/
+          = t('mquest.no_mquests_received')
+        -# This is temporarily introduced for testing the feature, otherwise
+        -# a user should send a message to another user from Search results page.
+
+      = render partial: "mquests/list_users"
+
 

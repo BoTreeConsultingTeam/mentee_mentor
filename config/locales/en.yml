@@ -117,6 +117,7 @@ en:
       title: "Affiliations"
 
   mquest:
+    no_mquests_received: "Your inbox is empty!"
     no_users_available: "No users available in the system, except you!."
     reply_link: "Reply"
     mark_as_read_link: "Mark as Read"

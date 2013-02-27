@@ -1,0 +1,34 @@
+- unless message.nil?
+  - message_sender = message.sender
+  - message_sender_name = message_sender.name
+  - message_sender_id = message_sender.id
+  .quest_poster-thumbs
+    = image_tag(user_profile_picture_path(message_sender), width: "40px", height: "40px", alt: message_sender_name)
+
+  .quest_poster-thumbs-name
+    %p=  message_sender_name
+    - unless current_user.is_following?(message_sender)
+      =link_to(t('user.follow.title'), follow_user_path(id: current_user.id, follow_user_id: message_sender_id), method: :post)
+
+  - message_content = message.content
+  - if message_content.present?
+    .quest_poster-thumbs-content
+      = message_content
+
+    .quest_poster-thumbs-content-hours
+      %p= formatted_message_datetime(message.datetime)
+      = link_to(t('mquest.reply_link'), "#", class: 'mquest_reply_link')
+      - if message.unacknowledged?
+        = link_to(t('mquest.mark_as_read_link'), "#")
+
+    #message_status(style='display:none')
+    .mquest_reply{ style: 'display:none'}
+      - reply_message_text = reply_message_default_content(message)
+      %span.reply_default_text(style='display:none')<
+        =reply_message_text
+      = render partial: "mquests/send_mquest_form", locals: { receiver: message_sender, reply_message_text: reply_message_text}
+
+  -# else
+    .quest_poster-thumbs-content
+      = link_to(t('mquest.send_message_link'), user_mquest_path(user_id: current_user.id, id: another_user_id), remote: true)
+    .quest_poster-thumbs-content-hours

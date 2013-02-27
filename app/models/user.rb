@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
     return [] if user_id.nil?
     messages_received = messages_received_from_user(user_id)
     messages_sent = messages_sent_to_user(user_id)
-    (messages_received + messages_sent).sort { |x, y| x.date <=> y.date }
+    (messages_received + messages_sent).sort { |x, y| x.datetime <=> y.datetime }
   end
 
   def message_threads_exchanged_with(user_id)

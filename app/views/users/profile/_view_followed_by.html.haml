@@ -1,10 +1,4 @@
 - followed_by_users = current_user.is_followed_by
 - unless followed_by_users.empty?
-  .section_view_profile_detail_area
-    = label_tag t('user.follow.followed_by')
-  %br/
-  %br/
-  %table
-    - followed_by_users.each do |user|
-      %tr
-        %td= user.name
+  %li
+    = render partial: "users/profile/display_users_picture", locals: { users:  followed_by_users, label_text: t('user.follow.followed_by') }

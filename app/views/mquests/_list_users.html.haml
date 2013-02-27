@@ -1,0 +1,11 @@
+- other_users = current_user.other_users_except_me
+- unless other_users.empty?
+  %ul
+    - other_users.each do |other_user|
+      %li{ id: "#{other_user.id}_mquest_send_container" }
+        .quest_poster-thumbs-name
+          %p=  other_user.name
+          =link_to(t('mquest.send_message_link'), "#", class: 'send_mquest')
+        #message_status(style='display:none')
+        .mquest_reply{ style: 'display:none'}
+          = render partial: "mquests/send_mquest_form", locals: { receiver: other_user }

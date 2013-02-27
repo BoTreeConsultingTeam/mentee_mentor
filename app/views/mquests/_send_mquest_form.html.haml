@@ -1,10 +1,13 @@
-.quest_repl
+- unless receiver.nil?
+  - receiver_id = receiver.id
+  - default_content = nil
+  - unless local_assigns[:reply_message_text].nil?
+    - default_content = reply_message_text
   = form_tag(user_mquests_path(user_id: current_user.id), remote: true) do
     = hidden_field_tag "message[sender_id]", current_user.id
-    = hidden_field_tag "message[receiver_id]", receiver.id
-    = text_field_tag "message[content]", nil, placeholder: t('mquest.placeholder.message_box')
-    = submit_tag t('mquest.send_message_btn'), class: "quest_button quest_blue submit"
-
-    %br/
-    = render partial: "shared/error_messages", locals: { target: @message }
+    = hidden_field_tag "message[receiver_id]", receiver_id
+    = text_area_tag "message[content]", default_content, rows: 5, placeholder: t('mquest.placeholder.message_box')
+    %div
+      %br/
+      = submit_tag t('mquest.send_message_btn'), class: "quest_button quest_blue submit"
 

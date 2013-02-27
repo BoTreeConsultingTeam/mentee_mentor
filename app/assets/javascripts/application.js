@@ -18,4 +18,5 @@
 //= require application
 //= require custom
 //= require professional_profile
+//= require mquest
 //= require_tree .
