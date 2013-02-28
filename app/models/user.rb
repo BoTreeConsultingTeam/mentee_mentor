@@ -110,6 +110,19 @@ class User < ActiveRecord::Base
     MessageThread.where(id: message_thread_ids).to_a
   end
 
+  def message_threads_containing_received_messages
+    message_threads_id_arr = self.messages_received.group("messages.message_thread_id").collect { |message| message.message_thread.id }
+    return [] if message_threads_id_arr.empty?
+    MessageThread.where(id: message_threads_id_arr).order("updated_at DESC")
+  end
+
+  def messages_received_in_thread(message_thread, limit=0)
+    return [] if message_thread.nil?
+    arel = message_thread.messages.where(receiver_id: self.id)
+    arel.limit(limit) if limit > 0
+    arel.to_a
+  end
+
   def name
     unless profile.nil?
       first_name = profile.first_name

@@ -6,7 +6,7 @@ class MquestsController < ApplicationController
 
   # GET /users/:user_id/mquests
   def index
-    @messages_received = current_user.messages_received
+    set_message_threads_containing_received_messages(current_user)
     @mquest_active = true
   end
 

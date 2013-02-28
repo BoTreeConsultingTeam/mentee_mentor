@@ -618,7 +618,6 @@ footer .footer p a:hover, .footer p em a:hover {
   float: right;
   width: 80px;
   padding: 0 10px 0 0;
-  margin-top: -15px;
 }
 .quest_poster-thumbs-content-hours p {
   float: left;
@@ -719,6 +718,7 @@ footer .footer p a:hover, .footer p em a:hover {
 
 #message_status {
   margin-left: 180px;
+  float: left;
 }
 
 .mquest_reply {
@@ -726,7 +726,7 @@ footer .footer p a:hover, .footer p em a:hover {
 }
 
 .mquest_reply textarea {
-  width: 560px;
+  width: 400px;
 }
 
 /*dashboard*/
@@ -957,11 +957,16 @@ footer .footer p a:hover, .footer p em a:hover {
   text-align: justify;
 }
 .timeline_wrap ul li .timeline_dtl {
-  float: left;
+  float: right;
   width: 82px;
   color: #a1a1a1;
   font-size: 11px;
 }
+
+.timeline_wrap .mquest_reply .submit_btn_container {
+  padding-left: 12px;
+}
+
 .timeline_wrap ul li .timeline_dtl a {
   color: #006699;
 }

@@ -130,6 +130,7 @@ en:
 
     format:
       datetime: "%b %d, %Y %H:%M:%S"
+      received_message_header: "On %{message_datetime}, %{sender_name} wrote:"
 
     placeholder:
       message_box: "Write your message here"

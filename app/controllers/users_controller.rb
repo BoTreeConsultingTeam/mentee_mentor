@@ -23,6 +23,7 @@ class UsersController < ApplicationController
       redirect_to profile_edit_user_path(current_user) and return
     end
 
+    set_message_threads_containing_received_messages(current_user)
     @dashboard_active = true
   end
 

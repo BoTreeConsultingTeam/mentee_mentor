@@ -1,0 +1,28 @@
+- unless message_thread.nil?
+  - most_recent_message_received_in_thread = most_recent_message_received_in_thread(current_user, message_thread)
+
+  - unless most_recent_message_received_in_thread.nil?
+    - message_datetime = most_recent_message_received_in_thread.datetime
+    - message_sender = most_recent_message_received_in_thread.sender
+    - message_sender_name = message_sender.name
+    - message_sender_id = message_sender.id
+    - message_unacknowledged = most_recent_message_received_in_thread.unacknowledged?
+    .quest_poster-thumbs
+      = image_tag(user_profile_picture_path(message_sender), width: "40px", height: "40px", alt: message_sender_name)
+
+    .quest_poster-thumbs-name
+      %p=  message_sender_name
+      = render partial: "shared/follow_link", locals: { follow_user: message_sender }
+
+    #message_status(style='display:none')
+    .mquest_reply{ style: 'display:none'}
+      = render partial: "mquests/send_mquest_form", locals: { receiver: message_sender, message_thread: message_thread }
+
+    .quest_poster-thumbs-content
+      = formatted_message_thread(message_thread)
+
+    .quest_poster-thumbs-content-hours
+      %p= formatted_message_datetime(message_datetime)
+      = link_to(t('mquest.reply_link'), "#", class: 'mquest_reply_link')
+      - if message_unacknowledged
+        = link_to(t('mquest.mark_as_read_link'), "#")

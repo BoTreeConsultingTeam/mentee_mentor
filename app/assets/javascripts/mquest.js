@@ -5,26 +5,40 @@
       var links = $(link_selector);
       links.click(function() {
         var mquestForm = $(this).parent().siblings('.mquest_reply');
-        if(mquestForm.is(':visible')) {
+        var mquestFormVisible = mquestForm.is(':visible');
+
+        if(mquestFormVisible) {
           var message_status = mquestForm.siblings('#message_status');
           message_status.html(''); // Reset the message status container
           message_status.hide();
           mquestForm.hide();
+          mquestFormVisible = false;
         } else {
-          // If user rmeoves text from the text area when replying and closes
-          // the text-area, then when he opens the text-area, the default
-          // reply text should be visible if the text-area is opened in context
-          // of a received message.
-          var replyDefaultTextSpan = mquestForm.find('span.reply_default_text:hidden');
-          var receivedMessage = (replyDefaultTextSpan.length > 0);
-          if (receivedMessage) {
-            var messageContentTextArea = mquestForm.find('#message_content');
-            if (messageContentTextArea.val() == '') {
-              messageContentTextArea.val(replyDefaultTextSpan.text());
-            }
-          }
           mquestForm.show();
+          mquestFormVisible = true;
         }
+
+        // For handling styling of displayed messages of a thread on MQuests page
+        var mquestPageMessagesHolderContainer = mquestForm.siblings(".quest_poster-thumbs-content");
+        if (mquestPageMessagesHolderContainer.length > 0) {
+          if(mquestFormVisible) {
+            mquestPageMessagesHolderContainer.attr('style', 'padding-left: 180px; padding-top: 10px');
+          } else {
+            mquestPageMessagesHolderContainer.attr('style', '');
+          }
+        }
+
+        // For handling styling of displayed messages of a thread on Dashboard
+        // page's Timeline section
+        var dashboardPageMessagesHolderContainer = mquestForm.siblings(".time_line_txt");
+        if (dashboardPageMessagesHolderContainer.length > 0) {
+          if(mquestFormVisible) {
+            dashboardPageMessagesHolderContainer.attr('style', 'padding-left: 192px; padding-top: 25px');
+          } else {
+            dashboardPageMessagesHolderContainer.attr('style', '');
+          }
+        }
+
       });
    };
 
@@ -33,8 +47,9 @@
 // Below used statement is the shortcut for jQuery(document).ready(function() {});
 jQuery(function() {
 
+  var timeline_section = $('.timeline_wrap');
   var mquest_section = $('.quest_section_content_text');
-  if(mquest_section.length > 0) {
+  if( (timeline_section.length > 0) || (mquest_section.length > 0) ) {
     bindClickToSendOrReplyMquestLink('a.send_mquest');
     bindClickToSendOrReplyMquestLink('a.mquest_reply_link');
   }
