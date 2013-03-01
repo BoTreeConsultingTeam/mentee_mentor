@@ -27,7 +27,7 @@ module MquestsHelper
       thread_messages_arr = message_thread.messages
 
       unless thread_messages_arr.empty?
-        include_message_header = false
+        include_message_header = true
         most_recent_message = thread_messages_arr.first
         # If current user is not sender of the most recent message in
         # thread_messages_arr then only display it which will mean it was
