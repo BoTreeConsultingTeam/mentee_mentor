@@ -113,7 +113,10 @@ class User < ActiveRecord::Base
   end
 
   def message_threads_containing_received_messages
-    message_threads_id_arr = self.messages_received.group("messages.message_thread_id").collect { |message| message.message_thread.id }
+    # messages.id is included in GROUP BY clause to resolve the following error
+    # ActiveRecord::StatementInvalid (PG::Error: ERROR:  column "messages.id" must appear in the GROUP BY clause or be used in an aggregate function
+    # encountered when the application was deployed to Heroku
+    message_threads_id_arr = self.messages_received.group("messages.message_thread_id, messages.id").collect { |message| message.message_thread.id }.uniq!
     return [] if message_threads_id_arr.empty?
     MessageThread.where(id: message_threads_id_arr).order("updated_at DESC")
   end
