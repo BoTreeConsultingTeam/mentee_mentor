@@ -16,6 +16,8 @@ MentorMentee::Application.routes.draw do
   resources :users do
     member do
       post "upload_picture"
+      post "update_status"
+      get "refresh_timeline"
       get "profile" => "users#show"
       get "profile/edit" => "users#edit"
       put "change_password" => "users#change_password"
@@ -24,7 +26,8 @@ MentorMentee::Application.routes.draw do
       post "follow/:follow_user_id" => "users#follow", as: :follow
     end
 
-    resources :mquests
+    resources :mquests, only: [:index, :create]
+
     resources :resources
   end
 

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include GeneralScopes
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -38,6 +39,12 @@ class User < ActiveRecord::Base
   has_many :user_resources
   has_many :resources, :through => :user_resources
 
+  has_one :status, dependent: :destroy
+
+  scope :unread_messages, lambda { |sender_id|
+     joins(:messages_received).where(messages: { sender_id: sender_id }).reverse_order_by_date
+  }
+
   # References for overriden eqll? and hash:
   # 1) http://shortrecipes.blogspot.in/2006/10/ruby-intersection-of-two-arrays-of.html
   # 2) http://www.ruby-forum.com/topic/181819
@@ -49,7 +56,7 @@ class User < ActiveRecord::Base
     self.id
   end
 
-  def other_users
+  def other_users_except_me
     User.where("id != ?", self.id)
   end
 
@@ -66,18 +73,56 @@ class User < ActiveRecord::Base
   end
 
   def can_follow
-    ((other_users - self.connected_with) - self.is_following)
+    ((other_users_except_me - self.connected_with) - self.is_following)
+  end
+
+  def is_following?(user)
+    self.is_following.collect { |followed_user| followed_user.id }.include?(user.id)
+  end
+
+  def messages_received_from_user(sender_id, limit=0, order='ASC')
+    arel = self.messages_received.where(messages: { sender_id: sender_id }).order(messages_order_clause(order))
+    arel.limit(limit) if limit > 0
+    arel.to_a
+  end
+
+  def most_recent_message_received_from_user(sender_id)
+    messages_received_from_user(sender_id, 1, 'DESC').first
+  end
+
+  def messages_sent_to_user(receiver_id, limit=0, order='ASC')
+    arel = self.messages_sent.where(messages: { receiver_id: receiver_id }).order(messages_order_clause(order))
+    arel.limit(limit) if limit > 0
+    arel.to_a
+  end
+
+  def messages_exchanged_with_user(user_id)
+    return [] if user_id.nil?
+    messages_received = messages_received_from_user(user_id)
+    messages_sent = messages_sent_to_user(user_id)
+    (messages_received + messages_sent).sort { |x, y| x.datetime <=> y.datetime }
   end
 
   def message_threads_exchanged_with(user_id)
     return [] if user_id.nil?
 
-    messages_from_user = messages_received.where(sender_id: user_id)
-    messages_to_user = messages_sent.where(receiver_id: user_id)
-    message_thread_ids = (messages_from_user + messages_to_user).collect do |message|
+    message_thread_ids = messages_exchanged_with_user(user_id).collect do |message|
                             message.message_thread.id
                          end
     MessageThread.where(id: message_thread_ids).to_a
+  end
+
+  def message_threads_containing_received_messages
+    message_threads_id_arr = self.messages_received.group("messages.message_thread_id").collect { |message| message.message_thread.id }
+    return [] if message_threads_id_arr.empty?
+    MessageThread.where(id: message_threads_id_arr).order("updated_at DESC")
+  end
+
+  def messages_received_in_thread(message_thread, limit=0)
+    return [] if message_thread.nil?
+    arel = message_thread.messages.where(receiver_id: self.id)
+    arel.limit(limit) if limit > 0
+    arel.to_a
   end
 
   def name
@@ -117,6 +162,12 @@ class User < ActiveRecord::Base
 
   def connected_to_linkedin?
     !authentications.find_by_provider("linkedin").nil?
+  end
+
+  private
+
+  def messages_order_clause(order)
+    "datetime #{order}"
   end
 
 end

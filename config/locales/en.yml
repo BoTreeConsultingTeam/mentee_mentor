@@ -23,6 +23,10 @@ en:
     update_status:
       title: "Update Status"
       update_btn: "Update"
+      messages:
+        success: "Status updated successfully"
+      error:
+        user_id_missing: "Could not update your status.Required user id found missing in request."
 
     timeline:
       title: "Timeline"
@@ -116,6 +120,24 @@ en:
     affiliations:
       title: "Affiliations"
 
+  mquest:
+    no_mquests_received: "Your inbox is empty!"
+    no_users_available: "No users available in the system, except you!."
+    reply_link: "Reply"
+    mark_as_read_link: "Mark as Read"
+    send_message_link: "Send Message"
+    send_message_btn: "Send"
+
+    error:
+      could_not_show_mquest: "Could not process your request.Required sender and receiver details found missing in the request."
+      inexistent_user: "Could not process your request.No user found in the system having id %{user_id}"
+
+    format:
+      datetime: "%b %d, %Y %H:%M:%S"
+      received_message_header: "On %{message_datetime}, %{sender_name} wrote:"
+
+    placeholder:
+      message_box: "Write your message here"
 
   welcome_page:
     sign_up_form:
@@ -238,10 +260,6 @@ en:
         failure: "Could not make you follow %{follow_user_name}"
         already_following: 'You are already following %{follow_user_name}'
 
-
-    mquests:
-      no_users_available: "No users available in the system, except you!."
-      users: "Users"
 
     mboard:
       links: "Your Saved Links"

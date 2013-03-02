@@ -1,25 +1,10 @@
-%section.timeline_wrap
-  .head_line
-    %h2= t('dashboard.timeline.title')
-    = link_to(t('dashboard.timeline.refresh_link'), '#', class: "refresh_link")
+-# For now displaying users who the current user can follow
+- unless @following_users_updated_statuses.nil?
+  %section.timeline_wrap
+    .head_line
+      %h2= t('dashboard.timeline.title')
+      = link_to(t('dashboard.timeline.refresh_link'), refresh_timeline_user_path(current_user), class: "refresh_link", remote: true)
 
-  -# For now displaying users who the current user can follow
-  - follow_users = current_user.can_follow
-  %ul
-    - follow_users.each do |user|
-      - user_name = user.name
-      %li
-        .poster-thumbs
-          = image_tag("dashboard_p1.jpg", width: "40px", height: "40px", alt: user_name)
-        .name_box<
-          = user_name
-          %br/
-          = link_to(t('user.follow.title'), '#')
-        .time_line_txt<
-          Lorium Ipsum Lorium Ipsum  Lorium Ipsum Lorium Ipsum Lorium Ipsum
-        .timeline_dtl
-          = time_ago_in_words(1.day.from_now, true)
-          %br/
-          = link_to(t('dashboard.timeline.reply_link'), '#')
-          %br/
-          = link_to(t('dashboard.timeline.mark_as_read_link'), '#')
+    #timeline_users_container
+      = render partial: "users/dashboard/timeline_list_users"
+

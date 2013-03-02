@@ -3,7 +3,7 @@ class MessageThread < ActiveRecord::Base
 
   belongs_to :starter, class_name: 'User'
 
-  has_many :messages
+  has_many :messages, order: "datetime DESC"
 
   validates_presence_of :title
 

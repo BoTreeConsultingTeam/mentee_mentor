@@ -1,0 +1,12 @@
+:plain
+  var errorMessage = "#{@error_message ? @error_message : ''}";
+  if(errorMessage != '') {
+    alert(errorMessage);
+  } else {
+    $("#update_status_container #status_area").val("#{@user_current_status.content}");
+    var statusUpdateMessageContainer = $("#update_status_container #update_status_message_container");
+    var statusUpdateMessageSpan = statusUpdateMessageContainer.find('span');
+    statusUpdateMessageSpan.text("#{@status_update_message}");
+    statusUpdateMessageContainer.show();
+    statusUpdateMessageContainer.fadeOut(5000);
+  }

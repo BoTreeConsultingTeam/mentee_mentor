@@ -1,0 +1,3 @@
+- unless local_assigns[:follow_user].nil?
+  - unless current_user.is_following?(follow_user)
+    =link_to(t('user.follow.title'), follow_user_path(id: current_user.id, follow_user_id: follow_user.id), method: :post)

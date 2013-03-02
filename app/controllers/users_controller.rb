@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_filter :require_user, except: [:welcome]
 
-  before_filter :fetch_user, only: [:show, :change_password, :edit, :upload_picture, :update, :mboard, :all_dialogues]
+  before_filter :fetch_user, only: [:show, :change_password, :edit, :upload_picture, :update, :update_status, :mboard, :all_dialogues]
 
   def welcome
     # On the welcome page itself Sign Up page is rendered.
@@ -23,6 +23,7 @@ class UsersController < ApplicationController
       redirect_to profile_edit_user_path(current_user) and return
     end
 
+    set_following_users_updated_statuses
     @dashboard_active = true
   end
 
@@ -102,6 +103,39 @@ class UsersController < ApplicationController
     end
   end
 
+  # POST  /users/:id/update_status(.:format)
+  def update_status
+    if @user.nil?
+      @error_message = t('dashboard.update_status.user_id_missing')
+    else
+      @user_current_status = @user.status
+
+      if @user_current_status.nil?
+        @user_current_status = @user.create_status(params[:status])
+      else
+        @user_current_status.update_attribute(:content, params[:status][:content])
+      end
+
+      @status_update_message = t('dashboard.update_status.messages.success')
+    end
+
+    respond_to do |format|
+      format.js {
+         render file: "users/dashboard/update_status"
+      }
+    end
+  end
+
+  #GET /users/:id/refresh_timeline(.:format)
+  def refresh_timeline
+    set_following_users_updated_statuses
+    respond_to do |format|
+      format.js {
+         render file: "users/dashboard/update_timeline"
+      }
+    end
+  end
+
   #POST /users/:id/follow/:follow_user_id/
   def follow
     user_id = params[:id]
@@ -168,5 +202,12 @@ class UsersController < ApplicationController
     @user.errors.add(:password_confirmation, "can't be blank") if password_confirmation.blank?
     @user.errors.add(:password_confirmation, "does not match password") if password != password_confirmation
     password == password_confirmation && !password.blank?
+  end
+
+  def set_following_users_updated_statuses
+    following_users = current_user.is_following
+    unless following_users.empty?
+      @following_users_updated_statuses = Status.where(user_id: following_users.collect { |user| user.id } )
+    end
   end
 end

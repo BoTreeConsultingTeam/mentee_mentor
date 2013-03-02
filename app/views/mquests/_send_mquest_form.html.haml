@@ -1,0 +1,12 @@
+- unless receiver.nil?
+  - receiver_id = receiver.id
+  - message_thread_id = (local_assigns[:message_thread].nil? ? nil : message_thread.id)
+  = form_tag(user_mquests_path(user_id: current_user.id), remote: true) do
+    = hidden_field_tag "message[message_thread_id]", message_thread_id, id: 'messageThreadId'
+    = hidden_field_tag "message[sender_id]", current_user.id
+    = hidden_field_tag "message[receiver_id]", receiver_id
+    = text_area_tag "message[content]", nil, rows: 5, placeholder: t('mquest.placeholder.message_box')
+    .submit_btn_container
+      %br/
+      = submit_tag t('mquest.send_message_btn'), class: "quest_button quest_blue submit"
+
