@@ -5,6 +5,10 @@
     = image_tag(current_user_profile_picture_path, height: 86, width: 86)
     %p= current_user.name
 
-  .update_right
-    = text_area_tag('status_area')
-    = link_to(t('dashboard.update_status.update_btn'), '#', class: 'line_btn')
+  #update_status_container.update_right
+    = form_tag(update_status_user_path(current_user), remote: true) do
+      - current_status = (current_user.status.nil? ? nil : current_user.status.content)
+      = text_area_tag('status[content]', current_status)
+      %div(style='display:none' id='update_status_message_container')
+        %span
+      = submit_tag t('dashboard.update_status.update_btn'), class: 'line_btn'

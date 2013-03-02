@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
   has_many :user_resources
   has_many :resources, :through => :user_resources
 
+  has_one :status, dependent: :destroy
+
   scope :unread_messages, lambda { |sender_id|
      joins(:messages_received).where(messages: { sender_id: sender_id }).reverse_order_by_date
   }

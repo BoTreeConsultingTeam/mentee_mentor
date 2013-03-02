@@ -1,0 +1,12 @@
+%ul
+  - @following_users_updated_statuses.each do |status|
+    - user = status.user
+    %li
+      .poster-thumbs
+        = image_tag(user_profile_picture_path(user), width: "40px", height: "40px", alt: user.name)
+      .name_box<
+        = user.name
+      .time_line_txt<
+        = status.content
+      .timeline_dtl
+        = formatted_timeline_status_datetime(status.updated_at)

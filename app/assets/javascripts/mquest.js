@@ -47,9 +47,8 @@
 // Below used statement is the shortcut for jQuery(document).ready(function() {});
 jQuery(function() {
 
-  var timeline_section = $('.timeline_wrap');
   var mquest_section = $('.quest_section_content_text');
-  if( (timeline_section.length > 0) || (mquest_section.length > 0) ) {
+  if( mquest_section.length > 0 ) {
     bindClickToSendOrReplyMquestLink('a.send_mquest');
     bindClickToSendOrReplyMquestLink('a.mquest_reply_link');
   }

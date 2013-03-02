@@ -13,4 +13,9 @@ module UsersHelper
     end
     picture_path
   end
+
+  def formatted_timeline_status_datetime(datetime)
+    return '' unless datetime.present?
+    time_ago_in_words(datetime, true)
+  end
 end

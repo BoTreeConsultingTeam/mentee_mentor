@@ -23,6 +23,10 @@ en:
     update_status:
       title: "Update Status"
       update_btn: "Update"
+      messages:
+        success: "Status updated successfully"
+      error:
+        user_id_missing: "Could not update your status.Required user id found missing in request."
 
     timeline:
       title: "Timeline"

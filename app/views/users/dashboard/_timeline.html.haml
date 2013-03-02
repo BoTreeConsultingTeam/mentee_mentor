@@ -1,39 +1,10 @@
-%section.timeline_wrap
-  .head_line
-    %h2= t('dashboard.timeline.title')
-    = link_to(t('dashboard.timeline.refresh_link'), '#', class: "refresh_link")
+-# For now displaying users who the current user can follow
+- unless @following_users_updated_statuses.nil?
+  %section.timeline_wrap
+    .head_line
+      %h2= t('dashboard.timeline.title')
+      = link_to(t('dashboard.timeline.refresh_link'), refresh_timeline_user_path(current_user), class: "refresh_link", remote: true)
 
-  -# For now displaying users who the current user can follow
-  - follow_users = current_user.can_follow
-  - if !@message_threads_containing_received_messages.empty?
-    %ul
-      - @message_threads_containing_received_messages.each do |message_thread|
-        - thread_messages_received = current_user.messages_received_in_thread(message_thread, 1)
-        - if thread_messages_received.size > 0
-          - most_recent_message = thread_messages_received.first
-          - unless most_recent_message.nil?
-            - message_sender = most_recent_message.sender
-            - message_sender_id = message_sender.id
-            - message_sender_name = message_sender.name
-            - message_date_time = most_recent_message.datetime
-
-            %li{ id: "#{message_thread.id}_message_thread_container" }
-              .poster-thumbs
-                = image_tag(user_profile_picture_path(message_sender), width: "40px", height: "40px", alt: message_sender_name)
-              .name_box<
-                = message_sender_name
-                %br/
-                = render partial: "shared/follow_link", locals: { follow_user: message_sender }
-              #message_status(style='display:none')
-              .mquest_reply{ style: 'display:none'}
-                = render partial: "mquests/send_mquest_form", locals: { receiver: message_sender, message_thread: message_thread }
-
-              .time_line_txt<
-                = message_html(most_recent_message, false)
-              .timeline_dtl
-                = formatted_message_datetime(message_date_time)
-                %br/
-                = link_to(t('dashboard.timeline.reply_link'), '#', class: 'mquest_reply_link')
-                %br/
-                = link_to(t('dashboard.timeline.mark_as_read_link'), '#')
+    #timeline_users_container
+      = render partial: "users/dashboard/timeline_list_users"
 
