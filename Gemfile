@@ -19,6 +19,8 @@ gem 'mysql2', '~> 0.3.11'
 gem 'omniauth'
 gem 'omniauth-linkedin'
 
+gem "kaminari"
+
 group :development do
   gem 'sqlite3'
 end

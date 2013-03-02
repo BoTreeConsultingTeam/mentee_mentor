@@ -28,17 +28,6 @@
           }
         }
 
-        // For handling styling of displayed messages of a thread on Dashboard
-        // page's Timeline section
-        var dashboardPageMessagesHolderContainer = mquestForm.siblings(".time_line_txt");
-        if (dashboardPageMessagesHolderContainer.length > 0) {
-          if(mquestFormVisible) {
-            dashboardPageMessagesHolderContainer.attr('style', 'padding-left: 192px; padding-top: 25px');
-          } else {
-            dashboardPageMessagesHolderContainer.attr('style', '');
-          }
-        }
-
       });
    };
 
@@ -46,9 +35,9 @@
 
 // Below used statement is the shortcut for jQuery(document).ready(function() {});
 jQuery(function() {
-
+  var search_results_section = $('.section_content_text_search');
   var mquest_section = $('.quest_section_content_text');
-  if( mquest_section.length > 0 ) {
+  if( (search_results_section.length > 0) || (mquest_section.length > 0) ) {
     bindClickToSendOrReplyMquestLink('a.send_mquest');
     bindClickToSendOrReplyMquestLink('a.mquest_reply_link');
   }

@@ -1,0 +1,32 @@
+- if !@users.empty?
+  %ul.thread-list
+    - @users.each do |user|
+      %li{ id: "#{user.id}_mquest_send_container" }
+        .poster-thumbs-search
+          = image_tag(user_profile_picture_path(user), width: "40px", height: "40px", alt: user.name)
+        .poster-thumbs-name-search
+          %p= user.name
+
+          - followers_count = user.is_followed_by.size
+          - if followers_count > 0
+            %em= t('search.results.user.followers', followers_count: followers_count)
+            %br
+
+          - following_count = user.is_following.size
+          - if following_count > 0
+            %em= t('search.results.user.following', following_count: following_count)
+
+        .poster-thumbs-content-search<
+          = user_description(user)
+
+        #message_status(style='display:none')
+        .mquest_reply{ style: 'display:none'}
+          = render partial: "mquests/send_mquest_form", locals: { receiver: user }
+
+        .poster-thumbs-content-search-follow<
+          = render partial: "shared/follow_link", locals: { follow_user: user }
+          - if (user.id != current_user.id)
+            %br
+            = render partial: "shared/mquest_link"
+- else
+  %p= t('search.results.messages.no_results_found')
