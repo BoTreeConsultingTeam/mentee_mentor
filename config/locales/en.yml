@@ -125,7 +125,7 @@ en:
     no_users_available: "No users available in the system, except you!."
     reply_link: "Reply"
     mark_as_read_link: "Mark as Read"
-    send_message_link: "Send Message"
+    send_message_link: "Mquest"
     send_message_btn: "Send"
 
     error:
@@ -138,6 +138,17 @@ en:
 
     placeholder:
       message_box: "Write your message here"
+
+  search:
+    search_btn: "Search"
+    placeholder:
+      search_input: "Search by name or email"
+    results:
+      messages:
+        no_results_found: "No results found"
+      user:
+        followers: "Followers: %{followers_count}"
+        following: "Following: %{following_count}"
 
   welcome_page:
     sign_up_form:

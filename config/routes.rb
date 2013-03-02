@@ -32,6 +32,10 @@ MentorMentee::Application.routes.draw do
   end
 
   resources :messages
+
+  resources :searches, only: [:index]
+
+  get 'search' => "searches#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

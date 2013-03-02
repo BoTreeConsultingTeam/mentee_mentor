@@ -37,9 +37,9 @@ class Experience < ActiveRecord::Base
     if(description_present and company_present)
       formatted_str = I18n.t('profile.professional.format.work_experience.full_description', description: self.description, company: self.company)
     elsif description_present
-      formatted_str = I18n.t('profile.professional.format.education.only_description', description: self.description)
+      formatted_str = I18n.t('profile.professional.format.work_experience.only_description', description: self.description)
     elsif company_present
-      formatted_str = I18n.t('profile.professional.format.education.only_company', company: self.company)
+      formatted_str = I18n.t('profile.professional.format.work_experience.only_company', company: self.company)
     else
       formatted_str = I18n.t('profile.professional.message.work_experience.no_details')
     end

@@ -1,0 +1,8 @@
+.section_content_text_search_top
+  .section_content_text_search_top_lft
+    = form_tag(search_path, method: :get) do
+      = text_field_tag('search_term', params[:search_term], placeholder: t('search.placeholder.search_input'), class: 'section_content_text_search_pagination_span')
+      .submit_btn_container
+        %br/
+        = submit_tag(t('search.search_btn'), class: 'quest_button quest_blue submit')
+  .section_content_text_search_top_rgt

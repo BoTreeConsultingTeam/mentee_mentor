@@ -15,6 +15,6 @@
       =t('navigation_links.mquest')
 
   %li
-    = link_to('#', class: "#{ @search_active ? 'active' : '' }") do
+    = link_to(search_path, class: "#{ @search_active ? 'active' : '' }") do
       %figure.search_icon
       =t('navigation_links.search')

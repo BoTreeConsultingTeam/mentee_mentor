@@ -24,11 +24,11 @@ class Profile < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many :educations, dependent: :destroy
+  has_many :educations, dependent: :destroy, order: "educations.from_date DESC, educations.to_date DESC"
   accepts_nested_attributes_for :educations, allow_destroy: true
   attr_accessible :educations_attributes
 
-  has_many :experiences, dependent: :destroy
+  has_many :experiences, dependent: :destroy, order: "experiences.from_date DESC, experiences.to_date DESC"
   accepts_nested_attributes_for :experiences, allow_destroy: true
   attr_accessible :experiences_attributes
 
