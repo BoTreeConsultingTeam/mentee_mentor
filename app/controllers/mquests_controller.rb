@@ -4,6 +4,8 @@ class MquestsController < ApplicationController
 
   before_filter :require_user
 
+  before_filter :find_message, only: [:mark_as_read, :mark_as_unread]
+
   # GET /users/:user_id/mquests
   def index
     set_message_threads_containing_received_messages(current_user)
@@ -28,6 +30,34 @@ class MquestsController < ApplicationController
     end
   end
 
+  # PUT /mquests/:id/mark_as_read(.:format)
+  def mark_as_read
+    unless @message.nil?
+      @message.acknowledge
+      @message_mark_as_read = true
+    end
+
+    respond_with do |format|
+       format.js {
+         render file: "mquests/update_message_acknowledged_status"
+       }
+    end
+  end
+
+  # PUT /mquests/:id/mark_as_unread(.:format)
+  def mark_as_unread
+    unless @message.nil?
+      @message.unacknowledge
+      @message_mark_as_unread = true
+    end
+
+    respond_with do |format|
+       format.js {
+         render file: "mquests/update_message_acknowledged_status"
+       }
+    end
+  end
+
   private
 
   def collect_validation_errors(object)
@@ -38,5 +68,9 @@ class MquestsController < ApplicationController
         end
      end
      errors
+  end
+
+  def find_message
+    @message = Message.find_by_id(params[:id])
   end
 end

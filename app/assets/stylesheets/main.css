@@ -721,6 +721,10 @@ footer .footer p a:hover, .footer p em a:hover {
   float: left;
 }
 
+.acknowledged {
+  background-color: #F2F2EF;
+}
+
 .mquest_reply {
   margin-left: 180px;
 }

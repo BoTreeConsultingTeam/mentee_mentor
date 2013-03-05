@@ -17,6 +17,14 @@ class Message < ActiveRecord::Base
     self.acknowledged == false
   end
 
+  def acknowledge
+    self.update_attribute(:acknowledged, true)
+  end
+
+  def unacknowledge
+    self.update_attribute(:acknowledged, false)
+  end
+
   private
 
   def set_datetime

@@ -5,7 +5,7 @@
         %ul
           - @message_threads_containing_received_messages.each do |message_thread|
             %li{ id: "#{message_thread.id}_message_thread_container" }
-              = render partial: "mquests/received_messages_in_thread", locals: { message_thread: message_thread }
+              = render partial: "mquests/messages_in_thread", locals: { message_thread: message_thread }
 
       - else
         %p(align='center' style="font-size: 31px;")

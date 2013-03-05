@@ -125,6 +125,7 @@ en:
     no_users_available: "No users available in the system, except you!."
     reply_link: "Reply"
     mark_as_read_link: "Mark as Read"
+    mark_as_unread_link: "Mark as Unread"
     send_message_link: "Mquest"
     send_message_btn: "Send"
 

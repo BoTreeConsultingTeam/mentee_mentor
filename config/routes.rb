@@ -30,9 +30,13 @@ MentorMentee::Application.routes.draw do
     resources :resources
   end
 
+  put "/mquests/:id/mark_as_read" => "mquests#mark_as_read", as: :mquest_mark_as_read
+  put "/mquests/:id/mark_as_unread" => "mquests#mark_as_unread", as: :mquest_mark_as_unread
+
   resources :searches, only: [:index]
 
   get 'search' => "searches#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
