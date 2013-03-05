@@ -9,4 +9,7 @@
     statusUpdateMessageSpan.text("#{@status_update_message}");
     statusUpdateMessageContainer.show();
     statusUpdateMessageContainer.fadeOut(5000);
+
+    var timelineHTML = "#{escape_javascript(render( partial: 'users/dashboard/timeline' )) }"
+    $('#timelineMainContainer').html(timelineHTML);
   }

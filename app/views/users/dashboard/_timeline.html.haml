@@ -1,5 +1,4 @@
--# For now displaying users who the current user can follow
-- unless @following_users_updated_statuses.nil?
+- unless (@updated_statuses.nil? or @updated_statuses.empty?)
   %section.timeline_wrap
     .head_line
       %h2= t('dashboard.timeline.title')

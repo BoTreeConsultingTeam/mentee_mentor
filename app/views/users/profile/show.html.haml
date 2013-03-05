@@ -9,7 +9,7 @@
 .section_content_bg
   .sub_wrapper
     .section_profile_text_lft
-      = render partial: "users/profile/picture"
+      = render partial: "users/profile/picture", locals: { view_mode: true }
 
       .view_profile_name
         %span= current_location

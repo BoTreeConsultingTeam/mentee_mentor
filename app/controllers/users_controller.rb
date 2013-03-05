@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       redirect_to profile_edit_user_path(current_user) and return
     end
 
-    set_following_users_updated_statuses
+    set_statuses_for_timeline_view
     @dashboard_active = true
   end
 
@@ -113,7 +113,12 @@ class UsersController < ApplicationController
       if @user_current_status.nil?
         @user_current_status = @user.create_status(params[:status])
       else
-        @user_current_status.update_attribute(:content, params[:status][:content])
+        received_status_content = params[:status][:content]
+        if received_status_content.present?
+          @user_current_status.update_attribute(:content, received_status_content)
+        else
+          @user_current_status.delete
+        end
       end
 
       @status_update_message = t('dashboard.update_status.messages.success')
@@ -121,6 +126,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.js {
+         set_statuses_for_timeline_view
          render file: "users/dashboard/update_status"
       }
     end
@@ -128,7 +134,7 @@ class UsersController < ApplicationController
 
   #GET /users/:id/refresh_timeline(.:format)
   def refresh_timeline
-    set_following_users_updated_statuses
+    set_statuses_for_timeline_view
     respond_to do |format|
       format.js {
          render file: "users/dashboard/update_timeline"
@@ -204,10 +210,12 @@ class UsersController < ApplicationController
     password == password_confirmation && !password.blank?
   end
 
-  def set_following_users_updated_statuses
+  def set_statuses_for_timeline_view
     following_users = current_user.is_following
-    unless following_users.empty?
-      @following_users_updated_statuses = Status.where(user_id: following_users.collect { |user| user.id } )
-    end
+    timeline_users = following_users + [ current_user ]
+
+    timeline_users_id_arr = timeline_users.collect { |user| user.id }
+    @updated_statuses = Status.where(user_id: timeline_users_id_arr ).order('statuses.updated_at DESC')
   end
+
 end
