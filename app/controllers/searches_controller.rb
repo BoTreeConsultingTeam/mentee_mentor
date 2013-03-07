@@ -39,7 +39,7 @@ PROFILES_WHERE_CLAUSE
       arel = arel.where(sql, *query_params)
     end
 
-    arel = arel.order("users.first_name ASC, users.last_name ASC, profiles.first_name ASC, profiles.last_name ASC")
+    arel = arel.order("profiles.first_name ASC, users.first_name ASC")
 
     arel
   end
