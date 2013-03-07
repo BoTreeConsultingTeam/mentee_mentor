@@ -15,6 +15,11 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/active_record'
 
+  # Reference: https://github.com/plataformatec/devise/wiki/How-To:-Redirect-to-a-specific-page-when-the-user-can-not-be-authenticated
+  config.warden do |manager|
+    manager.failure_app = Users::AuthenticationFailure
+  end
+
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for
@@ -214,6 +219,7 @@ Devise.setup do |config|
   end
 
   #config.omniauth :facebook, Settings.omniauth.facebook.key, Settings.omniauth.facebook.secret, omniauth_options
+  config.omniauth :linkedin, Settings.omniauth.linkedin.key, Settings.omniauth.linkedin.secret, omniauth_options
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

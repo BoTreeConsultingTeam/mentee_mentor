@@ -1,0 +1,23 @@
+- profile = @user.profile
+- work_experiences = nil
+- educations = nil
+
+- unless profile.nil?
+  - work_experiences = profile.experiences
+  - educations = profile.educations
+
+%li
+  .section_view_profile_detail_area
+    = label_tag t('profile.professional.work_experience')
+    - unless (work_experiences.nil? or work_experiences.empty?)
+      - work_experiences.each do |experience|
+        %strong= experience.formatted_description
+        %span= experience.formatted_duration
+
+%li
+  .section_view_profile_detail_area
+    = label_tag t('profile.professional.education')
+    - unless (educations.nil? or educations.empty?)
+      - educations.each do |education|
+        %strong= education.formatted_description
+        %span= education.formatted_duration

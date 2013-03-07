@@ -1,0 +1,9 @@
+- unless (@updated_statuses.nil? or @updated_statuses.empty?)
+  %section.timeline_wrap
+    .head_line
+      %h2= t('dashboard.timeline.title')
+      = link_to(t('dashboard.timeline.refresh_link'), refresh_timeline_user_path(current_user), class: "refresh_link", remote: true)
+
+    #timeline_users_container
+      = render partial: "users/dashboard/timeline_list_users"
+

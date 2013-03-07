@@ -1,8 +1,9 @@
-Welcome to Mentor-Mentee!
+.content_bg
+  .sub_wrapper
+    %article
+      .content_text
+        %h5 Welcome  to our site
+        .content_left_slider
+          = t('welcome_page.welcome_text').html_safe
 
-- if @message
-  %p= @message
-
-= render file: "users/sessions/new"
-
-= render file: "users/registrations/new"
+    = render file: "users/registrations/new_themed"

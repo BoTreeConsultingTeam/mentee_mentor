@@ -1,0 +1,19 @@
+:plain
+  var messageId = "#{@message.nil? ? '' : @message.id}";
+  if (messageId != '') {
+    var messageContainerSelector = "#" + messageId + "_message";
+    var messageMarkLinkContainer = $(messageContainerSelector).find('.messageMarkLinkContainer');
+    var messageMarkAsRead = "#{@message_mark_as_read.nil? ? 'false' : 'true' }";
+    var messageMarkAsUnread = "#{@message_mark_as_unread.nil? ? 'false' : 'true' }";
+
+    var acknowledgedClassName = 'acknowledged';
+    if (messageMarkAsRead == 'true') {
+      $(messageContainerSelector).addClass('acknowledged');
+    } else if (messageMarkAsUnread == 'true') {
+      $(messageContainerSelector).removeClass('acknowledged');
+    }
+
+    // Update Mark link
+    messageMarkLinkContainer.html("#{escape_javascript(mark_as_read_or_unread_link_content(@message))}");
+  }
+

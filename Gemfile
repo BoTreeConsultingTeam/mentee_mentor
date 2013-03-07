@@ -10,8 +10,16 @@ gem 'rails_config'
 gem "haml", ">= 3.1.5"
 gem "haml-rails", ">= 0.3.4"
 
-gem 'devise'
+gem "paperclip", "> 3.0.0"
+gem "aws-sdk", '~> 1.3.4'
+
+gem 'devise', "2.1.2"
 gem 'mysql2', '~> 0.3.11'
+
+gem 'omniauth'
+gem 'omniauth-linkedin'
+
+gem "kaminari"
 
 group :development do
   gem 'sqlite3'

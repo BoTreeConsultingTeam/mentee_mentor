@@ -1,0 +1,14 @@
+- follow_users = current_user.can_follow
+
+- unless follow_users.empty?
+  %li
+    .section_view_profile_detail_area
+      = label_tag t('user.follow.title')
+    %br/
+    %br/
+    %table
+      - follow_users.each do |user|
+        %tr
+          %td= user.name
+          %td<
+            = render partial: "shared/follow_link", locals: { follow_user: user }

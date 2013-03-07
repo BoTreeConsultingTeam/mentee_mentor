@@ -12,6 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui-custom.min.js
+//= require jquery.jcarousel.min
+//= require jquery.ocupload.packed.js
 //= require application
 //= require custom
+//= require professional_profile
+//= require mquest
 //= require_tree .

@@ -1,0 +1,5 @@
+-# Reference for removing a associated record when accepts_nested_attributes_for is enabled:
+-# http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html#method-i-accepts_nested_attributes_for
+#removeEducationTemplate(style='display:none')
+  = hidden_field_tag('user[profile_attributes][educations_attributes][][id]', nil, class: 'educationId')
+  = hidden_field_tag('user[profile_attributes][educations_attributes][][_destroy]', nil, class: 'educationDestroy')

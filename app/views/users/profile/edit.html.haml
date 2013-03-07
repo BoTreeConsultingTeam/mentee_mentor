@@ -1,0 +1,6 @@
+.section_content_bg(id="editProfile")
+  .sub_wrapper
+    - if !@user.encrypted_password.present?
+      = render partial: "users/profile/change_password_form"
+    - else
+      = render partial: "users/profile/edit_profile_form"

@@ -1,0 +1,45 @@
+- unless message_thread.nil?
+  - most_recent_message_in_thread = most_recent_message_in_thread(message_thread)
+
+  - unless most_recent_message_in_thread.nil?
+    - message_datetime = most_recent_message_in_thread.datetime
+    - message_sender = most_recent_message_in_thread.sender
+    - message_sender_id = message_sender.id
+    - is_message_sender_current_user = (message_sender_id == current_user.id)
+    - message_sender_name = ( is_message_sender_current_user ? "You" : message_sender.name )
+    -# message_unacknowledged = most_recent_message_in_thread.unacknowledged?
+    .quest_poster-thumbs
+      = image_tag(user_profile_picture_path(message_sender), width: "40px", height: "40px", alt: message_sender_name)
+
+    .quest_poster-thumbs-name
+      %p=  message_sender_name
+      = render partial: "shared/follow_link", locals: { follow_user: message_sender }
+
+    #message_status(style='display:none')
+    .mquest_reply{ style: 'display:none'}
+      -# receiver is passed with locals hash from /app/views/mquests/show_message_status.js.haml
+      -# when a message is posted.Assume that current user sent a message to another
+      -# user from Mquests page.Suddenly he recognizes that he forgot to add
+      -# something to the previous message sent.Thus he decides to send another
+      -# message.But when the first message was sent the message thread got updated
+      -# by re-rendering this file and at that time the receiver got set to
+      -# message_sender i.e. the current_user himself.Thus the sender and
+      -# receiver for the second message to be sent by current user was himself
+      -# which was incorrect.To handle this scenario passing the receiver of
+      -# the first page in the locals hash when re-rendering this partial
+      -# after the first message is sent.In that way the receiver and sender
+      -# will always be set to correct users.
+      - receiver = (local_assigns[:receiver].nil? ? message_sender : receiver)
+      = render partial: "mquests/send_mquest_form", locals: { receiver: receiver, message_thread: message_thread }
+
+    .quest_poster-thumbs-content
+      = formatted_message_thread(message_thread)
+
+    .quest_poster-thumbs-content-hours
+      %p= formatted_message_datetime(message_datetime)
+      = link_to(t('mquest.reply_link'), "#", class: 'mquest_reply_link')
+      -# unless is_message_sender_current_user
+        - if message_unacknowledged
+          = link_to(t('mquest.mark_as_read_link'), "#")
+        - else
+          = link_to(t('mquest.mark_as_unread_link'), "#")

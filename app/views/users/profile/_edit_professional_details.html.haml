@@ -1,0 +1,30 @@
+- profile = @user.profile
+- work_experiences = nil
+- educations = nil
+
+- unless profile.nil?
+  - work_experiences = profile.experiences
+  - educations = profile.educations
+
+.section_professional_detail_form(id="professionalProfileSection")
+  %ul
+    %li
+      #workExperienceContainer.section_professional_detail_area
+        = label_tag t('profile.professional.work_experience')
+
+        = button_tag(t('profile.professional.buttons.work_experience.add'), type: "button", id: 'addExperienceBtn')
+
+        - unless (work_experiences.nil? or work_experiences.empty?)
+          - work_experiences.each do |experience|
+            = render partial: "users/profile/edit_work_experience", locals: { experience: experience }
+
+    %li
+      #educationContainer.section_professional_detail_area
+        = label_tag t('profile.professional.education')
+
+        = button_tag(t('profile.professional.buttons.education.add'), type: "button", id: 'addEducationBtn')
+        - unless (educations.nil? or educations.empty?)
+          - educations.each do |education|
+            = render partial: "users/profile/edit_education", locals: { education: education }
+
+

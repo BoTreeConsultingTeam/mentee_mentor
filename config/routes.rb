@@ -2,29 +2,41 @@ MentorMentee::Application.routes.draw do
 
   root to: 'users#welcome'
 
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: "users/registrations" }
 
   devise_scope :user do
     get "/signup" => "devise/registrations#new"
     get "/signin" => "devise/sessions#new"
     get "/signout" => "devise/sessions#destroy"
+    get '/users/auth/:provider/disconnect' => "users/omniauth_callbacks#disconnect", as: :auth_disconnect
   end
 
   match "/home" => "users#index", as: :user_home
 
   resources :users do
     member do
+      post "upload_picture"
+      post "update_status"
+      get "refresh_timeline"
       get "profile" => "users#show"
       get "profile/edit" => "users#edit"
+      put "change_password" => "users#change_password"
       get "mboard"
-      get 'all_dialogues/:with' => "users#all_dialogues", as: :dialogues_with
       post "follow/:follow_user_id" => "users#follow", as: :follow
     end
 
-    resources :mquests
+    resources :mquests, only: [:index, :create]
+
+    resources :resources
   end
 
-  resources :messages
+  put "/mquests/:id/mark_as_read" => "mquests#mark_as_read", as: :mquest_mark_as_read
+  put "/mquests/:id/mark_as_unread" => "mquests#mark_as_unread", as: :mquest_mark_as_unread
+
+  resources :searches, only: [:index]
+
+  get 'search' => "searches#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,5 @@
+- view_mode = (local_assigns[:view_mode].nil? ? false : view_mode )
+- image_tag_id = view_mode ? '' : 'userPicture'
+.section_profile_img
+  = hidden_field_tag("upload_picture_action_url", upload_picture_user_path(current_user))
+  = image_tag(current_user_profile_picture_path, width: '89px', height: '89px', alt: current_user.name, id: image_tag_id)

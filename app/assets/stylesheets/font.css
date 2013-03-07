@@ -1,0 +1,9 @@
+@font-face {
+  font-family:  "PT Sans Caption";
+  src: url("PTC75F.ttf");
+}
+@font-face {
+  font-family: "MyriadPro";
+  src: url("MyriadPro-Regular.otf");
+  advancedAntiAliasing: true;
+}

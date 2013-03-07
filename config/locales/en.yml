@@ -2,29 +2,267 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  top_navigation:
-    home: "Home"
-    profile: "Profile"
-    dashboard: "Mboard"
-    mquests: "Mquests"
+  date:
+    # References:
+    #   https://github.com/rails/rails/blob/master/activesupport/lib/active_support/locale/en.yml#L15
+    #   http://en.wikipedia.org/wiki/YAML#Features
+    #   http://api.rubyonrails.org/classes/ActionView/Helpers/DateHelper.html#method-i-date_select
+    order:
+      - :day
+      - :month
+      - :year
+
+  navigation_links:
+    home: "Dashboard"
+    mboard: "Mboard"
+    mquest: "Mquests"
     search: "Search"
+    profile: "Profile"
+
+  dashboard:
+    update_status:
+      title: "Update Status"
+      update_btn: "Update"
+      messages:
+        success: "Status updated successfully"
+      error:
+        user_id_missing: "Could not update your status.Required user id found missing in request."
+
+    timeline:
+      title: "Timeline"
+      refresh_link: "Refresh"
+      reply_link: "Reply"
+      mark_as_read_link: "Mark As Read"
+
+  profile:
+    save_btn: "Save"
+    next_btn: "Next"
+    edit_link: "Edit Profile"
+
+    personal:
+      title: "Personal"
+      biography: "Bio"
+      first_name: "First Name"
+      last_name: "Last name"
+      gender: "Gender"
+      birth_date: "Birth Date"
+      location: "Location"
+      home_town: "Home Town"
+      interests: "Interests"
+      recent_activities_html: "Recent<br/>Activities"
+      recent_activities: "Recent Activities"
+
+      placeholder:
+        biography: "Enter a brief biography of yourself"
+        first_name: "Enter Your First Name"
+        last_name: "Enter Your Last Name"
+        birthday:
+          date: "DD"
+          month: "MMM"
+          year: "YYYY"
+
+        current_location: "Enter Current Location"
+        home_town: "Enter Your Home Town"
+        interests: "Enter Your Interests"
+        recent_activities: "Enter Your Recent Activities"
+
+    professional:
+      title: "Professional"
+      work_experience: "Work Experience"
+      education: "Education"
+      current: "Current"
+
+      buttons:
+        work_experience:
+          add: "Add Experience"
+        education:
+          add: "Add Education"
+
+      format:
+        work_experience:
+          full_description: "%{description} at %{company}"
+          only_description: "%{description}"
+          only_company: "%{company}"
+          full_duration: "%{from_date} - %{to_date}"
+          date: "%b %Y"
+
+        education:
+          full_description: "%{study_field} from %{school}"
+          only_school: "%{school}"
+          only_study_field: "%{study_field}"
+          full_duration: "%{from_date} - %{to_date}"
+          date: "%b %Y"
+
+      message:
+        work_experience:
+          no_details: "No job description/position, company name added yet"
+          no_duration: "No dates added yet"
+          date_unavailable: "Unavailable"
+
+        education:
+          no_details: "No school name, study field/degree added yet"
+          no_duration: "No dates added yet"
+          date_unavailable: "Unavailable"
+
+      placeholder:
+        work_experience:
+          company: "Company"
+          description: "Title, Skills, etc"
+          from_date: "Start"
+          to_date: "End"
+
+        education:
+          school: "School"
+          major_study_field: "Major or Field of Study"
+          from_date: "Start"
+          to_date: "End"
+
+    affiliations:
+      title: "Affiliations"
+
+  mquest:
+    no_mquests_received: "Your inbox is empty!"
+    no_users_available: "No users available in the system, except you!."
+    reply_link: "Reply"
+    mark_as_read_link: "Mark as Read"
+    mark_as_unread_link: "Mark as Unread"
+    send_message_link: "Mquest"
+    send_message_btn: "Send"
+
+    error:
+      could_not_show_mquest: "Could not process your request.Required sender and receiver details found missing in the request."
+      inexistent_user: "Could not process your request.No user found in the system having id %{user_id}"
+
+    format:
+      datetime: "%b %d, %Y %H:%M:%S"
+      received_message_header: "On %{message_datetime}, %{sender_name} wrote:"
+
+    placeholder:
+      message_box: "Write your message here"
+
+  search:
+    search_btn: "Search"
+    placeholder:
+      search_input: "Search by name or email"
+    results:
+      messages:
+        no_results_found: "No results found"
+      user:
+        followers: "Followers: %{followers_count}"
+        following: "Following: %{following_count}"
+
+  welcome_page:
+    sign_up_form:
+      title: "Sign Up"
+      submit_btn: "Sign Up"
+
+    sign_in_form:
+      submit_btn: "Login"
+
+    sign_in_with_linkedin_btn: "Sign In with LinkedIn"
+
+    # References:
+    # 1. http://stackoverflow.com/questions/5415052/multiline-i18n-in-rails-3
+    # 2. http://en.wikipedia.org/wiki/YAML
+    # 3. http://yaml-online-parser.appspot.com/
+    welcome_text: |
+      <ul id="mycarousel" class="jcarousel-skin-tango">
+        <li>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages.
+          </p>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.
+          </p>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+            to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
+          <p>
+        </li>
+        <li>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages.
+          </p>
+        </li>
+        <li>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages.
+          </p>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages.
+          </p>
+        </li>
+        <li>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages.
+          </p>
+        </li>
+        <li>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages.
+          </p>
+          <p>
+             Lorem Ipsum is simply dummy text
+          </p>
+        </li>
+      </ul>
+
+  footer:
+    copyright_text: "Mentee Mentor Corporation © 2013 | Copyright"
+    links:
+      privacy_policy: "Privacy Policy"
+      about: "About"
+      contact_us: "Contact Us"
 
   user:
+    welcome_text: "Welcome, %{user_name}!"
     email: "Email"
-
-    profile:
-      edit: "Edit Profile"
-      update: "Update Profile"
-      first_name: "First Name"
-      last_name: "Last Name"
-      birthday: "Birthday"
-      hometown: "HomeTown"
-      current_location: "Current Location"
-
+    set_new_password: "Please set a new password."
+    password: "Password"
+    confirm_password: "Confirm Password"
+    password_leave_blank_text: "(leave blank if you don't want to change it)"
 
     follow:
       title: "Follow"
       following: "Following"
+      connected: "Connected"
+      followed_by: "Followed By"
+      disconnect: "Disconnect"
+      unfollow: "Unfollow"
+
       errors:
         could_not_process_follow: "Could not process follow request.Either or all required data[id, follow_user_id] found missing."
         no_user_found: "Could not process follow request.Either or both of the users specified by id %{user_id}, %{follow_user_id} not found in the system"
@@ -35,11 +273,8 @@ en:
         already_following: 'You are already following %{follow_user_name}'
 
 
-    mquests:
-      no_users_available: "No users available in the system, except you!."
-      users: "Users"
-
     mboard:
+      links: "Your Saved Links"
       errors:
         could_not_fetch_dialogues: "Could not fetch dialogues.Either or all required data[id, with] found missing."
 
@@ -54,3 +289,20 @@ en:
         title_placeholder: "Dialogue Title"
         send_message_caption: "Send Message"
 
+    resource:
+      resource_content_placeholder: "Paste Link/Video/Article URL"
+      save_resource_caption: "Save Resource"
+
+      notices:
+        success: "%{content_type} Added Successfully."
+      errors:
+        user_friendly_message: "Please paste a link to save it"
+
+  external_login:
+    notices:
+    disconnect: "Successfully disconnected %{user_name} from %{provider}"
+
+    errors:
+      user_friendly_message: "Sorry, could not sign-in you to the system due to some technical problem."
+      account_associated_with_another_user: "Sorry could not connect you because the %{provider} account is already associated with other user."
+      already_connected: "You have already connected to %{provider} account. If you would like to change account, you'll need to disconnect earlier %{provider} account first."

@@ -3,25 +3,18 @@ class ApplicationController < ActionController::Base
 
   # Reference: https://github.com/plataformatec/devise/wiki/How-to:-redirect-to-a-specific-page-on-successful-sign-in-and-sign-out
   def after_sign_in_path_for(resource)
-    if params[:user][:mquest_token].present?
-      accept_mquest_path(token: params[:user][:mquest_token])
-    else
-      user_home_path
-    end
+     user_home_path
   end
 
-  def after_sign_up_path_for(resource)
-    user_home_path
-  end
-
-  def valid_role?(role)
-    %w(mentee mentor).include?(role)
+  def set_message_threads_containing_received_messages(user)
+    return [] if user.nil?
+    @message_threads_containing_received_messages = user.message_threads_containing_received_messages
   end
 
   private
 
   def require_user
-    redirect_to root_path(token: params[:token]) unless user_signed_in?
+    redirect_to root_path unless user_signed_in?
   end
 
 end

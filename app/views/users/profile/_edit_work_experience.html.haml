@@ -1,0 +1,25 @@
+- experience_id = nil
+- company = nil
+- description = nil
+- from_date = nil
+- to_date = nil
+
+- if !local_assigns[:experience].nil?
+  - experience_id = experience.id
+  - company = experience.company
+  - description = experience.description
+  - from_date = experience.formatted_from_date
+  - to_date = experience.formatted_to_date
+
+.education_row
+  - unless experience_id.nil?
+    = hidden_field_tag('user[profile_attributes][experiences_attributes][][id]', experience_id, class: 'experienceId')
+  = text_field_tag('user[profile_attributes][experiences_attributes][][company]', company, class: "section_profile_detail_edu", placeholder: t('profile.professional.placeholder.work_experience.company'))
+  = text_field_tag('user[profile_attributes][experiences_attributes][][description]', description, class: "section_profile_detail_edu", placeholder: t('profile.professional.placeholder.work_experience.description'))
+  = text_field_tag('user[profile_attributes][experiences_attributes][][from_date]', from_date, class: "section_profile_detail_edu_year datepicker", placeholder: t('profile.professional.placeholder.work_experience.from_date'))
+  = text_field_tag('user[profile_attributes][experiences_attributes][][to_date]', to_date, class: "section_profile_detail_edu_year datepicker", placeholder: t('profile.professional.placeholder.work_experience.to_date'))
+
+  = check_box_tag("current", "true", false, class: "top_pad")
+  = label_tag('current', t('profile.professional.current'), class: "top_pad pro_space")
+  = link_to('', '#', class: 'delete')
+

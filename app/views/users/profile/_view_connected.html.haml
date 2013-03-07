@@ -1,0 +1,13 @@
+- connected_with_users = current_user.connected_with
+
+- unless connected_with_users.empty?
+  %li
+    .section_view_profile_detail_area
+      = label_tag t('user.follow.connected')
+    %br/
+    %br/
+    %table
+      - connected_with_users.each do |user|
+        %tr
+          %td= user.name
+          %td= link_to(t('user.follow.disconnect'), '#')

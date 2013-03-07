@@ -1,0 +1,31 @@
+.section_profile_text_lft
+  = render partial: "users/profile/picture"
+
+  %ul#sidenav
+    %li= link_to(t('profile.personal.title'), "#", class: 'profileMenuItem', rel: 'personalProfileLink')
+    %li= link_to(t('profile.professional.title'), "#", class: 'profileMenuItem', rel: 'professionalProfileLink')
+    -# Affiliations page is yet unavailable, thus not displaying the link: Jignesh Gohel, Feb 23, 2013
+    -# TODO enable it when affiliations page available
+    -#%li= link_to(t('profile.affiliations.title'), "#", class: 'profileMenuItem', rel: 'affiliationsProfileLink')
+
+.section_profile_text_rgt
+  = form_for(@user, html: { id: 'editUserProfileForm' }) do |f|
+    - if @user.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@user.errors.count, 'error')} prohibited this profile from being saved:"
+        - @user.errors.full_messages.each do |msg|
+          %p= msg
+
+    = render partial: "users/profile/edit_personal_details"
+    = render partial: "users/profile/edit_professional_details"
+
+    %div
+      %button.profile_save_button.blue(type="submit" id="saveProfileBtn")= t('profile.save_btn')
+
+    %div
+      %button.button.blue.rlt(id='profileNextBtn')= t('profile.next_btn')
+
+  = render partial: "users/profile/work_experience_template"
+  = render partial: "users/profile/education_template"
+  = render partial: "users/profile/remove_experience_template"
+  = render partial: "users/profile/remove_education_template"

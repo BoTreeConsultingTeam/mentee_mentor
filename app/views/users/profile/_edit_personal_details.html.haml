@@ -1,0 +1,73 @@
+- profile = @user.profile
+- profile_id = nil
+- first_name = nil
+- last_name = nil
+- birthday = nil
+- hometown = nil
+- current_location = nil
+- biography = nil
+- gender = nil
+- interests = nil
+- recent_activities = nil
+
+- unless profile.nil?
+  - profile_id = profile.id
+  - first_name = profile.first_name
+  - last_name = profile.last_name
+  - birthday = profile.birthday
+  - hometown = profile.hometown
+  - current_location = profile.current_location
+  - biography = profile.biography
+  - gender = profile.gender
+  - interests = profile.interests
+  - recent_activities = profile.recent_activities
+
+.section_profile_detail_form(id="personalProfileSection")
+  - unless profile_id.nil?
+    = hidden_field_tag('user[profile_attributes][id]', profile_id)
+
+  %ul
+    %li
+      .section_profile_detail_area
+        = label_tag t('profile.personal.biography')
+        = text_area_tag('user[profile_attributes][biography]', biography, class: "section_profile_detail_form_big_box", placeholder: t('profile.personal.placeholder.biography'))
+
+    %li
+      .section_profile_detail_sub_area
+        = label_tag(t('profile.personal.first_name'), nil, class: "section_profile_height")
+        = text_field_tag('user[profile_attributes][first_name]', first_name, class: "section_profile_detail_form_big_medium", placeholder: t('profile.personal.placeholder.first_name'))
+
+      .section_profile_detail_sub_area_rgt
+        = label_tag(t('profile.personal.last_name'), nil, class: "section_profile_height")
+        = text_field_tag('user[profile_attributes][last_name]', last_name, class: "section_profile_detail_form_big_medium", placeholder: t('profile.personal.placeholder.last_name'))
+
+    %li
+      .section_profile_detail_sub_area
+        = label_tag(t('profile.personal.gender'), nil, class: "section_profile_height")
+        = select_tag('user[profile_attributes][gender]', options_for_select( [ ["Male", "male"], ["Female", "female"] ], selected: gender ), prompt: "- Select -", class: "section_profile_detail_form_big_small" )
+
+      .section_profile_detail_sub_area_rgt
+        = label_tag(t('profile.personal.birth_date'), nil, class: "section_profile_height")
+        - select_date_options = { prefix: "user[profile_attributes][birthday]", use_short_month: true, start_year: (Time.now.year - 50), end_year: (Time.now.year), prompt: { day: t('profile.personal.placeholder.birthday.date'), month: t('profile.personal.placeholder.birthday.month'), year: t('profile.personal.placeholder.birthday.year') }, default: birthday }
+        -# Here date_select helper didn't came to use because it was not showing the user's saved date selected by default
+        -# Got the reference of using select_date helper from here: http://railsforum.com/viewtopic.php?id=2384
+        = select_date(birthday, select_date_options, class: "section_profile_detail_form_little_small")
+
+    %li
+      .section_profile_detail_sub_area
+        = label_tag(t('profile.personal.location'), nil, class: "section_profile_height")
+        = text_field_tag('user[profile_attributes][current_location]', current_location, class: "section_profile_detail_form_big_medium", placeholder: t('profile.personal.placeholder.current_location'))
+
+      .section_profile_detail_sub_area_rgt
+        = label_tag(t('profile.personal.home_town'), nil, class: "section_profile_height")
+        = text_field_tag('user[profile_attributes][hometown]', hometown, class: "section_profile_detail_form_big_medium", placeholder: t('profile.personal.placeholder.home_town'))
+
+    %li
+      .section_profile_detail_area
+        = label_tag(t('profile.personal.interests'))
+        = text_area_tag('user[profile_attributes][interests]', interests, class: "section_profile_detail_form_big_box", placeholder: t('profile.personal.placeholder.interests'))
+
+    %li
+      .section_profile_detail_area
+        = label_tag('recent_activities', t('profile.personal.recent_activities_html').html_safe)
+        = text_area_tag('user[profile_attributes][recent_activities]', recent_activities, class: "section_profile_detail_form_big_box", placeholder: t('profile.personal.placeholder.recent_activities'))
