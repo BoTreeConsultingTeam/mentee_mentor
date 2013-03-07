@@ -19,7 +19,7 @@
 
     .quest_poster-thumbs-name
       %p=  display_user_name
-      = render partial: "shared/follow_link", locals: { follow_user: message_sender }
+      = render partial: "shared/follow_link", locals: { follow_user: display_user }
 
     #message_status(style='display:none')
     .mquest_reply{ style: 'display:none'}
