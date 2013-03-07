@@ -1,4 +1,4 @@
-- connected_with_users = current_user.connected_with
+- connected_with_users = @user.connected_with
 
 - unless connected_with_users.empty?
   %li
@@ -7,7 +7,12 @@
     %br/
     %br/
     %table
-      - connected_with_users.each do |user|
-        %tr
-          %td= user.name
-          %td= link_to(t('user.follow.disconnect'), '#')
+      - if current_user_and_user_same?(@user)
+        - connected_with_users.each do |user|
+          %tr
+            %td= user.name
+            %td= link_to(t('user.follow.disconnect'), '#')
+      - else
+        - connected_with_users.each do |user|
+          %tr
+            %td= user.name

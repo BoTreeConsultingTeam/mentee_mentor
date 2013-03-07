@@ -140,6 +140,9 @@ en:
     placeholder:
       message_box: "Write your message here"
 
+  mboard:
+    title: "Mboard"
+
   search:
     search_btn: "Search"
     placeholder:
@@ -147,9 +150,12 @@ en:
     results:
       messages:
         no_results_found: "No results found"
+        profile_not_updated: "Details unavailable"
+
       user:
         followers: "Followers: %{followers_count}"
         following: "Following: %{following_count}"
+
 
   welcome_page:
     sign_up_form:

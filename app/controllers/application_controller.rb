@@ -6,11 +6,6 @@ class ApplicationController < ActionController::Base
      user_home_path
   end
 
-  def set_message_threads_containing_received_messages(user)
-    return [] if user.nil?
-    @message_threads_containing_received_messages = user.message_threads_containing_received_messages
-  end
-
   private
 
   def require_user

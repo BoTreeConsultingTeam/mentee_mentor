@@ -108,19 +108,7 @@ class UsersController < ApplicationController
     if @user.nil?
       @error_message = t('dashboard.update_status.user_id_missing')
     else
-      @user_current_status = @user.status
-
-      if @user_current_status.nil?
-        @user_current_status = @user.create_status(params[:status])
-      else
-        received_status_content = params[:status][:content]
-        if received_status_content.present?
-          @user_current_status.update_attribute(:content, received_status_content)
-        else
-          @user_current_status.delete
-        end
-      end
-
+      @user_current_status = @user.statuses.create(params[:status])
       @status_update_message = t('dashboard.update_status.messages.success')
     end
 
@@ -169,7 +157,6 @@ class UsersController < ApplicationController
       message = t('user.follow.errors.could_not_process_follow')
     end
 
-    Rails.logger.debug message
     redirect_to :back, flash: { notice: message}
   end
 
@@ -177,23 +164,6 @@ class UsersController < ApplicationController
   def mboard
     @users = User.where("id != ?", current_user.id)
     render file: "users/mboard/index"
-  end
-
-  #GET /users/:id/all_dialogues/:with
-  def all_dialogues
-    with_user_id = params[:with]
-
-    if with_user_id.present?
-      @sender_id = @user.id
-      @receiver_id = with_user_id
-      @message_threads_exchanged = @user.message_threads_exchanged_with(with_user_id)
-      render file: "users/dialogues/all_dialogues"
-      return
-    else
-      message = t('user.mboard.errors.could_not_fetch_dialogues')
-      Rails.logger.error message
-    end
-    redirect_to mboard_user_path(@user), flash: { error: message }
   end
 
   private

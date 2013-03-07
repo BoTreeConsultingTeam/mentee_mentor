@@ -8,12 +8,20 @@
       .section_view_profile_slider_lft
       %ul
         - users.each do |user|
+          - user_name = user.name
           %li<
-            = image_tag(user_profile_picture_path(user), width: "70", height: "70", alt: user.name)
+            - if photo_available?(user)
+              = image_tag(user_profile_picture_path(user), width: "70", height: "70", alt: user_name, title: user_name)
+            - else
+              = user.name
       .section_view_profile_slider_rgt
     - else
       .section_view_profile_following
       %ul
         - users.each do |user|
+          - user_name = user.name
           %li<
-            = image_tag(user_profile_picture_path(user), width: "70", height: "70", alt: user.name)
+            - if photo_available?(user)
+              = image_tag(user_profile_picture_path(user), width: "70", height: "70", alt: user_name, title: user_name)
+            - else
+              = user.name

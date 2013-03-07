@@ -3,16 +3,22 @@
 
   - unless most_recent_message_in_thread.nil?
     - message_datetime = most_recent_message_in_thread.datetime
+    - message_receiver = most_recent_message_in_thread.receiver
     - message_sender = most_recent_message_in_thread.sender
     - message_sender_id = message_sender.id
     - is_message_sender_current_user = (message_sender_id == current_user.id)
-    - message_sender_name = ( is_message_sender_current_user ? "You" : message_sender.name )
-    -# message_unacknowledged = most_recent_message_in_thread.unacknowledged?
+    - if is_message_sender_current_user
+      - display_user = message_receiver
+    - else
+      - display_user = message_sender
+
+    - display_user_name = display_user.name
+
     .quest_poster-thumbs
-      = image_tag(user_profile_picture_path(message_sender), width: "40px", height: "40px", alt: message_sender_name)
+      = image_tag(user_profile_picture_path(display_user), width: "40px", height: "40px", alt: display_user_name, title: display_user_name)
 
     .quest_poster-thumbs-name
-      %p=  message_sender_name
+      %p=  display_user_name
       = render partial: "shared/follow_link", locals: { follow_user: message_sender }
 
     #message_status(style='display:none')
@@ -37,9 +43,4 @@
 
     .quest_poster-thumbs-content-hours
       %p= formatted_message_datetime(message_datetime)
-      = link_to(t('mquest.reply_link'), "#", class: 'mquest_reply_link')
-      -# unless is_message_sender_current_user
-        - if message_unacknowledged
-          = link_to(t('mquest.mark_as_read_link'), "#")
-        - else
-          = link_to(t('mquest.mark_as_unread_link'), "#")
+      = link_to(t('mquest.reply_link'), "#", class: 'mquest_reply_link', title: t('mquest.reply_link'))

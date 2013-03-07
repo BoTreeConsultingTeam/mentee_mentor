@@ -13,6 +13,8 @@ class SearchesController < ApplicationController
 
   def search_users(search_term)
     arel = User.includes(:profile).joins(:profile)
+    # Reference: http://stackoverflow.com/questions/4252349/rail-3-where-condition-using-not-null
+    arel = arel.where(User.arel_table[:id].not_eq(current_user.id))
 
     unless search_term.blank?
       query_params = Array.new(8, "%#{search_term}%")
@@ -34,8 +36,11 @@ USERS_WHERE_CLAUSE
 PROFILES_WHERE_CLAUSE
 
       sql = "#{users_where_clause} OR #{profile_where_clause}"
-      arel = arel.where(sql, *query_params).order("users.first_name ASC, users.last_name ASC, profiles.first_name ASC, profiles.last_name ASC")
+      arel = arel.where(sql, *query_params)
     end
+
+    arel = arel.order("users.first_name ASC, users.last_name ASC, profiles.first_name ASC, profiles.last_name ASC")
+
     arel
   end
 

@@ -46,7 +46,6 @@ jQuery(function() {
   if(editProfileView) {
     makePersonalProfileActiveByDefault();
     bindClickToProfileSectionAndActivateSelectedProfileSection();
-    bindClickToNextBtnOnProfileWizard();
   }
 
   bindFileUploadToUserPicture();
@@ -67,29 +66,6 @@ function bindFileUploadToUserPicture() {
         userPicture.attr('src', response);
       }
     });
-  }
-}
-
-function bindClickToNextBtnOnProfileWizard() {
-  var nextBtn = $('#editUserProfileForm #profileNextBtn');
-
-  if(nextBtn.length > 0) {
-    nextBtn.live('click', function() {
-      var activeProfileSection = $('#editProfile #sidenav .profileMenuItem').filter(function() {
-                                    return $(this).hasClass('active');
-                                  }).first().attr('rel');
-
-      var activateLink = '';
-      if (activeProfileSection == 'personalProfileLink') {
-         activateLink = 'professionalProfileLink';
-      } else if (activeProfileSection == 'professionalProfileLink') {
-         activateLink = 'personalProfileLink';
-      }
-
-      var linkSelector = 'a[rel="' + activateLink + '"]'
-      $(linkSelector).trigger('click');
-      return false;
-    })
   }
 }
 

@@ -1,16 +1,8 @@
 .section_content_bg
   .sub_wrapper
-    .quest_section_content_text
-      - if !@message_threads_containing_received_messages.empty?
-        %ul
-          - @message_threads_containing_received_messages.each do |message_thread|
-            %li{ id: "#{message_thread.id}_message_thread_container" }
-              = render partial: "mquests/messages_in_thread", locals: { message_thread: message_thread }
+    .quest_section_content_text(id='mquestsThreadsMainContainer')
+      = render partial: "mquests/list_all_threads"
 
-      - else
-        %p(align='center' style="font-size: 31px;")
-          %br/
-          = t('mquest.no_mquests_received')
 
 
 

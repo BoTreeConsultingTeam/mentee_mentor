@@ -4,18 +4,24 @@
    bindClickToSendOrReplyMquestLink = function(link_selector) {
       var links = $(link_selector);
       links.click(function() {
+        var linkTitleAttr = $(this).attr('title');
         var mquestForm = $(this).parent().siblings('.mquest_reply');
         var mquestFormVisible = mquestForm.is(':visible');
 
         if(mquestFormVisible) {
+          // Reset the text area for writing message
+          mquestForm.find("form #message_content").val('');
+
           var message_status = mquestForm.siblings('#message_status');
           message_status.html(''); // Reset the message status container
           message_status.hide();
           mquestForm.hide();
           mquestFormVisible = false;
+          $(this).text(linkTitleAttr);
         } else {
           mquestForm.show();
           mquestFormVisible = true;
+          $(this).text('Cancel');
         }
 
         // For handling styling of displayed messages of a thread on MQuests page

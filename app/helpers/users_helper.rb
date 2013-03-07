@@ -14,8 +14,16 @@ module UsersHelper
     picture_path
   end
 
+  def photo_available?(user)
+    !(user_profile_picture_path(user).include?('no-user-picture.png'))
+  end
+
   def formatted_timeline_status_datetime(datetime)
     return '' unless datetime.present?
     time_ago_in_words(datetime, true)
+  end
+
+  def current_user_and_user_same?(user)
+    (current_user.id == user.id)
   end
 end
