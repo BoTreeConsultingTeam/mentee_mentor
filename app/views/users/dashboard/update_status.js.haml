@@ -3,12 +3,17 @@
   if(errorMessage != '') {
     alert(errorMessage);
   } else {
-    $("#update_status_container #status_area").val("#{@user_current_status.content}");
-    var statusUpdateMessageContainer = $("#update_status_container #update_status_message_container");
-    var statusUpdateMessageSpan = statusUpdateMessageContainer.find('span');
-    statusUpdateMessageSpan.text("#{@status_update_message}");
-    statusUpdateMessageContainer.show();
-    statusUpdateMessageContainer.fadeOut(5000);
+    $("#update_status_container #status_content").val("");
+    // Not showing the status update success message anymore as it is now
+    // displayed under timeline when updated.However keeping it commented
+    // out instead of removing it so that in future if required displaying
+    // a success message can be restored easily
+    // Jignesh Gohel, Mar 07, 2013
+    //var statusUpdateMessageContainer = $("#update_status_container #update_status_message_container");
+    //var statusUpdateMessageSpan = statusUpdateMessageContainer.find('span');
+    //statusUpdateMessageSpan.text("#{@status_update_message}");
+    //statusUpdateMessageContainer.show();
+    //statusUpdateMessageContainer.fadeOut(5000);
 
     var timelineHTML = "#{escape_javascript(render( partial: 'users/dashboard/timeline' )) }"
     $('#timelineMainContainer').html(timelineHTML);

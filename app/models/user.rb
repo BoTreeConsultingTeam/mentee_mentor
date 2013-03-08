@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   has_many :user_resources
   has_many :resources, :through => :user_resources
 
-  has_one :status, dependent: :destroy
+  has_many :statuses, dependent: :destroy, order: "statuses.updated_at DESC"
 
   scope :unread_messages, lambda { |sender_id|
      joins(:messages_received).where(messages: { sender_id: sender_id }).reverse_order_by_date
@@ -65,11 +65,11 @@ class User < ActiveRecord::Base
   end
 
   def is_followed_by
-    (self.followed_by - self.connected_with)
+    self.followed_by
   end
 
   def is_following
-    (self.follows - self.connected_with)
+    self.follows
   end
 
   def can_follow
@@ -78,6 +78,10 @@ class User < ActiveRecord::Base
 
   def is_following?(user)
     self.is_following.collect { |followed_user| followed_user.id }.include?(user.id)
+  end
+
+  def is_connected_with?(user)
+    self.connected_with.collect { |connected_user| connected_user.id }.include?(user.id)
   end
 
   def messages_received_from_user(sender_id, limit=0, order='ASC')
@@ -122,11 +126,26 @@ class User < ActiveRecord::Base
     MessageThread.where(id: message_threads_id_arr).order("updated_at DESC")
   end
 
+  def message_threads
+    received_messages_id_arr = self.messages_received.select("messages.id").collect { |received_message| received_message.id }
+    sent_messages_id_arr = self.messages_sent.select("messages.id").collect { |sent_message| sent_message.id }
+    all_messages_id_arr = (received_messages_id_arr + sent_messages_id_arr)
+    MessageThread.joins(:messages).where(messages: { id: all_messages_id_arr }).order('message_threads.updated_at DESC').uniq
+  end
+
   def messages_received_in_thread(message_thread, limit=0)
     return [] if message_thread.nil?
     arel = message_thread.messages.where(receiver_id: self.id)
     arel.limit(limit) if limit > 0
     arel.to_a
+  end
+
+  def unfollow(user_id)
+    followed_following_obj = nil
+    if self.follows_users.exists?(followed_id: user_id)
+      followed_following_obj = self.follows_users.find_by_followed_id(user_id).delete
+    end
+    followed_following_obj
   end
 
   def name

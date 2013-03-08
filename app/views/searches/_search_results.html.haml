@@ -1,11 +1,12 @@
 - if !@users.empty?
   %ul.thread-list
     - @users.each do |user|
-      %li{ id: "#{user.id}_mquest_send_container" }
+      %li{ id: "#{user.id}_mquest_send_container", class: "searchResultRow" }
         .poster-thumbs-search
           = image_tag(user_profile_picture_path(user), width: "40px", height: "40px", alt: user.name)
         .poster-thumbs-name-search
-          %p= user.name
+          %p<
+            = link_to(user.name, profile_user_path(user))
 
           - followers_count = user.is_followed_by.size
           - if followers_count > 0
@@ -24,9 +25,12 @@
           = render partial: "mquests/send_mquest_form", locals: { receiver: user }
 
         .poster-thumbs-content-search-follow<
-          = render partial: "shared/follow_link", locals: { follow_user: user }
-          - if (user.id != current_user.id)
-            %br
-            = render partial: "shared/mquest_link"
+          - if current_user.is_connected_with?(user)
+            = render partial: "shared/mboard_link", locals: { connected_user: user }
+          - else
+            = render partial: "shared/follow_link", locals: { follow_user: user }
+            - if (user.id != current_user.id)
+              %br
+              = render partial: "shared/mquest_link"
 - else
   %p= t('search.results.messages.no_results_found')

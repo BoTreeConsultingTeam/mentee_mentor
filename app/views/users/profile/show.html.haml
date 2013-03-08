@@ -15,7 +15,8 @@
         %span= current_location
         %span= hometown
 
-      .view_profe= link_to(t('profile.edit_link'), profile_edit_user_path(@user))
+      - if current_user_and_user_same?(@user)
+        .view_profe= link_to(t('profile.edit_link'), profile_edit_user_path(@user))
 
       -#.view_profe= t('profile.professional.title')
       -# Affiliations page is yet unavailable, thus not displaying the link: Jignesh Gohel, Feb 23, 2013
@@ -29,7 +30,8 @@
 
           = render partial: "users/profile/view_professional_details"
 
-          = render partial: "users/profile/view_follow"
+          - if current_user_and_user_same?(@user)
+            = render partial: "users/profile/view_follow"
 
           = render partial: "users/profile/view_following"
 

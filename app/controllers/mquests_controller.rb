@@ -8,7 +8,7 @@ class MquestsController < ApplicationController
 
   # GET /users/:user_id/mquests
   def index
-    set_message_threads_containing_received_messages(current_user)
+    set_current_user_message_threads
     @mquest_active = true
   end
 
@@ -25,6 +25,7 @@ class MquestsController < ApplicationController
        format.js {
          @receiver = @message.receiver
          @sender = @message.sender
+         set_current_user_message_threads
          render file: "mquests/show_message_status"
        }
     end
@@ -72,5 +73,9 @@ class MquestsController < ApplicationController
 
   def find_message
     @message = Message.find_by_id(params[:id])
+  end
+
+  def set_current_user_message_threads
+    @current_user_message_threads = current_user.message_threads
   end
 end

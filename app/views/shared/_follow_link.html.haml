@@ -1,6 +1,6 @@
 - unless local_assigns[:follow_user].nil?
   - if current_user.id != follow_user.id
     - if current_user.is_following?(follow_user)
-      =link_to(t('user.follow.unfollow'), '#')
+      =link_to(t('user.follow.unfollow'), unfollow_user_path(current_user, following_user_id: follow_user), method: :delete)
     - else
       =link_to(t('user.follow.title'), follow_user_path(id: current_user.id, follow_user_id: follow_user.id), method: :post)

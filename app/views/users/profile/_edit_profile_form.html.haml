@@ -20,10 +20,7 @@
     = render partial: "users/profile/edit_professional_details"
 
     %div
-      %button.profile_save_button.blue(type="submit" id="saveProfileBtn")= t('profile.save_btn')
-
-    %div
-      %button.button.blue.rlt(id='profileNextBtn')= t('profile.next_btn')
+      %button.button.blue.rlt(type="submit" id='saveProfileBtn')= t('profile.save_btn')
 
   = render partial: "users/profile/work_experience_template"
   = render partial: "users/profile/education_template"
