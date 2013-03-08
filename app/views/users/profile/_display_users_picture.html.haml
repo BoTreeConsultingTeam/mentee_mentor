@@ -1,4 +1,6 @@
 - unless(users.nil? or users.empty?)
+  - show_unfollow_link = (local_assigns[:show_unfollow_link].nil? ? false : show_unfollow_link)
+  - show_unfollow_link = false unless current_user_and_user_same?(@user)
   .section_view_profile_detail_area
     = label_tag label_text
 
@@ -6,22 +8,8 @@
     - show_slider = (users.size > 8)
     - if show_slider
       .section_view_profile_slider_lft
-      %ul
-        - users.each do |user|
-          - user_name = user.name
-          %li<
-            - if photo_available?(user)
-              = image_tag(user_profile_picture_path(user), width: "70", height: "70", alt: user_name, title: user_name)
-            - else
-              = user.name
+      = render partial: "users/profile/render_users_pictures", locals: { users: users, show_unfollow_link: show_unfollow_link  }
       .section_view_profile_slider_rgt
     - else
       .section_view_profile_following
-      %ul
-        - users.each do |user|
-          - user_name = user.name
-          %li<
-            - if photo_available?(user)
-              = image_tag(user_profile_picture_path(user), width: "70", height: "70", alt: user_name, title: user_name)
-            - else
-              = user.name
+      = render partial: "users/profile/render_users_pictures", locals: { users: users, show_unfollow_link: show_unfollow_link }

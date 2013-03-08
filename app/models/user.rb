@@ -140,6 +140,14 @@ class User < ActiveRecord::Base
     arel.to_a
   end
 
+  def unfollow(user_id)
+    followed_following_obj = nil
+    if self.follows_users.exists?(followed_id: user_id)
+      followed_following_obj = self.follows_users.find_by_followed_id(user_id).delete
+    end
+    followed_following_obj
+  end
+
   def name
     unless profile.nil?
       first_name = profile.first_name

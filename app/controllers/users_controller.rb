@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_filter :require_user, except: [:welcome]
 
-  before_filter :fetch_user, only: [:show, :change_password, :edit, :upload_picture, :update, :update_status, :mboard, :all_dialogues]
+  before_filter :fetch_user, only: [:show, :change_password, :edit, :upload_picture, :update, :update_status, :mboard]
 
   def welcome
     # On the welcome page itself Sign Up page is rendered.
@@ -158,6 +158,37 @@ class UsersController < ApplicationController
     end
 
     redirect_to :back, flash: { notice: message}
+  end
+
+  #DELETE /users/:id/unfollow/:following_user_id(.:format)
+  #DELETE /users/:id/disconnect_from/:connected_user_id(.:format)
+  def unfollow
+    user_id = params[:id]
+    following_user_id = (params[:following_user_id] || params[:connected_user_id])
+
+    if (user_id.present? and following_user_id.present?)
+       user = User.find_by_id(user_id)
+       following_user = User.find_by_id(following_user_id)
+
+       if (!user.nil? and !following_user.nil?)
+         if !user.follows.exists?(following_user)
+           message = t('user.unfollow.messages.already_not_following', {following_user_name: following_user.name})
+         else
+           followed_following_obj = user.unfollow(following_user_id)
+           if followed_following_obj.nil?
+             message = t('user.unfollow.messages.failure', { following_user_name: following_user.name })
+           else
+             message = t('user.unfollow.messages.success', { following_user_name: following_user.name })
+           end
+         end
+       else
+        message = t('user.unfollow.errors.no_user_found', { user_id: user_id, following_user_id: following_user_id })
+       end
+    else
+      message = t('user.unfollow.errors.could_not_process_unfollow')
+    end
+
+    redirect_to :back, flash: { notice: message }
   end
 
   #GET /users/:id/mboard

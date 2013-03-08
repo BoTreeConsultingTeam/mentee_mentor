@@ -11,7 +11,7 @@
         - connected_with_users.each do |user|
           %tr
             %td= user.name
-            %td= link_to(t('user.follow.disconnect'), '#')
+            %td= link_to(t('user.follow.disconnect'), disconnect_from_user_path(@user, connected_user_id: user), method: :delete)
       - else
         - connected_with_users.each do |user|
           %tr

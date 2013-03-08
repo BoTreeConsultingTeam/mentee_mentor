@@ -1,4 +1,4 @@
 - following_users = @user.is_following
 - unless following_users.empty?
   %li
-    = render partial: "users/profile/display_users_picture", locals: { users:  following_users, label_text: t('user.follow.following') }
+    = render partial: "users/profile/display_users_picture", locals: { users: following_users, label_text: t('user.follow.following'), show_unfollow_link: true }

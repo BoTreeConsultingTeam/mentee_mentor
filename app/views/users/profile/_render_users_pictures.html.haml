@@ -1,0 +1,12 @@
+- unless(users.nil? or users.empty?)
+  %ul
+    - users.each do |user|
+      - user_name = user.name
+      %li<
+        - if photo_available?(user)
+          = image_tag(user_profile_picture_path(user), width: "70", height: "70", alt: user_name, title: user_name)
+        - else
+          = user.name
+
+        - if show_unfollow_link
+          =link_to(t('user.follow.unfollow'), unfollow_user_path(@user, following_user_id: user), method: :delete)

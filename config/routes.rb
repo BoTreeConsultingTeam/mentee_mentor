@@ -23,6 +23,8 @@ MentorMentee::Application.routes.draw do
       put "change_password" => "users#change_password"
       get "mboard"
       post "follow/:follow_user_id" => "users#follow", as: :follow
+      delete "unfollow/:following_user_id" => "users#unfollow", as: :unfollow
+      delete "disconnect_from/:connected_user_id" => "users#unfollow", as: :disconnect_from
     end
 
     resources :mquests, only: [:index, :create]
