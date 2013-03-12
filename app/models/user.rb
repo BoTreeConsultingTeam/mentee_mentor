@@ -56,6 +56,10 @@ class User < ActiveRecord::Base
     self.id
   end
 
+  def most_recent_status
+    self.statuses.first
+  end
+
   def other_users_except_me
     User.where("id != ?", self.id)
   end

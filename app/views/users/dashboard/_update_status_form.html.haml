@@ -2,12 +2,7 @@
   %h2= t('dashboard.update_status.title')
 .update_status_wrap
   .img_box
-    = image_tag(current_user_profile_picture_path, height: 86, width: 86)
+    = image_tag(current_user_profile_picture_path, height: 60, width: 60)
     %p= current_user.name
 
-  #update_status_container.update_right
-    = form_tag(update_status_user_path(current_user), remote: true) do
-      = text_area_tag('status[content]')
-      %div(style='display:none' id='update_status_message_container')
-        %span
-      = submit_tag t('dashboard.update_status.update_btn'), class: 'line_btn'
+  = render partial: "users/dashboard/update_status_text_area"

@@ -9,14 +9,30 @@
 .section_content_bg
   .sub_wrapper
     .section_profile_text_lft
+      .view_profile_name
+        %span= @user.name
+
       = render partial: "users/profile/picture", locals: { view_mode: true }
 
       .view_profile_name
         %span= current_location
         %span= hometown
 
-      - if current_user_and_user_same?(@user)
-        .view_profe= link_to(t('profile.edit_link'), profile_edit_user_path(@user))
+      .view_profe
+        - if current_user_and_user_same?(@user)
+          = link_to(t('profile.edit_link'), profile_edit_user_path(@user))
+
+        - following_users = @user.is_following
+        - unless following_users.empty?
+          %div
+            %br/
+            = "#{t('user.follow.following')} (#{following_users.size})"
+
+        - followed_by_users = @user.is_followed_by
+        - unless followed_by_users.empty?
+          %div
+            %br/
+            = "#{t('user.follow.followed_by')} (#{followed_by_users.size})"
 
       -#.view_profe= t('profile.professional.title')
       -# Affiliations page is yet unavailable, thus not displaying the link: Jignesh Gohel, Feb 23, 2013
@@ -24,17 +40,19 @@
       -#.view_profe= t('profile.affiliations.title')
 
     .section_view_profile_text_rgt
+      - if current_user_and_user_same?(@user)
+        .update_status_wrap
+          = render partial: "users/dashboard/update_status_text_area"
+
       .section_view_profile_detail_form
         %ul
+          %li(id='viewProfileUserMostRecentStatus')
+            = render partial: "users/profile/user_most_recent_status"
           = render partial: "users/profile/view_personal_details"
 
           = render partial: "users/profile/view_professional_details"
 
           - if current_user_and_user_same?(@user)
             = render partial: "users/profile/view_follow"
-
-          = render partial: "users/profile/view_following"
-
-          = render partial: "users/profile/view_followed_by"
 
           = render partial: "users/profile/view_connected"

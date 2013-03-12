@@ -28,6 +28,9 @@ en:
       error:
         user_id_missing: "Could not update your status.Required user id found missing in request."
 
+    placeholder:
+      status_textarea: 'Share an update'
+
     timeline:
       title: "Timeline"
       refresh_link: "Refresh"
@@ -39,21 +42,23 @@ en:
     next_btn: "Next"
     edit_link: "Edit Profile"
 
+    current_status: "Current Status"
+
     personal:
       title: "Personal"
-      biography: "Bio"
+      biography: "Capture Line"
       first_name: "First Name"
       last_name: "Last name"
       gender: "Gender"
       birth_date: "Birth Date"
-      location: "Location"
+      location: "Current Location"
       home_town: "Home Town"
       interests: "Interests"
       recent_activities_html: "Recent<br/>Activities"
       recent_activities: "Recent Activities"
 
       placeholder:
-        biography: "Enter a brief biography of yourself"
+        biography: "Enter a capture line of yourself"
         first_name: "Enter Your First Name"
         last_name: "Enter Your Last Name"
         birthday:

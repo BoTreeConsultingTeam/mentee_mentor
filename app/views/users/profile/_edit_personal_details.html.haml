@@ -30,7 +30,7 @@
     %li
       .section_profile_detail_area
         = label_tag t('profile.personal.biography')
-        = text_area_tag('user[profile_attributes][biography]', biography, class: "section_profile_detail_form_big_box", placeholder: t('profile.personal.placeholder.biography'))
+        = text_area_tag('user[profile_attributes][biography]', biography, class: "section_profile_detail_form_big_medium", placeholder: t('profile.personal.placeholder.biography'), maxlength: "94")
 
     %li
       .section_profile_detail_sub_area
@@ -55,7 +55,7 @@
 
     %li
       .section_profile_detail_sub_area
-        = label_tag(t('profile.personal.location'), nil, class: "section_profile_height")
+        = label_tag(t('profile.personal.location'), t('profile.personal.location'), class: "section_profile_height")
         = text_field_tag('user[profile_attributes][current_location]', current_location, class: "section_profile_detail_form_big_medium", placeholder: t('profile.personal.placeholder.current_location'))
 
       .section_profile_detail_sub_area_rgt

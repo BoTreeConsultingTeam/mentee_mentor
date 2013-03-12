@@ -1,0 +1,7 @@
+#update_status_container.update_right
+  = form_tag(update_status_user_path(current_user), remote: true) do
+    = text_area_tag('status[content]', nil, placeholder: t('dashboard.placeholder.status_textarea'))
+    %div(style='display:none' id='update_status_message_container')
+      %span
+    %div.update_status_btn_container
+      = submit_tag t('dashboard.update_status.update_btn'), class: 'line_btn'

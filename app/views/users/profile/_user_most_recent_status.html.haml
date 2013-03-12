@@ -1,0 +1,6 @@
+- user_most_recent_status = @user.most_recent_status
+- unless user_most_recent_status.nil?
+  .section_view_profile_detail_area
+    = label_tag t('profile.current_status')
+    %span= user_most_recent_status.content
+

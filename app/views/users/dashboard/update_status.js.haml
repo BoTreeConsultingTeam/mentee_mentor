@@ -15,6 +15,14 @@
     //statusUpdateMessageContainer.show();
     //statusUpdateMessageContainer.fadeOut(5000);
 
-    var timelineHTML = "#{escape_javascript(render( partial: 'users/dashboard/timeline' )) }"
-    $('#timelineMainContainer').html(timelineHTML);
+    var timelineMainContainer = $('#timelineMainContainer');
+    var viewProfileUserMostRecentStatus = $("#viewProfileUserMostRecentStatus");
+    if(timelineMainContainer.length > 0) {
+      var timelineHTML = "#{escape_javascript(render( partial: 'users/dashboard/timeline' )) }"
+      $('#timelineMainContainer').html(timelineHTML);
+    } else if (viewProfileUserMostRecentStatus.length > 0) {
+      var viewProfileMostRecentStatusHtml = "#{escape_javascript(render( partial: 'users/profile/user_most_recent_status' )) }"
+      viewProfileUserMostRecentStatus.html(viewProfileMostRecentStatusHtml);
+    }
+
   }

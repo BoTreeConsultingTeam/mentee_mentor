@@ -871,14 +871,14 @@ footer .footer p a:hover, .footer p em a:hover {
 }
 .update_status_wrap .update_right {
   float: left;
-  width: 850px;
+  width: 415px;
 }
 .update_status_wrap .update_right textarea {
   float: left;
-  width: 830px;
+  width: 500px;
   border: #dedede solid 1px;
   padding: 10px;
-  height: 65px;
+  height: 39px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   color: #444444;
@@ -898,6 +898,11 @@ footer .footer p a:hover, .footer p em a:hover {
   border: 1px solid #50a8db;
   text-decoration: none;
 }
+
+.update_status_wrap .update_right .update_status_btn_container {
+  margin-right: -107px;
+}
+
 .update_status_wrap .update_right .line_btn:hover {
   background: none repeat scroll 0 0 #0088cc;
   border: 1px solid #0088cc;
@@ -1373,6 +1378,12 @@ ul#sidenav li a:hover, ul#sidenav li a.active {
   height: auto;
   width: 100%;
 }
+
+.section_profile_detail_area .section_profile_detail_form_big_medium {
+  height: 20px;
+  width: 356px;
+}
+
 .section_profile_detail_sub_area {
   float: left;
   height: auto;
@@ -1498,6 +1509,11 @@ ul#sidenav li a:hover, ul#sidenav li a.active {
   padding: 0 45px 100px;
   width: 740px;
 }
+
+.section_view_profile_text_rgt .update_right {
+  margin-top: 33px;
+}
+
 .view_profile_name {
   float: left;
   margin: 10px 0 18px;
@@ -1509,9 +1525,16 @@ ul#sidenav li a:hover, ul#sidenav li a.active {
   font: bold 12px Helvetica, Arial, sans-serif;
   color: #414141;
 }
+
+.section_profile_text_lft .view_profile_name {
+  margin-bottom: 9px;
+}
+
+
 .section_view_profile_detail_form {
   float: left;
   width: 740px;
+  margin-top: 31px;
 }
 .section_view_profile_detail_form  ul {
   float: left;
