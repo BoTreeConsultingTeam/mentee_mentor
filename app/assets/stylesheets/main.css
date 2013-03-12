@@ -1504,10 +1504,11 @@ ul#sidenav li a:hover, ul#sidenav li a.active {
 }
 /*view profile*/
 .section_view_profile_text_rgt {
-  float: left;
-  height: auto;
-  padding: 0 45px 100px;
-  width: 740px;
+  background-color: #FCFCFC;
+    float: left;
+    height: auto;
+    padding: 0 45px 100px;
+    width: 530px;
 }
 
 .section_view_profile_text_rgt .update_right {
