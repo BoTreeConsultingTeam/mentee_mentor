@@ -54,48 +54,20 @@ PROFILES_WHERE_CLAUSE
   end
 
   def sort_users(users_arr)
-    users_arr.sort! do |a, b|
-      b_profile = b.profile
-      a_profile = a.profile
+    users_arr.sort_by! do |user|
+      profile = user.profile
+      profile_first_name = profile.first_name unless profile.nil?
+      user_first_name = user.first_name
+      user_email = user.email
 
-      b_first_name = b.first_name
-      a_first_name = a.first_name
-
-      b_email = b.email
-      a_email = a.email
-
-      if (b_profile.present? or a_profile.present?)
-        # Both user's profile available
-        if (b_profile.present? and a_profile.present?)
-          a_profile.first_name <=> b_profile.first_name
-        # b user's profile available and a user's profile unavailable
-        elsif (b_profile.present? and !a_profile.present?)
-          if a_first_name.present?
-            a_first_name <=> b_profile.first_name
-          else
-            a_email <=> b_profile.first_name
-          end
-        # b user's profile unavailable and a user's profile available
-        elsif (!b_profile.present? and a_profile.present?)
-          if b_first_name.present?
-            a_profile.first_name <=> b_first_name
-          else
-            a_profile.first_name <=> b_email
-          end
-        end
-      elsif (b_first_name.present? or a_first_name.present?)
-        if (b_first_name.present? and a_first_name.present?)
-          a_first_name <=> b_first_name
-        elsif (b_first_name.present? and !a_first_name.present?)
-          a_email <=> b_first_name
-        elsif (!b_first_name.present? and a_first_name.present?)
-          a_first_name <=> b_email
-        end
+      if profile_first_name
+        profile_first_name
+      elsif user_first_name
+        user_first_name
       else
-        a_email <=> b_email
+        user_email
       end
     end
   end
-
 
 end
