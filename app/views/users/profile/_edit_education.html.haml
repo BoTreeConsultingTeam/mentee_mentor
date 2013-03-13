@@ -11,9 +11,42 @@
   - from_date = education.formatted_from_date
   - to_date = education.formatted_to_date
 
+-# Scenario:
+-# 1. Education-A already exists for User_1
+-# 2. User_1 removes the Education-A row from front-end by clicking on X (remove) button.
+-# 3. Education-A gets replaced with content of /app/views/users/profile/_remove_education_template.html.haml
+-#    and is hidden i.e. two INPUT fields with name
+-#      user[profile_attributes][educations_attributes][][id] (value set to removed education's id)
+-#      user[profile_attributes][educations_attributes][][_destroy]
+-# 4. User_1 adds 2 new educations by clicking on Add Education button on front-end.This appends two row with contents
+-#    of /app/views/users/profile/_education_template.html.haml i.e. 4 INPUT fields with following names:
+-#    user[profile_attributes][educations_attributes][][company]
+-#    user[profile_attributes][educations_attributes][][description]
+-#    user[profile_attributes][educations_attributes][][from_date]
+-#    user[profile_attributes][educations_attributes][][to_date]
+-# 5. User clicks "Save".
+-# 6. When the request is received by the controller educations_attributes in params hash looks like this:
+-#     { "user"=>{"profile_attributes"=>{"id"=>"47", .... ,
+-#                  "educations_attributes"=>[
+-#                       {"id"=>"10", "_destroy"=>"1", "school"=>"Lbi", "study_field"=>"", "from_date"=>"", "to_date"=>""},
+-#                       {"school"=>"", "study_field"=>"", "from_date"=>"", "to_date"=>""}
+-#                    ] }
+-#                },
+-#          "id"=>"41"
+-#     }
+-#     As can be seen the removed education and newly added first education details gets merged in a single hash which looks incorrect
+-#     May be Rails assumes the removed experience params i.e.
+-#       user[profile_attributes][educations_attributes][][id] (value set to removed education's id)
+-#       user[profile_attributes][educations_attributes][][_destroy]
+-#
+-#     and the newly added first education details to actually update removed
+-#     education details instead of removing one and adding a new one.
+-#
+-#     To get around this for a new education too passing param user[profile_attributes][educations_attributes][][id] with value nil
+-#     so that in the backend params hashes gets grouped correctly.
+-#
 .education_row
-  - unless education_id.nil?
-    = hidden_field_tag('user[profile_attributes][educations_attributes][][id]', education_id, class: 'educationId')
+  = hidden_field_tag('user[profile_attributes][educations_attributes][][id]', education_id, class: 'educationId')
   = text_field_tag('user[profile_attributes][educations_attributes][][school]', school, class: "section_profile_detail_edu", placeholder: t('profile.professional.placeholder.education.school'))
   = text_field_tag('user[profile_attributes][educations_attributes][][study_field]', study_field, class: "section_profile_detail_edu", placeholder: t('profile.professional.placeholder.education.major_study_field'))
   = text_field_tag('user[profile_attributes][educations_attributes][][from_date]', from_date, class: "section_profile_detail_edu_year datepicker", placeholder: t('profile.professional.placeholder.education.from_date'))

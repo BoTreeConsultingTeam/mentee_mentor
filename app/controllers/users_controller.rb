@@ -94,6 +94,9 @@ class UsersController < ApplicationController
   end
 
   def update
+    discard_blank_experiences
+    discard_blank_educations
+
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to profile_user_path(@user), notice: 'Profile was successfully updated.' }
@@ -161,10 +164,9 @@ class UsersController < ApplicationController
   end
 
   #DELETE /users/:id/unfollow/:following_user_id(.:format)
-  #DELETE /users/:id/disconnect_from/:connected_user_id(.:format)
   def unfollow
     user_id = params[:id]
-    following_user_id = (params[:following_user_id] || params[:connected_user_id])
+    following_user_id = params[:following_user_id]
 
     if (user_id.present? and following_user_id.present?)
        user = User.find_by_id(user_id)
@@ -217,6 +219,92 @@ class UsersController < ApplicationController
 
     timeline_users_id_arr = timeline_users.collect { |user| user.id }
     @updated_statuses = Status.where(user_id: timeline_users_id_arr ).order('statuses.updated_at DESC')
+  end
+
+  def discard_blank_experiences
+    received_experiences = params[:user][:profile_attributes][:experiences_attributes]
+
+    if received_experiences.present?
+      experiences_with_values = []
+      received_experiences.each do |experience_hash|
+        id = experience_hash[:id]
+        _destroy = experience_hash[:_destroy]
+
+        # if id and _destroy are present then this means an existing experience
+        # should be deleted.And thus there is no sense in checking if any
+        # experience details is present because there will be none.
+        if (id.present? and _destroy.present?)
+          experiences_with_values << experience_hash
+          next
+        end
+
+        company = experience_hash[:company]
+        company = company.strip if company.present?
+
+        description = experience_hash[:description]
+        description = description.strip if description.present?
+
+        from_date = experience_hash[:from_date]
+        from_date = from_date.strip if from_date.present?
+
+        to_date = experience_hash[:to_date]
+        to_date = to_date.strip if to_date.present?
+
+        if (company.present? or description.present? or from_date.present? or to_date.present?)
+          experiences_with_values << experience_hash
+        end
+      end
+
+      if experiences_with_values.empty?
+        params[:user][:profile_attributes].delete(:experiences_attributes)
+      else
+        params[:user][:profile_attributes][:experiences_attributes] = experiences_with_values
+      end
+
+    end
+  end
+
+  def discard_blank_educations
+    received_educations = params[:user][:profile_attributes][:educations_attributes]
+
+    if received_educations.present?
+      educations_with_values = []
+      received_educations.each do |education_hash|
+        id = education_hash[:id]
+        _destroy = education_hash[:_destroy]
+
+        # if id and _destroy are present then this means an existing education
+        # should be deleted.And thus there is no sense in checking if any
+        # education details is present because there will be none.
+        if (id.present? and _destroy.present?)
+          educations_with_values << education_hash
+          next
+        end
+
+        school = education_hash[:school]
+        school = school.strip if school.present?
+
+        study_field = education_hash[:study_field]
+        study_field = study_field.strip if study_field.present?
+
+        from_date = education_hash[:from_date]
+        from_date = from_date.strip if from_date.present?
+
+        to_date = education_hash[:to_date]
+        to_date = to_date.strip if to_date.present?
+
+        if (school.present? or study_field.present? or from_date.present? or to_date.present?)
+          educations_with_values << education_hash
+        end
+      end
+
+      if educations_with_values.empty?
+        params[:user][:profile_attributes].delete(:educations_attributes)
+      else
+        params[:user][:profile_attributes][:educations_attributes] = educations_with_values
+      end
+
+    end
   end
 
 end

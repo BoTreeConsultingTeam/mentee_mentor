@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
   end
 
   def can_follow
-    ((other_users_except_me - self.connected_with) - self.is_following)
+    (other_users_except_me - self.is_following)
   end
 
   def is_following?(user)

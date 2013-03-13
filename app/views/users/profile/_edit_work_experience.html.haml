@@ -11,9 +11,43 @@
   - from_date = experience.formatted_from_date
   - to_date = experience.formatted_to_date
 
+-# Scenario:
+-# 1. Experience-A already exists for User_1
+-# 2. User_1 removes the Experience-A row from front-end by clicking on X (remove) button.
+-# 3. Experience-A gets replaced with content of /app/views/users/profile/_remove_experience_template.html.haml
+-#    and is hidden i.e. two INPUT fields with name
+-#      user[profile_attributes][experiences_attributes][][id] (value set to removed experience's id)
+-#      user[profile_attributes][experiences_attributes][][_destroy]
+-# 4. User_1 adds 2 new experiences by clicking on Add Experience button on front-end.This appends two rows with contents
+-#    of /app/views/users/profile/_work_experience_template.html.haml i.e. 4 INPUT fields with following names:
+-#    user[profile_attributes][experiences_attributes][][company]
+-#    user[profile_attributes][experiences_attributes][][description]
+-#    user[profile_attributes][experiences_attributes][][from_date]
+-#    user[profile_attributes][experiences_attributes][][to_date]
+-# 5. User clicks "Save".
+-# 6. When the request is received by the controller experiences_attributes in params hash looks like this:
+-#     { "user"=>{"profile_attributes"=>{"id"=>"47", .... ,
+-#                  "experiences_attributes"=>[
+-#                       {"id"=>"10", "_destroy"=>"1", "company"=>"Lbi", "description"=>"", "from_date"=>"", "to_date"=>""},
+-#                         {"company"=>"", "description"=>"", "from_date"=>"", "to_date"=>""}
+-#                    ] }
+-#                },
+-#          "id"=>"41"
+-#     }
+-#     As can be seen the removed experience and newly added first experience details gets merged in a single hash which looks incorrect
+-#     May be Rails assumes the removed experience params i.e.
+-#       user[profile_attributes][experiences_attributes][][id] (value set to removed experience's id)
+-#       user[profile_attributes][experiences_attributes][][_destroy]
+-#
+-#     and the newly added first experience details to actually update removed
+-#     experience details instead of removing one and adding a new one.
+-#
+-#     To get around this for a new experience too passing param user[profile_attributes][experiences_attributes][][id] with value nil
+-#     so that in the backend params hashes gets grouped correctly.
+-#
+
 .education_row
-  - unless experience_id.nil?
-    = hidden_field_tag('user[profile_attributes][experiences_attributes][][id]', experience_id, class: 'experienceId')
+  = hidden_field_tag('user[profile_attributes][experiences_attributes][][id]', experience_id, class: 'experienceId')
   = text_field_tag('user[profile_attributes][experiences_attributes][][company]', company, class: "section_profile_detail_edu", placeholder: t('profile.professional.placeholder.work_experience.company'))
   = text_field_tag('user[profile_attributes][experiences_attributes][][description]', description, class: "section_profile_detail_edu", placeholder: t('profile.professional.placeholder.work_experience.description'))
   = text_field_tag('user[profile_attributes][experiences_attributes][][from_date]', from_date, class: "section_profile_detail_edu_year datepicker", placeholder: t('profile.professional.placeholder.work_experience.from_date'))

@@ -66,6 +66,7 @@
         } else if(isEducationContainer) {
           var educationId = parent.find('.educationId').val();
           if (!emptyString(educationId)) {
+            hide = true;
             parent.html($('#editProfile #removeEducationTemplate').html());
             parent.find('.educationId').val(educationId);
             parent.find('.educationDestroy').val('1');
@@ -120,7 +121,7 @@
       var containerIndex = 1;
       // Existing educations when removed are hidden.Thus filter out those
       // hidden ones when updating date fields id attribute values
-      $(educationContainerSelector).find('.education_row').not(":hidden").each(function() {
+      $(educationContainerSelector).find('.education_row').not(".removed").each(function() {
         updateDateFieldsIdAttrVal($(this), 'education', containerIndex);
         containerIndex++;
       });
