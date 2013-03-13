@@ -13,7 +13,7 @@ class SearchesController < ApplicationController
     # profile, the user's email doesn't show up in order in search results.
     # Thus programmatically sorting the results here to display the search
     # results in correct order.
-    sort_users(@users)
+    @users = sort_users(@users)
 
     @users = Kaminari.paginate_array(@users).page(params[:page]).per(10)
   end
@@ -54,20 +54,43 @@ PROFILES_WHERE_CLAUSE
   end
 
   def sort_users(users_arr)
-    users_arr.sort_by! do |user|
+    return users_arr if users_arr.nil? or users_arr.empty?
+
+    hash = {}
+    users_arr.each do |user|
       profile = user.profile
       profile_first_name = profile.first_name unless profile.nil?
       user_first_name = user.first_name
       user_email = user.email
 
+      key = nil
       if profile_first_name
-        profile_first_name
+        key = profile_first_name
       elsif user_first_name
-        user_first_name
+        key = user_first_name
       else
-        user_email
+        key = user_email.split("@").first
+      end
+
+      # Capitalizing it since capital alphabet when compared with small alphabet
+      # returns -1.Thus to make the keys comparison consistent capitalizing each
+      # key.
+      key = key.capitalize.to_sym
+      if hash.has_key?(key)
+        hash[key] << user
+      else
+        hash[key] = [ user ]
       end
     end
+
+    sorted_keys = hash.keys.sort
+
+    sorted_users = sorted_keys.inject([]) do |collector, key|
+      collector << hash[key]
+      collector.flatten!
+    end
+
+    sorted_users
   end
 
 end

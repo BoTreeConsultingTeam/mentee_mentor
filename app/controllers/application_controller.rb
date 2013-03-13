@@ -6,6 +6,25 @@ class ApplicationController < ActionController::Base
      user_home_path
   end
 
+  # Reference: http://railsforum.com/viewtopic.php?id=36667
+  def is_email?(str)
+    return false if str.blank?
+
+    email_regex = %r{
+      ^ # Start of string
+      [0-9a-z] # First character
+      [0-9a-z.+]+ # Middle characters
+      [0-9a-z] # Last character
+      @ # Separating @ character
+      [0-9a-z] # Domain name begin
+      [0-9a-z.-]+ # Domain name middle
+      [0-9a-z] # Domain name end
+      $ # End of string
+    }xi # Case insensitive
+
+    !str[email_regex].nil?
+  end
+
   private
 
   def require_user
