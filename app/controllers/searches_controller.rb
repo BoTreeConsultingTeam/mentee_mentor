@@ -64,9 +64,9 @@ PROFILES_WHERE_CLAUSE
       user_email = user.email
 
       key = nil
-      if profile_first_name
+      if profile_first_name.present?
         key = profile_first_name
-      elsif user_first_name
+      elsif user_first_name.present?
         key = user_first_name
       else
         key = user_email.split("@").first
