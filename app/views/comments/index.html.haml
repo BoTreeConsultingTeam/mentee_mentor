@@ -1,0 +1,7 @@
+- unless status.nil?
+  - total_comments_size = status.comments.size
+  - if total_comments_size > 0
+    .commentsContainer
+      %ul
+        = render partial: "comments/list_comments", locals: { status: status }
+

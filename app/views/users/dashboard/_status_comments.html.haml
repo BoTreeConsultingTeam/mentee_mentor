@@ -1,0 +1,7 @@
+- unless status.nil?
+  - unless current_user_and_user_same?(status.user)
+    #comment_status(class='commentStatusContainer')
+    .commentFormContainer
+      = render partial: "comments/form", locals: { status: status }
+
+  = render file: "comments/index", locals: { status: status }

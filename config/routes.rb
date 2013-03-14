@@ -36,6 +36,10 @@ MentorMentee::Application.routes.draw do
 
   resources :searches, only: [:index]
 
+  resources :comments, only: [:index, :create]
+
+  get 'statuses/:status_id/comments/:next_page' => 'comments#load_more_status_comments', as: :more_status_comments
+
   get 'search' => "searches#index"
 
   # The priority is based upon order of creation:

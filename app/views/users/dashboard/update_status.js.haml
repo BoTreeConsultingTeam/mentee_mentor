@@ -20,6 +20,7 @@
     if(timelineMainContainer.length > 0) {
       var timelineHTML = "#{escape_javascript(render( partial: 'users/dashboard/timeline' )) }"
       $('#timelineMainContainer').html(timelineHTML);
+      bindClickToCommentsLinkUnderTimeline();
     } else if (viewProfileUserMostRecentStatus.length > 0) {
       var viewProfileMostRecentStatusHtml = "#{escape_javascript(render( partial: 'users/profile/user_most_recent_status' )) }"
       viewProfileUserMostRecentStatus.html(viewProfileMostRecentStatusHtml);

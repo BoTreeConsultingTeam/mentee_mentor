@@ -2,6 +2,10 @@ app_name: "Mentee Mentor"
 
 default_host: <%= ENV['DEFAULT_HOST'] %>
 
+comments:
+  pagination:
+    per_page: 3
+
 photos:
   profile:
     styles:

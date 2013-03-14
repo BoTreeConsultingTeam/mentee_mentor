@@ -3,7 +3,7 @@
 
    bindClickToSendOrReplyMquestLink = function(link_selector) {
       var links = $(link_selector);
-      links.click(function() {
+      links.click(function(event) {
         var linkTitleAttr = $(this).attr('title');
         var mquestForm = $(this).parent().siblings('.mquest_reply');
         var mquestFormVisible = mquestForm.is(':visible');
@@ -34,6 +34,7 @@
           }
         }
 
+        event.preventDefault();
       });
    };
 

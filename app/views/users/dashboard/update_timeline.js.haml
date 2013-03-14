@@ -1,3 +1,4 @@
 :plain
   var timelineListUsersHtml = "#{escape_javascript(render( partial: 'users/dashboard/timeline_list_users')) }"
   $("#timeline_users_container").html(timelineListUsersHtml);
+  bindClickToCommentsLinkUnderTimeline();

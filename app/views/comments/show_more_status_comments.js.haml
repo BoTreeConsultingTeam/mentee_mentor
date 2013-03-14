@@ -1,0 +1,9 @@
+- status = @status
+- status_id = status.id
+- current_page = @current_page
+:plain
+  var statusCommentsMainContainerSelector = "##{status_id}_commentsMainContainer";
+  var commentsContainer = $(statusCommentsMainContainerSelector).find('.commentsContainer');
+  commentsContainer.find('a.more_comments_link').remove();
+  var moreStatusCommentsHtml = "#{escape_javascript(render partial: 'comments/list_comments', locals: { status: status, current_page: current_page })}"
+  commentsContainer.find('ul').append(moreStatusCommentsHtml);

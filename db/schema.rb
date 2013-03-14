@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130302164448) do
+ActiveRecord::Schema.define(:version => 20130314164349) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(:version => 20130302164448) do
     t.string   "token"
     t.string   "uid"
     t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "status_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

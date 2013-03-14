@@ -34,8 +34,13 @@ en:
     timeline:
       title: "Timeline"
       refresh_link: "Refresh"
-      reply_link: "Reply"
-      mark_as_read_link: "Mark As Read"
+      comment: "Comment"
+      like: "Like"
+
+  comments:
+    add_comment_btn: "Add Comment"
+    placeholder:
+      content: "Type your comment here"
 
   profile:
     save_btn: "Save"

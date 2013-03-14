@@ -1,0 +1,31 @@
+- status = @status
+- status_id = status.id
+- add_comment_status_message = ''
+- if @comment_added
+  - add_comment_status_message = (@comment_added ? true : false)
+- else
+  - add_comment_status_message = @comment.errors.full_messages.join('<br/>')
+
+:plain
+  var statusCommentsMainContainerSelector = "##{status_id}_commentsMainContainer";
+
+  var commentAdded = "#{@comment_added ? 'true' : 'false'}";
+  if (commentAdded == 'true') {
+    var statusCommentsHtml = "#{escape_javascript(render partial: 'users/dashboard/status_comments', locals: { status: status }) }"
+    $(statusCommentsMainContainerSelector).html(statusCommentsHtml);
+
+    var commentLink = $(statusCommentsMainContainerSelector).siblings('.timeline_dtl').find('.comment_link');
+    var commentLinkTitleAttr = commentLink.attr('title');
+    commentLink.text(commentLinkTitleAttr);
+  } else {
+    var addCommentFormContainer = $(statusCommentsMainContainerSelector).find('.commentFormContainer');
+    var addCommentFormHtml = "#{escape_javascript(render( partial: 'comments/form', locals: { status: status } )) }"
+    addCommentFormContainer.html(addCommentFormHtml);
+
+    var commentErrorsHtml = "<p style='color: red'>#{add_comment_status_message}</p>";
+    var commentStatusContainer = $(statusCommentsMainContainerSelector).find('#comment_status');
+    commentStatusContainer.html(commentErrorsHtml);
+    commentStatusContainer.show();
+  }
+
+

@@ -1,39 +1,4 @@
 jQuery(function() {
-  $('span[id^="dialoguesListing_"] #newDialogue').live('click', function() {
-    resetSelectDialoguesDropdown($(this).parent());
-
-    var messageBoxSelector = getUserMessageBoxSelector($(this));
-    var formMessageThreadIdFieldSelector = getUserMessageFormMessageThreadIdSelector($(this));
-    $(formMessageThreadIdFieldSelector).val('');
-
-    var formMessageThreadTitleFieldSelector = getUserMessageFormMessageThreadTitleSelector($(this));
-    $(formMessageThreadTitleFieldSelector).show();
-
-    clearUserMessageStatusBox($(this));
-
-    $(messageBoxSelector).toggle();
-  });
-
-  $('span[id^="dialoguesListing_"] select#dialogues').live('change', function() {
-    clearUserMessageStatusBox($(this));
-    var selectedMessageThreadId = $(this).val();
-    var userId = $(this).siblings("#user_id").val();
-    var messageBoxSelector = getUserMessageBoxSelector($(this));
-    var formMessageThreadIdFieldSelector = getUserMessageFormMessageThreadIdSelector($(this));
-    if (selectedMessageThreadId == '') {
-      $(formMessageThreadIdFieldSelector).val('');
-      $(messageBoxSelector).hide();
-      alert("Please select a dialogue");
-      return false;
-    } else {
-      var formMessageThreadTitleFieldSelector = getUserMessageFormMessageThreadTitleSelector($(this));
-      $(formMessageThreadTitleFieldSelector).hide();
-      $(formMessageThreadIdFieldSelector).val(selectedMessageThreadId);
-
-      $(messageBoxSelector).show(true);
-    }
-  });
-
   /* Carousel */
   $('#mycarousel').jcarousel({
     wrap: 'circular'
@@ -50,7 +15,40 @@ jQuery(function() {
 
   bindFileUploadToUserPicture();
 
+  bindClickToCommentsLinkUnderTimeline();
+
 });
+
+function bindClickToCommentsLinkUnderTimeline() {
+  var timelineUsersContainer = $("#timeline_users_container");
+
+  if (timelineUsersContainer.length > 0) {
+    timelineUsersContainer.find('ul li .timeline_dtl .comment_link').click(function(event) {
+        var linkTitleAttr = $(this).attr('title');
+        var addCommentFormContainer = $(this).closest('li').find('.commentFormContainer');
+        var addCommentFormContainerVisible = addCommentFormContainer.is(':visible');
+
+        if(addCommentFormContainerVisible) {
+          // Reset the text area for writing comment
+          addCommentFormContainer.find("form #comments_content").val('');
+
+          var commentStatus = addCommentFormContainer.siblings('#comment_status');
+          commentStatus.html(''); // Reset the comment status container
+          commentStatus.hide();
+
+          addCommentFormContainer.hide();
+          addCommentFormContainerVisible = false;
+          $(this).text(linkTitleAttr);
+        } else {
+          addCommentFormContainer.show();
+          addCommentFormContainerVisible = true;
+          $(this).text('Cancel');
+        }
+
+        event.preventDefault();
+    });
+  }
+}
 
 function bindFileUploadToUserPicture() {
   var userPicture = $('#userPicture');

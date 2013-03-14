@@ -1,6 +1,8 @@
 %ul
   - @updated_statuses.each do |status|
     - user = status.user
+    - current_user_and_user_same = current_user_and_user_same?(user)
+    - comments = nil
     %li
       .poster-thumbs
         = image_tag(user_profile_picture_path(user), width: "40px", height: "40px", alt: user.name)
@@ -10,3 +12,13 @@
         = status.content
       .timeline_dtl
         = formatted_timeline_status_datetime(status.updated_at)
+        - unless current_user_and_user_same
+          %br/
+          = link_to(t('dashboard.timeline.like'), "#")
+          %br/
+          = link_to(t('dashboard.timeline.comment'), "#", title: t('dashboard.timeline.comment'), class: 'comment_link')
+
+      %div{id: "#{status.id}_commentsMainContainer"}
+        = render partial: "users/dashboard/status_comments", locals: { status: status }
+
+

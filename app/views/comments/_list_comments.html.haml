@@ -1,0 +1,22 @@
+- unless status.nil?
+  - total_comments_size = status.comments.size
+  - if total_comments_size > 0
+    - per_page = Settings.comments.pagination.per_page
+    - last_page = total_comments_size / per_page
+    - last_page = last_page + 1 if ( (total_comments_size % per_page) > 0 )
+    - current_page ||= 1
+    - comments = status.comments.paginate(current_page, per_page)
+
+    - comments.each do |comment|
+      - comment_user = comment.user
+      %li
+        .commentDetails
+          = "#{current_user.id == comment_user.id ? 'You': comment_user.name } wrote:"
+          %br/
+          = formatted_status_comment_datetime(comment.created_at)
+        .commentText
+          = comment.content
+
+    - if current_page < last_page
+      = link_to('More', more_status_comments_path(status_id: status, next_page: current_page + 1), remote: true, class: 'more_comments_link')
+

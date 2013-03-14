@@ -1,0 +1,8 @@
+- unless status.nil?
+  = form_tag(comments_path, remote: true) do
+    = hidden_field_tag 'comment[status_id]', status.id
+    = hidden_field_tag 'comment[user_id]', current_user.id
+    = text_area_tag 'comment[content]', nil, cols: 50, rows: 3, placeholder: t('comments.placeholder.content')
+
+    %div
+      = submit_tag t('comments.add_comment_btn'), class: "line_btn"
