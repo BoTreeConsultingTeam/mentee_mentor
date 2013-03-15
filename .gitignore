@@ -12,7 +12,6 @@
 /log/*.log
 /tmp
 config/database.yml
-config/settings/secured*.yml
 public/tmp/**/*
 public/system/attachment/**/*
 /.idea/

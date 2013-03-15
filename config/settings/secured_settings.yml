@@ -1,0 +1,18 @@
+omniauth:
+  facebook:
+    key: '563176240364068'
+    secret: '5f60017448d0045547d241cea6dfc33e'
+
+  linkedin:
+    key: 'iq117djeh287'
+    secret: 'Eqxvboe24YpHesfw'
+
+
+mail:
+  address: 'smtp.gmail.com'
+  port: '587'
+  domain: 'botreeconsulting.com'
+  user_name: 'testmail@botreeconsulting.com'
+  password: 'india@19'
+
+mail_settings_available: false
