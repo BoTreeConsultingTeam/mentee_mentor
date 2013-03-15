@@ -1,0 +1,6 @@
+- unless status.nil?
+  - status_id = status.id
+  - if status.liked_by_user?(current_user.id)
+    = link_to(t('dashboard.timeline.dislike'), dislike_status_path(status_id: status_id), method: :delete, remote: true, rel: 'likeDislikeLink')
+  - else
+    = link_to(t('dashboard.timeline.like'), like_status_path(status_id: status_id), method: :post, remote: true, rel: 'likeDislikeLink')

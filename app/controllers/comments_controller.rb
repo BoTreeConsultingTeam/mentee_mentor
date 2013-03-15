@@ -3,17 +3,6 @@ class CommentsController < ApplicationController
 
   respond_to :js, only: [:create, :load_more_status_comments]
 
-  # GET /comments
-  # GET /comments.json
-  def index
-    @comments = Comment.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @comments }
-    end
-  end
-
   # POST /comments
   # POST /comments.json
   def create

@@ -1,5 +1,6 @@
 %ul
   - @updated_statuses.each do |status|
+    - status_id = status.id
     - user = status.user
     - current_user_and_user_same = current_user_and_user_same?(user)
     - comments = nil
@@ -10,13 +11,19 @@
         = user.name
       .time_line_txt<
         = status.content
-      .timeline_dtl
+      .timeline_dtl{ id: "#{status_id}_timeline_dtl_container" }
         = formatted_timeline_status_datetime(status.updated_at)
-        - unless current_user_and_user_same
+        - if !current_user_and_user_same
           %br/
-          = link_to(t('dashboard.timeline.like'), "#")
+          = render partial: "users/dashboard/like_or_dislike_link", locals: { status: status }
           %br/
           = link_to(t('dashboard.timeline.comment'), "#", title: t('dashboard.timeline.comment'), class: 'comment_link')
+        - else
+          - total_likes = status.total_likes
+          - if total_likes > 0
+            %br/
+            = "#{total_likes} #{total_likes > 1 ? 'Likes' : 'Like'}"
+
 
       %div{id: "#{status.id}_commentsMainContainer"}
         = render partial: "users/dashboard/status_comments", locals: { status: status }

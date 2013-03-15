@@ -40,6 +40,9 @@ MentorMentee::Application.routes.draw do
 
   get 'statuses/:status_id/comments/:next_page' => 'comments#load_more_status_comments', as: :more_status_comments
 
+  post 'statuses/:status_id/like' => 'likes#create', as: :like_status
+  delete 'statuses/:status_id/dislike' => 'likes#destroy', as: :dislike_status
+
   get 'search' => "searches#index"
 
   # The priority is based upon order of creation:

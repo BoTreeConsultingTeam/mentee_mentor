@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130314164349) do
+ActiveRecord::Schema.define(:version => 20130315091036) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -59,6 +59,13 @@ ActiveRecord::Schema.define(:version => 20130314164349) do
     t.integer  "following_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "likes", :force => true do |t|
+    t.integer  "status_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "message_threads", :force => true do |t|

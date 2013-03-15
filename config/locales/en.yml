@@ -36,6 +36,7 @@ en:
       refresh_link: "Refresh"
       comment: "Comment"
       like: "Like"
+      dislike: "Dislike"
 
   comments:
     add_comment_btn: "Add Comment"

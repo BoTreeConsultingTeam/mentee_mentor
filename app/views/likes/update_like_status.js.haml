@@ -1,0 +1,6 @@
+- status = @like.status
+:plain
+  var likeOrDislikeLinkContainerSelector = "##{status.id}_timeline_dtl_container";
+  var likeOrDislikeLink = $(likeOrDislikeLinkContainerSelector).find('a[rel~="likeDislikeLink"]');
+  html = "#{escape_javascript(render partial: 'users/dashboard/like_or_dislike_link', locals: { status: status })}"
+  likeOrDislikeLink.replaceWith(html);
